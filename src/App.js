@@ -40,13 +40,13 @@ function App() {
   const context = useContext(RecipeContext);
   const { alert, progress, setProgress, progressheight } = context;
 
-  const [mode, setMode] = useState("light mode");
-  const [button_label, setButton_label] = useState("Dark mode");
+  // const [mode, setMode] = useState("light mode");
+  // const [button_label, setButton_label] = useState("Dark mode");
   const [textColor, setTextColor] = useState("dark");
-  const [textColor_button, setTextColor_button] = useState("dark");
+  // const [textColor_button, setTextColor_button] = useState("dark");
   const [color, setColor] = useState("dark");
-  const [topLeftColor, settopLeftColor] = useState("white");
-  const [headingColor, setheadingColor] = useState("dark");
+  // const [topLeftColor, settopLeftColor] = useState("white");
+  // const [headingColor, setheadingColor] = useState("dark");
 
   let location = useLocation();
   return (

@@ -431,7 +431,7 @@ export default function EditRecipe() {
                                       <div className="mb-2 d-flex justify-content-center">
                                         <img
                                           id="reicpe_image"
-                                          src={element.image}
+                                          src={element.image.url}
                                           alt="Recipe Image"
                                           style={{
                                             width: "100%",

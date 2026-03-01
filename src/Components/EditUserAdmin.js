@@ -353,7 +353,7 @@ export default function EditUserAdmin() {
                       <div className="card-body  text-center ">
                         <img
                           alt="avatar"
-                          src={userbyid?.user?.Profile_Image}
+                          src={userbyid?.user?.Profile_Image.url}
                           className="rounded-circle img-fluid "
                           id="profile_avtar"
                           style={{ width: "150px" }}

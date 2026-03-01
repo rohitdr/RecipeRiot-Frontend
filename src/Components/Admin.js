@@ -538,7 +538,7 @@ the adminactivepage state to the adminActivePageNumber. */
                                 }}
                               >
                                 <img
-                                  src={element.Profile_Image}
+                                  src={element.Profile_Image.url}
                                   alt="Avatar"
                                   className="img-fluid my-5 box_decrease_size_animationforlogin border border-danger"
                                   style={{ width: "80px" }}
@@ -650,7 +650,7 @@ the adminactivepage state to the adminActivePageNumber. */
                           <div className="d-flex align-items-center ">
                             <div>
                               <img
-                                src={element.Profile_Image}
+                                src={element.Profile_Image.url}
                                 className="img-fluid shadow-1-strong rounded border border-success  Profile_activity_latest_imageforadminalluser  "
                                 alt="Latest Recipe Image"
                               />
@@ -748,13 +748,14 @@ the adminactivepage state to the adminActivePageNumber. */
                         key={element._id}
                       >
                         <RecipeItem
+                        key={element._id}
                           id={element._id}
                           userData={element.userData}
                           rating={totalratings}
                           title={element.label}
                           topLeftColor={"dark"}
                           headingColor={"dark"}
-                          ImageUrl={element.image}
+                          ImageUrl={element.image.url}
                           user={element.user}
                           date={element.date}
                           health_labels={element.healthLabels}
@@ -799,7 +800,7 @@ the adminactivepage state to the adminActivePageNumber. */
                         <div className="d-flex align-items-center  justify-content-between p-4 my-2 latestrecipelibox">
                           <div className="d-flex align-items-center">
                             <img
-                              src={element.image}
+                              src={element.image.url}
                               className="img-fluid shadow-1-strong rounded  Profile_activity_latest_image "
                               alt="Latest Recipe Image"
                             />

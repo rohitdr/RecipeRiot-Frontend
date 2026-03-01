@@ -1406,7 +1406,7 @@ export default function Searchbar() {
                   src={
                     sessionStorage.getItem("auth-token") ||
                     localStorage.getItem("auth-token")
-                      ? userData?.user?.Profile_Image
+                      ? userData?.user?.Profile_Image.url
                       : "https://i.pravatar.cc/150?u=a042581f4e29026024d"
                   }
                 />

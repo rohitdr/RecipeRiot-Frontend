@@ -72,7 +72,7 @@ export default function Individual_Recipe() {
             comment: {
               user: userData?.user?._id,
               username: userData?.user?.username,
-              Profileimage: userData?.user?.Profile_Image,
+              Profileimage: userData?.user?.Profile_Image.url,
               comment: comment,
               rating: star,
             },
@@ -159,7 +159,7 @@ export default function Individual_Recipe() {
                       <div className="row">
                         <div className="col-md-6">
                           <img
-                            src={element.image}
+                            src={element.image.url}
                             alt="Kodak Brownie Flash B Camera"
                             className="image-responsive box_decrease_size_animation"
                             height="400px"
@@ -1058,7 +1058,7 @@ export default function Individual_Recipe() {
                                                       <div className="row g-0">
                                                         <div className="col-md-4">
                                                           <img
-                                                            src={ele.image}
+                                                            src={ele.image.url}
                                                             className="img-fluid rounded-start w-100 h-100"
                                                             alt="..."
                                                           />

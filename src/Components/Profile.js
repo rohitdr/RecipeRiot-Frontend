@@ -70,7 +70,7 @@ export default function Profile(props) {
                           title={element.label}
                           topLeftColor={"dark"}
                           headingColor={"dark"}
-                          ImageUrl={element.image}
+                          ImageUrl={element.image.url}
                           user={element.user}
                           date={element.date}
                           health_labels={element.healthLabels}

@@ -642,8 +642,8 @@ export default function Home() {
                               rating={totalratings}
                               title={element.label}
                               topLeftColor={"dark"}
-                              headingColor={"dark"}
-                              ImageUrl={element.image}
+                              headingColor={"dark"} 
+                              ImageUrl={element.image.url}
                               user={element.user}
                               date={element.date}
                               health_labels={element.healthLabels}
@@ -835,7 +835,7 @@ export default function Home() {
                               topLeftColor={"dark"}
                               headingColor={"dark"}
                               rating={totalratings}
-                              ImageUrl={element.image}
+                              ImageUrl={element.image.url}
                               user={element.user}
                               date={element.date}
                               health_labels={element.healthLabels}

@@ -108,7 +108,7 @@ the login page. */
                             <div className="d-flex align-items-center justify-content-between px-4 latestrecipelibox py-2">
                               <div className="d-flex align-items-center">
                                 <img
-                                  src={element.image}
+                                  src={element.image.url}
                                   className="img-fluid shadow-1-strong rounded latest_recipe_image Profile_activity_latest_image "
                                   alt="Latest Recipe Image"
                                 />

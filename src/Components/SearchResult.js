@@ -52,7 +52,7 @@ export default function SearchResult() {
                     title={element.label}
                     topLeftColor={"dark"}
                     headingColor={"dark"}
-                    ImageUrl={element.image}
+                    ImageUrl={element.image.url}
                     date={element.date}
                     health_labels={element.healthLabels}
                     Ingridiants={element.ingredientLines
@@ -192,7 +192,7 @@ export default function SearchResult() {
                               title={element.label}
                               topLeftColor={"dark"}
                               headingColor={"dark"}
-                              ImageUrl={element.image}
+                              ImageUrl={element.image.url}
                               user={element.user}
                               date={element.date}
                               health_labels={element.healthLabels}

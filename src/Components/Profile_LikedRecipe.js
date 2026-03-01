@@ -78,7 +78,7 @@ export default function Profile_LikedRecipe() {
                             topLeftColor={"dark"}
                             headingColor={"dark"}
                             user={element.user}
-                            ImageUrl={element.image}
+                            ImageUrl={element.image.url}
                             date={element.date}
                             health_labels={element.healthLabels}
                             Ingridiants={element.ingredientLines

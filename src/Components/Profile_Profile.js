@@ -7,9 +7,7 @@ import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
 
 export default function Profile_Profile() {
-/* The above code is using the useState hook to create a state variable called showfile and a function
-called setshowfile. */
-  const [showfile, setshowfile] = useState(null);
+
  /* Creating a state variable called user and setting it to an object with the properties username,
  first_name, last_name, email, and phone_number. */
   const [user, setuser] = useState({
@@ -19,6 +17,7 @@ called setshowfile. */
     email: "",
     phone_number: "",
   });
+const [image,setImage]=useState(null)
 /* Creating a state variable called socaildetails and setting it to an object with 4 properties. */
   const [socaildetails, setsocialdetails] = useState({
     git: "",
@@ -27,7 +26,7 @@ called setshowfile. */
     web: "",
   });
 /* Setting up the state for the component. */
-  const [filesize, setfilesize] = useState(0);
+
   const context = useContext(RecipeContext);
   const { getUser, userData, showAlert, setProgress, setAlert } = context;
   const [servererror, setservererror] = useState(0);
@@ -45,44 +44,16 @@ called setshowfile. */
      
     }
   }, [userData]);
-  //converting image to base64
- /**
-  * It takes a file and returns a promise that resolves to the base64 representation of the file
-  * @param file - The file to be converted to base64
-  */
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
 
-  //image preview
- /**
-  * It takes an image file, converts it to a base64 string, and then sets the state of the base64
-  * string.
-  * @param e - the event object
-  */
-  const imagepreview = async (e) => {
-    const imagefile = e.target.files[0];
-    setfilesize(e.target.files[0].size);
-    const imageurl = URL.createObjectURL(imagefile);
-    const previewing = document.querySelector("#profile_avtar");
-    previewing.src = imageurl;
 
-    let base64 = await toBase64(imagefile);
 
-    setshowfile(base64);
-  };
-  //api for changing the image
- /**
-  * It takes a file as an argument and sends it to the server
-  * @param file - the file that is being uploaded
-  */
-  const changeprofileimage = async (file) => {
+  const changeprofileimage = async () => {
     try {
       setProgress(30);
+      const formData = new FormData();
+      formData.append("image",image)
+      console.log(formData)
+
 
       const response = await fetch(
         `${process.env.REACT_APP_Fetch_Api_Start}/auth/changeuploadimage`,
@@ -90,15 +61,12 @@ called setshowfile. */
           method: "POST",
           mode: "cors",
           headers: {
-            "Content-Type": "application/json",
             // 'auth-token':sessionStorage.getItem("auth-token")
             "auth-token": sessionStorage.getItem("auth-token")
               ? sessionStorage.getItem("auth-token")
               : localStorage.getItem("auth-token"),
           },
-          body: JSON.stringify({
-            image: file,
-          }),
+          body: formData
         }
       );
       setProgress(50);
@@ -116,6 +84,7 @@ called setshowfile. */
         setProgress(100);
         setservererror(500);
       }
+      setImage(null)
     } catch (error) {
       setProgress(100);
       setservererror(500);
@@ -128,10 +97,11 @@ called setshowfile. */
  * If the file size is greater than 100kb, show an alert. Otherwise, change the profile image.
  */
   const changefile = () => {
-    if (filesize > 100000) {
+    if (image.size > 100000) {
       showAlert("File size should be less that 100kb", "danger");
     } else {
-      changeprofileimage(showfile);
+      console.log(image)
+      changeprofileimage(image);
     }
   };
   //form submit
@@ -328,7 +298,7 @@ called setshowfile. */
                       <div className="card-body text-center">
                         <img
                           alt="avatar"
-                          src={userData?.user?.Profile_Image}
+                          src={image===null?userData?.user?.Profile_Image.url:URL.createObjectURL(image)}
                           className="rounded-circle img-fluid"
                           id="profile_avtar"
                           style={{ width: "150px" }}
@@ -354,7 +324,7 @@ called setshowfile. */
                                 id="profileimage"
                                 type="file"
                                 accept="image/*"
-                                onChange={imagepreview}
+                                onChange={(e)=>{setImage(e.target.files[0])}}
                               />
                             </label>
                             <button

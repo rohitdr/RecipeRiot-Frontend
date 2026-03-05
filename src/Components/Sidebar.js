@@ -4,7 +4,7 @@ import "./sidebar.css";
 import { Link } from "react-router-dom";
 
 
-export default function SideBar(props) {
+export default function Sidebar(props) {
   let location = useLocation();
 
   React.useEffect(() => {}, [location]);

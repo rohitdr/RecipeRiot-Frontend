@@ -1,5 +1,5 @@
 import "./App.css";
-import SideBar from "./Components/SideBar.js";
+import Sidebar from "./Components/Sidebar.js";
 import SearchBar from "./Components/SearchBar.js";
 
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -48,7 +48,7 @@ function App() {
         onLoaderFinished={() => setProgress(0)}
       />
 
-      <SideBar></SideBar>
+      <Sidebar></Sidebar>
 
       <SearchBar></SearchBar>
 

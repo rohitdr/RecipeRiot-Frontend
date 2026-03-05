@@ -27,12 +27,13 @@ export default function Diettype() {
   useEffect(() => {
     document.title = `RecipeRiot-${firstCapital(type)}  Recipes`;
     diettype(type);
+    // eslint-disable-next-line
   }, [type]);
   var totalratings = 0;
   return (
     <>
       <AnimatedPage>
-        {dietdata == 500 ? (
+        {dietdata === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <>
@@ -131,7 +132,7 @@ export default function Diettype() {
                     element.Comments.map((ele) => {
                       reciperating = reciperating + ele.rating;
                     });
-                    element.Comments.length != 0
+                    element.Comments.length !== 0
                       ? (totalratings = reciperating / element.Comments.length)
                       : (totalratings = 0);
                     reciperating = 0;

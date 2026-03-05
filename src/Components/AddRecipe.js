@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Addreicpe.css";
-import { Input, Button, Modal, Text, Textarea } from "@nextui-org/react";
+import { Input, Button, Textarea } from "@nextui-org/react";
 import { useContext } from "react";
 import { motion } from "framer-motion";
 import RecipeContext from "../Context/RecipeContext";
@@ -12,12 +12,9 @@ export default function AddRecipe() {
   const [pageno, setpageno] = useState(0);
   const context = useContext(RecipeContext);
   const { showAlert, setProgress } = context;
-  const [totalingrediants, settotalingrediants] = useState("secondary");
-  const [Ingrediantsmodalstate, settotalingrediantsmodalstate] =
-    useState(false);
-  const [totalingrediantsnumber, settotalingrediantsnumber] = useState(0);
+
   const [filesize, setfilesize] = useState(0);
-  const [image, setimage] = useState("");
+  const [image, setImage] = useState(null);
   const [addrecipeserver, setaddrecipeserver] = useState({});
   /* Using the useNavigate hook to navigate to a different page. */
   let Navigate = useNavigate();
@@ -26,36 +23,17 @@ export default function AddRecipe() {
   useEffect(() => {
     document.title = "RecipeRiot-Add Recipe";
   }, []);
-  /**
-   * It takes a file and returns a promise that resolves to the base64 representation of the file
-   * @param file - The file to be converted to base64
-   */
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+  
 
-  /**
-   * It takes the image file, converts it to a base64 string, and then sets the state of the image to the
-   * base64 string.
-   * @param e - the event object
-   */
-  const imagepreview = async (e) => {
-    const imagefile = e.target.files[0];
-
-    setfilesize(e.target.files[0].size);
-
-    const imageurl = URL.createObjectURL(imagefile);
-    const previewing = document.querySelector("#reicpe_image");
-    previewing.src = imageurl;
-
-    let base64 = await toBase64(imagefile);
-    setRecipe({ ...recipe, image: base64 });
-    setimage(base64);
-  };
+ const handleSelectImage=(e)=>{
+  setfilesize(e.target.files[0].size)
+       if (filesize > 100000){
+          showAlert("File size should be less that 100kb", "danger");
+       }
+       else{
+   setImage(e.target.files[0])
+       }
+ }
 
   /* Setting the state of the recipe to the default values. */
   const [recipe, setRecipe] = useState({
@@ -94,7 +72,6 @@ export default function AddRecipe() {
         unit: "g",
       },
 
-    
       SUGAR: {
         label: "Sugars",
         quantity: 0,
@@ -170,7 +147,6 @@ export default function AddRecipe() {
         quantity: 0,
         unit: "mg",
       },
-      
 
       WATER: {
         label: "Water",
@@ -181,7 +157,7 @@ export default function AddRecipe() {
   });
 
   /* Declaring variables. */
-  var first_ingede_text,
+  let first_ingede_text,
     second_ingede_text,
     third_ingede_text,
     fourth_ingede_text,
@@ -191,7 +167,7 @@ export default function AddRecipe() {
     eight_ingede_text,
     nineth_ingede_text,
     tenth_ingede_text = null;
-  var first_ingede_weight,
+  let first_ingede_weight,
     second_ingede_weight,
     third_ingede_weight,
     fourth_ingede_weight,
@@ -201,16 +177,16 @@ export default function AddRecipe() {
     eight_ingede_weight,
     nineth_ingede_weight,
     tenth_ingede_weight = null;
-  var first_ingede_image,
-    second_ingede_image,
-    third_ingede_image,
-    fourth_ingede_image,
-    fifth_ingede_image,
-    sixth_ingede_image,
-    seventh_ingede_image,
-    eight_ingede_image,
-    nineth_ingede_image,
-    tenth_ingede_image = null;
+  // let first_ingede_image,
+  //   second_ingede_image,
+  //   third_ingede_image,
+  //   fourth_ingede_image,
+  //   fifth_ingede_image,
+  //   sixth_ingede_image,
+  //   seventh_ingede_image,
+  //   eight_ingede_image,
+  //   nineth_ingede_image,
+  //   tenth_ingede_image = null;
 
   /**
    * It takes a select element's id as an argument and returns an array of the selected options.
@@ -229,6 +205,8 @@ export default function AddRecipe() {
    */
   const onchangelabel = (e) => {
     setRecipe({ ...recipe, label: e.target.value });
+
+
   };
 
   /**
@@ -262,24 +240,17 @@ export default function AddRecipe() {
   const ingredientsfirstpage = async () => {
     if (first_ingede_text && first_ingede_weight) {
       recipe.ingredientLines.push(first_ingede_text);
-      if (first_ingede_image) {
-        first_ingede_image = await toBase64(first_ingede_image);
-      }
       recipe.ingredients.push({
         text: first_ingede_text,
         weight: first_ingede_weight,
-        image: first_ingede_image,
       });
     }
     if (second_ingede_text && second_ingede_weight) {
       recipe.ingredientLines.push(second_ingede_text);
-      if (second_ingede_image) {
-        second_ingede_image = await toBase64(second_ingede_image);
-      }
       recipe.ingredients.push({
         text: second_ingede_text,
         weight: second_ingede_weight,
-        image: second_ingede_image,
+    
       });
     }
 
@@ -300,24 +271,18 @@ export default function AddRecipe() {
   const ingredientssecondpage = async () => {
     if (third_ingede_text && third_ingede_weight) {
       recipe.ingredientLines.push(third_ingede_text);
-      if (third_ingede_image) {
-        third_ingede_image = await toBase64(third_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: third_ingede_text,
         weight: third_ingede_weight,
-        image: third_ingede_image,
       });
     }
     if (fourth_ingede_text && fourth_ingede_weight) {
       recipe.ingredientLines.push(fourth_ingede_text);
-      if (fourth_ingede_image) {
-        fourth_ingede_image = await toBase64(fourth_ingede_image);
-      }
       recipe.ingredients.push({
         text: fourth_ingede_text,
         weight: fourth_ingede_weight,
-        image: fourth_ingede_image,
+     
       });
     }
 
@@ -332,24 +297,19 @@ export default function AddRecipe() {
   const ingredientsthirdpage = async () => {
     if (fifth_ingede_text && fifth_ingede_weight) {
       recipe.ingredientLines.push(fifth_ingede_text);
-      if (fifth_ingede_image) {
-        fifth_ingede_image = await toBase64(fifth_ingede_image);
-      }
+    
       recipe.ingredients.push({
         text: fifth_ingede_text,
         weight: fifth_ingede_weight,
-        image: fifth_ingede_image,
       });
     }
     if (sixth_ingede_text && sixth_ingede_weight) {
       recipe.ingredientLines.push(sixth_ingede_text);
-      if (sixth_ingede_image) {
-        sixth_ingede_image = await toBase64(sixth_ingede_image);
-      }
+    
       recipe.ingredients.push({
         text: sixth_ingede_text,
         weight: sixth_ingede_weight,
-        image: sixth_ingede_image,
+      
       });
     }
 
@@ -363,24 +323,20 @@ export default function AddRecipe() {
   const ingredientsfouthpage = async () => {
     if (seventh_ingede_text && seventh_ingede_weight) {
       recipe.ingredientLines.push(seventh_ingede_text);
-      if (seventh_ingede_image) {
-        seventh_ingede_image = await toBase64(seventh_ingede_image);
-      }
+      
       recipe.ingredients.push({
         text: seventh_ingede_text,
         weight: seventh_ingede_weight,
-        image: seventh_ingede_image,
+     
       });
     }
     if (eight_ingede_text && eight_ingede_weight) {
       recipe.ingredientLines.push(eight_ingede_text);
-      if (eight_ingede_image) {
-        eight_ingede_image = await toBase64(eight_ingede_image);
-      }
+    
       recipe.ingredients.push({
         text: eight_ingede_text,
         weight: eight_ingede_weight,
-        image: eight_ingede_image,
+    
       });
     }
 
@@ -393,41 +349,23 @@ export default function AddRecipe() {
   const ingredientsfifthpage = async () => {
     if (nineth_ingede_text && nineth_ingede_weight) {
       recipe.ingredientLines.push(nineth_ingede_text);
-      if (nineth_ingede_image) {
-        nineth_ingede_image = await toBase64(nineth_ingede_image);
-      }
       recipe.ingredients.push({
         text: nineth_ingede_text,
         weight: nineth_ingede_weight,
-        image: nineth_ingede_image,
       });
     }
     if (tenth_ingede_text && tenth_ingede_weight) {
       recipe.ingredientLines.push(tenth_ingede_text);
-      if (tenth_ingede_image) {
-        tenth_ingede_image = await toBase64(tenth_ingede_image);
-      }
       recipe.ingredients.push({
         text: tenth_ingede_text,
         weight: tenth_ingede_weight,
-        image: tenth_ingede_image,
       });
     }
 
     setpageno(8);
   };
 
-  //function for first page
-  /**
-   * If the file size is greater than 100000, show an alert. Otherwise, set the page number to 1.
-   */
-  const firstpage = () => {
-    if (filesize > 100000) {
-      showAlert("The image size should be less than 100kb", "danger");
-    } else {
-      setpageno(1);
-    }
-  };
+
 
   //const api to add recipe
   /**
@@ -435,8 +373,43 @@ export default function AddRecipe() {
    * to the home page and shows a success alert.
    * </code>
    */
+  const ImageAddRequest=async(id)=>{
+      try {
+      const formData= new FormData()
+      formData.append("image",image)
+ const response = await fetch(
+        `${process.env.REACT_APP_Fetch_Api_Start}/recipe/updateRecipe/${id}`,
+        {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+            "auth-token": sessionStorage.getItem("auth-token")
+              ? sessionStorage.getItem("auth-token")
+              : localStorage.getItem("auth-token"),
+          },
+          body:formData,
+        },
+      );
+      if (response.status === 200) {
+        setProgress(70);
+        Navigate("/Home");
+        setProgress(100);
+        showAlert("You have successfully added recipe", "success");
+      } else {
+        setProgress(100);
+        setaddrecipeserver(500);
+      }
+      
+       } catch (error) {
+      setProgress(100);
+      setaddrecipeserver(500);
+      console.log(error.message);
+    }
+  }
   const Addapi = async () => {
+
     try {
+    
       setProgress(30);
       const response = await fetch(
         `${process.env.REACT_APP_Fetch_Api_Start}/recipe/addRecipe`,
@@ -451,14 +424,12 @@ export default function AddRecipe() {
               : localStorage.getItem("auth-token"),
           },
           body: JSON.stringify(recipe),
-        }
+        },
       );
+      const result = await response.json()
       setProgress(50);
-      if (response.status == 200) {
-        setProgress(70);
-        Navigate("/Home");
-        setProgress(100);
-        showAlert("You have successfully added recipe", "success");
+      if (response.status === 200) {
+       ImageAddRequest(result.id)
       } else {
         setProgress(100);
         setaddrecipeserver(500);
@@ -486,7 +457,7 @@ export default function AddRecipe() {
   return (
     <>
       <AnimatedPage>
-        {addrecipeserver == 500 ? (
+        {addrecipeserver === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <section className="intro py-5">
@@ -513,7 +484,7 @@ export default function AddRecipe() {
                           </div>
                           <div className="col-md-8 d-flex  align-items-center">
                             {/* page 1 */}
-                            {pageno == 0 && (
+                            {pageno === 0 && (
                               <div className="card-body  py-2 px-4 p-md-5">
                                 <motion.div
                                   initial={{ scale: 0, opacity: 0 }}
@@ -532,8 +503,8 @@ export default function AddRecipe() {
                                         className="box_decrease_size_animationforlogin"
                                         id="reicpe_image"
                                         src={
-                                          recipe.image
-                                            ? recipe.image
+                                         image
+                                            ? URL.createObjectURL(image)
                                             : "Other/addRecipe_recipe_default.gif"
                                         }
                                         alt="example placeholder"
@@ -553,7 +524,7 @@ export default function AddRecipe() {
                                           id="profileimage"
                                           type="file"
                                           accept="image/*"
-                                          onChange={imagepreview}
+                                          onChange={handleSelectImage}
                                         />
                                       </label>
                                     </div>
@@ -575,11 +546,12 @@ export default function AddRecipe() {
                                       color="success"
                                       disabled={
                                         recipe.label.length < 3 ||
-                                        recipe.image.length < 100
+                                        recipe.label.length > 50 ||
+                                        filesize > 100000
                                       }
                                       auto
                                       ghost
-                                      onPress={firstpage}
+                                      onPress={()=>{  setpageno(1)}}
                                     >
                                       Next
                                     </Button>
@@ -590,7 +562,7 @@ export default function AddRecipe() {
                             {/* page 1 */}
                             {/* page 2 */}
 
-                            {pageno == 1 && (
+                            {pageno === 1 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -624,7 +596,7 @@ export default function AddRecipe() {
                                           bordered
                                           color="secondary"
                                           value={recipe.totalTime}
-                                          label="Enter the total time "
+                                          label="Enter the total time to make "
                                           id="totalTime"
                                           name="totalTime"
                                           onChange={onchange}
@@ -722,7 +694,7 @@ export default function AddRecipe() {
                             {/* page 2 */}
                             {/* page 3 */}
 
-                            {pageno == 2 && (
+                            {pageno === 2 && (
                               <div className="card-body  px-4 p-md-5">
                                 <motion.div
                                   initial={{ scale: 0, opacity: 0 }}
@@ -1221,7 +1193,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 3 */}
                             {/* page 4 */}
-                            {pageno == 3 && (
+                            {pageno === 3 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -1302,7 +1274,7 @@ export default function AddRecipe() {
                                         />
                                       </div>{" "}
                                     </div>
-                                    <div className="row my-2">
+                                    {/* <div className="row my-2">
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1324,6 +1296,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>
+                                   
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1345,7 +1318,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>{" "}
-                                    </div>
+                                    </div> */}
                                   </form>
                                   <div className="mt-2 d-flex justify-content-end">
                                     <Button
@@ -1373,7 +1346,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 4 */}
                             {/* page 5 */}
-                            {pageno == 4 && (
+                            {pageno === 4 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -1447,7 +1420,8 @@ export default function AddRecipe() {
                                         />
                                       </div>{" "}
                                     </div>
-                                    <div className="row my-2">
+                                    {/* below code is for uploading third and fourth ingrideints image  */}
+                                    {/* <div className="row my-2">
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1490,7 +1464,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>{" "}
-                                    </div>
+                                    </div> */}
                                   </form>
                                   <div className="mt-2 d-flex justify-content-end">
                                     <Button
@@ -1518,7 +1492,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 5 */}
                             {/* page 6 */}
-                            {pageno == 5 && (
+                            {pageno === 5 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -1592,7 +1566,8 @@ export default function AddRecipe() {
                                         />
                                       </div>{" "}
                                     </div>
-                                    <div className="row my-2">
+                                    {/* below code is to add images of fifth sixth ingrediants image  */}
+                                    {/* <div className="row my-2">
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1635,7 +1610,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>{" "}
-                                    </div>
+                                    </div> */}
                                   </form>
                                   <div className="mt-2 d-flex justify-content-end">
                                     <Button
@@ -1663,7 +1638,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 6 */}
                             {/* page 7 */}
-                            {pageno == 6 && (
+                            {pageno === 6 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -1737,7 +1712,8 @@ export default function AddRecipe() {
                                         />
                                       </div>{" "}
                                     </div>
-                                    <div className="row my-2">
+                                    {/* below code is to add seventh and eight ingriednts image  */}
+                                    {/* <div className="row my-2">
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1781,7 +1757,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>{" "}
-                                    </div>
+                                    </div> */}
                                   </form>
                                   <div className="mt-2 d-flex justify-content-end">
                                     <Button
@@ -1809,7 +1785,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 7 */}
                             {/* page 8 */}
-                            {pageno == 7 && (
+                            {pageno === 7 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -1883,7 +1859,8 @@ export default function AddRecipe() {
                                         />
                                       </div>{" "}
                                     </div>
-                                    <div className="row my-2">
+                                    {/* below code is to add ninth tenth ingrediants image  */}
+                                    {/* <div className="row my-2">
                                       <div className="col">
                                         <div className="mb-3">
                                           <label
@@ -1926,7 +1903,7 @@ export default function AddRecipe() {
                                           />
                                         </div>
                                       </div>{" "}
-                                    </div>
+                                    </div> */}
                                   </form>
                                   <div className="mt-2 d-flex justify-content-end">
                                     <Button
@@ -1954,7 +1931,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 8 */}
                             {/* page 9 */}
-                            {pageno == 8 && (
+                            {pageno === 8 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -2082,8 +2059,6 @@ export default function AddRecipe() {
                                           </td>
                                         </tr>
 
-                                      
-
                                         <tr>
                                           <th scope="row">4</th>
                                           <td>Sugars</td>
@@ -2182,7 +2157,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 9 */}
                             {/* page 10 */}
-                            {pageno == 9 && (
+                            {pageno === 9 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -2457,7 +2432,7 @@ export default function AddRecipe() {
                             )}
                             {/* page 10 */}
                             {/* page 11 */}
-                            {pageno == 10 && (
+                            {pageno === 10 && (
                               <motion.div
                                 initial={{ scale: 0, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
@@ -2628,7 +2603,7 @@ export default function AddRecipe() {
                                             </div>
                                           </td>
                                         </tr>
-                                        
+
                                         <tr>
                                           <th scope="row">18</th>
                                           <td>Water</td>
@@ -2694,7 +2669,7 @@ export default function AddRecipe() {
                             {/* page 11 */}
                             {/* page 12 */}
 
-                            {pageno == 11 && (
+                            {pageno === 11 && (
                               <div className="card-body  py-5 px-4 p-md-5">
                                 <motion.div
                                   initial={{ scale: 0, opacity: 0 }}

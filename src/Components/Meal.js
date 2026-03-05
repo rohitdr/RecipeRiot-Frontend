@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useEffect } from "react";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
@@ -24,16 +24,17 @@ export default function Meal() {
   var animationdelay = 0;
   const context = useContext(RecipeContext);
   const { mealtype, mealdata,mealloading } = context;
-  const { type, on } = state;
+  const { type } = state;
   /* A hook that is used to perform side effects in a functional component. */
   useEffect(() => {
     document.title = `RecipeRiot-${firstCapital(type)}  Recipes`;
     mealtype(type);
+    // eslint-disable-next-line
   }, [type]);
   return (
     <>
       <AnimatedPage>
-        {mealdata == 500 ? (
+        {mealdata === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <>

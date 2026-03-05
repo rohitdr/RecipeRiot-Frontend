@@ -1,12 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import Carousel from "react-bootstrap/Carousel";
 import RecipeContext from "../Context/RecipeContext";
 import Loader from "./Loader";
 import InternalServerError from "./InternalServerError";
 import RecipeItem from "./RecipeItem";
 import AnimatedPage from "./AnimatedPage";
-import { AnimatePresence, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 export default function Home() {
   /* Setting the state of the component. */
 
@@ -18,7 +17,6 @@ export default function Home() {
   });
 
   const [cuisineactive, setcuisineactive] = useState(0);
-  const [newlyarriveddivstate, setnewlyarriveddivstate] = useState(0);
 
   var totalratings = 0;
 
@@ -83,9 +81,9 @@ export default function Home() {
   return (
     <AnimatedPage>
       <>
-        {cuisinedata == 500 ||
-        contactsendmessage == 500 ||
-        Latest_recipe == 500 ? (
+        {cuisinedata === 500 ||
+        contactsendmessage === 500 ||
+        Latest_recipe === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div>
@@ -154,7 +152,7 @@ export default function Home() {
                           <i className="fa-solid fa-bolt"></i>
                         </div>
                         <h4>
-                          <a className="stretched-link">Recipe collections</a>
+                          <h7 className="stretched-link">Recipe collections</h7>
                         </h4>
                         <p className="fs-6">
                           {" "}
@@ -177,7 +175,7 @@ export default function Home() {
                           <i className="fa-solid fa-tower-broadcast"></i>
                         </div>
                         <h4>
-                          <a className="stretched-link">Search Anything</a>
+                          <h7 className="stretched-link">Search Anything</h7>
                         </h4>
                         <p className="fs-6">
                           We have a search bar where user can enter keywords to
@@ -200,7 +198,7 @@ export default function Home() {
                           <i className="fa-sharp fa-solid fa-disease"></i>
                         </div>
                         <h4>
-                          <a className="stretched-link">User account</a>
+                          <h7 className="stretched-link">User account</h7>
                         </h4>
                         <p className="fs-6">
                           This allow users to create an account where they can
@@ -223,9 +221,9 @@ export default function Home() {
                           <i className="fa-solid fa-box"></i>
                         </div>
                         <h4>
-                          <a className="stretched-link ">
+                          <h7 className="stretched-link ">
                             User-generated content
-                          </a>
+                          </h7>
                         </h4>
                         <p className="fs-6">
                           A section that allows users to submit their own
@@ -279,9 +277,9 @@ export default function Home() {
                               <i className="fa-solid fa-bolt"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                        
                             <h3>Countless Recipes</h3>
-                          </a>
+                          
                           <p>
                             We have a large database of recipes that users can
                             browse and filter by various criteria
@@ -322,9 +320,9 @@ export default function Home() {
                               <i className="fa-solid fa-tower-broadcast"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                       
                             <h3>Share Recipe </h3>
-                          </a>
+                          
                           <p>
                             {" "}
                             Users can share their own recipes on the website and
@@ -367,9 +365,9 @@ export default function Home() {
                               <i className="fa-sharp fa-solid fa-disease"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                        
                             <h3>Nutritional information</h3>
-                          </a>
+                         
                           <p>
                             We provides nutritional information for each recipe,
                             including calories, fat, protein, and carbohydrate
@@ -412,15 +410,15 @@ export default function Home() {
                               <i className="fa-solid fa-box"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                         
                             <h3>Share and Rate</h3>
-                          </a>
+                          
                           <p>
                             Users can create and share their recipes.We also
                             allows users to rate and review recipes posted by
                             other users
                           </p>
-                          <a href="#" className="stretched-link"></a>
+                         
                         </div>
                       </div>
                     {/* </motion.div> */}
@@ -458,14 +456,14 @@ export default function Home() {
                               <i className="fa-solid fa-calendar-minus"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                        
                             <h3>Create and upload</h3>
-                          </a>
+                        
                           <p>
                             Uers can upload their own recipes and delete them if
                             needed.
                           </p>
-                          <a href="#" className="stretched-link"></a>
+                        
                         </div>
                       </div>
                     {/* </motion.div> */}
@@ -502,15 +500,15 @@ export default function Home() {
                               <i className="fa-solid fa-comments"></i>
                             </motion.div>
                           </div>
-                          <a href="#" className="stretched-link">
+                        
                             <h3>Recipe Search</h3>
-                          </a>
+                       
                           <p>
                             Users can search for specific recipes by name,
                             ingredient, cuisine, cooking time, or dietary
                             requirements.
                           </p>
-                          <a href="#" className="stretched-link"></a>
+                          
                         </div>
                       </div>
                     {/* </motion.div> */}
@@ -623,7 +621,7 @@ export default function Home() {
                       element.Comments.map((ele) => {
                         reciperating = reciperating + ele.rating;
                       });
-                      element.Comments.length != 0
+                      element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);
@@ -700,7 +698,7 @@ export default function Home() {
                       <li
                         data-filter="*"
                         className={`${
-                          cuisineactive == 0 ? "filter-active" : ""
+                          cuisineactive === 0 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("indian");
@@ -712,7 +710,7 @@ export default function Home() {
                       <li
                         id="cuisine_indian"
                         className={`${
-                          cuisineactive == 1 ? "filter-active" : ""
+                          cuisineactive === 1 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("american");
@@ -723,7 +721,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 2 ? "filter-active" : ""
+                          cuisineactive === 2 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("indian");
@@ -734,7 +732,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 3 ? "filter-active" : ""
+                          cuisineactive === 3 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("chinese");
@@ -745,7 +743,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 4 ? "filter-active" : ""
+                          cuisineactive === 4 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("british");
@@ -756,7 +754,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 5 ? "filter-active" : ""
+                          cuisineactive === 5 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("italian");
@@ -767,7 +765,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 6 ? "filter-active" : ""
+                          cuisineactive === 6 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("japanese");
@@ -778,7 +776,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 7 ? "filter-active" : ""
+                          cuisineactive === 7 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("mexican");
@@ -789,7 +787,7 @@ export default function Home() {
                       </li>
                       <li
                         className={`${
-                          cuisineactive == 8 ? "filter-active" : ""
+                          cuisineactive === 8 ? "filter-active" : ""
                         } fw-bold`}
                         onClick={() => {
                           cuisine("french");
@@ -816,7 +814,7 @@ export default function Home() {
                       element.Comments.map((ele) => {
                         reciperating = reciperating + ele.rating;
                       });
-                      element.Comments.length != 0
+                      element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);
@@ -899,9 +897,9 @@ export default function Home() {
                           <i className="fa-sharp fa-solid fa-location-dot"></i>
                           <h4>Location:</h4>
                           <p>
-                            A108 Adam Street
+                             XXXX Janta colony 
                             <br />
-                            New York, NY 535022
+                            Naya gaon Mohali
                           </p>
                         </div>
 
@@ -910,9 +908,9 @@ export default function Home() {
                           <i className="fa-sharp fa-solid fa-envelope"></i>
                           <h4>Email:</h4>
                           <p>
-                            info@example.com
+                          rohitdr098@gmail.com
                             <br />
-                            contact@example.com
+                            contact@recipeRiot.com
                           </p>
                         </div>
 

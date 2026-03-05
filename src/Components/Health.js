@@ -28,12 +28,13 @@ export default function Health() {
   useEffect(() => {
     document.title = `RecipeRiot-${firstCapital(type)}  Recipes`;
     health(type);
+    // eslint-disable-next-line
   }, [type]);
   var totalratings = 0;
   return (
     <>
       <AnimatedPage>
-        {healthdata == 500 ? (
+        {healthdata === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <>
@@ -136,7 +137,7 @@ export default function Health() {
                     element.Comments.map((ele) => {
                       reciperating = reciperating + ele.rating;
                     });
-                    element.Comments.length != 0
+                    element.Comments.length !== 0
                       ? (totalratings = reciperating / element.Comments.length)
                       : (totalratings = 0);
                     reciperating = 0;

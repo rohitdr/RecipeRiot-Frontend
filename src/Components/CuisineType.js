@@ -28,11 +28,12 @@ export default function CuisineType() {
   useEffect(() => {
     document.title = `RecipeRiot-${firstCapital(type)}  Recipes`;
     cuisine(type);
+    // eslint-disable-next-line
   }, [type]);
   return (
     <>
       <AnimatedPage>
-        {cuisinedata == 500 ? (
+        {cuisinedata === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <>
@@ -132,7 +133,7 @@ export default function CuisineType() {
                     element.Comments.map((ele) => {
                       reciperating = reciperating + ele.rating;
                     });
-                    element.Comments.length != 0
+                    element.Comments.length !== 0
                       ? (totalratings = reciperating / element.Comments.length)
                       : (totalratings = 0);
                     reciperating = 0;

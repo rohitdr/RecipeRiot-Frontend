@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <footer className="bg-light text-center text-white">
+      <footer className="bg-light  text-center text-white">
         <div className="container p-4 pb-0">
           <section className="mb-4">
             <a
@@ -53,7 +53,7 @@ export default function Footer() {
             <a
               className="btn btn-primary btn-floating m-1 rounded-5"
               style={{ backgroundColor: "#333333" }}
-              href="https://github.com/rohitdr"
+              href="https://github.com/rohitdr/RecipeRiot-Frontend"
               role="button"
             >
               <i className="fab fa-github"></i>
@@ -65,8 +65,7 @@ export default function Footer() {
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
-          © 2023 Copyright:
-          <a className="text-white">RecipeRiot.com</a>
+          © 2023 Copyright: RecipeRiot.com
         </div>
       </footer>
     </>

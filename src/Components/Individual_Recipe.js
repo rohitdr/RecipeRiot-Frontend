@@ -1056,13 +1056,13 @@ export default function Individual_Recipe() {
                                                       }}
                                                     >
                                                       <div className="row g-0">
-                                                        <div className="col-md-4">
+                                                        {/* <div className="col-md-4">
                                                           <img
                                                             src={ele.image.url}
                                                             className="img-fluid rounded-start w-100 h-100"
                                                             alt="..."
                                                           />
-                                                        </div>
+                                                        </div> */}
                                                         <div className="col-md-8">
                                                           <div className="card-body">
                                                             <h5 className="card-title">
@@ -1119,13 +1119,7 @@ export default function Individual_Recipe() {
                                                         <thead>
                                                           <tr>
                                                             <th scope="col">
-                                                              <div className="form-check">
-                                                                <input
-                                                                  className="form-check-input"
-                                                                  type="checkbox"
-                                                                  id="flexCheckDefault"
-                                                                />
-                                                              </div>
+                                                              
                                                             </th>
                                                             <th scope="col">
                                                               Nutrients
@@ -1147,13 +1141,6 @@ export default function Individual_Recipe() {
                                                                       }
                                                                     >
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
                                                                       </th>
 
                                                                       <td>
@@ -1178,24 +1165,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                    
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                        
                                                                       </th>
 
                                                                       <td>
@@ -1220,25 +1194,12 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                    
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1263,24 +1224,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                      
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1305,24 +1253,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                      
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1347,24 +1282,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                      
                                                                       </th>
 
                                                                       <td>
@@ -1389,24 +1311,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                    
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                      
                                                                       </th>
 
                                                                       <td>
@@ -1431,24 +1340,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1473,24 +1369,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                      
                                                                       </th>
 
                                                                       <td>
@@ -1515,24 +1398,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1557,25 +1427,12 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr></tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                        
                                                                       </th>
 
                                                                       <td>
@@ -1600,24 +1457,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1642,24 +1486,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1684,24 +1515,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                      
                                                                       </th>
 
                                                                       <td>
@@ -1726,25 +1544,12 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                          
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                      
                                                                       </th>
 
                                                                       <td>
@@ -1769,24 +1574,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1811,24 +1603,11 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1853,25 +1632,12 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                   
                                                                     <tr>
                                                                       <th scope="row">
-                                                                        <div className="form-check">
-                                                                          <input
-                                                                            className="form-check-input"
-                                                                            type="checkbox"
-                                                                            id="flexCheckDefault1"
-                                                                          />
-                                                                        </div>
+                                                                       
                                                                       </th>
 
                                                                       <td>
@@ -1896,14 +1662,7 @@ export default function Individual_Recipe() {
                                                                             ?.unit
                                                                         }
                                                                       </td>
-                                                                      <td>
-                                                                        <button
-                                                                          type="button"
-                                                                          className="btn btn-danger btn-sm px-3"
-                                                                        >
-                                                                          <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                      </td>
+                                                                     
                                                                     </tr>
                                                                   </>
                                                                 );

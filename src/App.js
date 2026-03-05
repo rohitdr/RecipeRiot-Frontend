@@ -1,11 +1,9 @@
 import "./App.css";
-import Sidebar from "./Components/Sidebar.js";
-import Searchbar from "./Components/Searchbar";
+import SideBar from "./Components/SideBar.js";
+import SearchBar from "./Components/SearchBar.js";
 
 import { Routes, Route, useLocation } from "react-router-dom";
-
-import { useState } from "react";
-import Individual_Recipe from "./Components/Individual_Recipe";
+import IndividualRecipe from "./Components/IndividualRecipe.js";
 import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
 
@@ -16,17 +14,17 @@ import SearchResult from "./Components/SearchResult";
 import { useContext } from "react";
 import RecipeContext from "./Context/RecipeContext";
 
-import Profile_Profile from "./Components/Profile_Profile";
-import Profile_Security from "./Components/Profile_Security";
-import Profile_LikedRecipe from "./Components/Profile_LikedRecipe";
-import Profile_Activity from "./Components/Profile_Activity";
+import ProfileProfile from "./Components/ProfileProfile";
+import ProfileSecurity from "./Components/ProfileSecurity";
+import Profile_LikedRecipe from "./Components/ProfileLikedRecipe.js";
+import Profile_Activity from "./Components/ProfileActivity.js";
 
 import SignUp from "./Components/SignUp";
 import CuisineType from "./Components/CuisineType";
 import Health from "./Components/Health";
 import Meal from "./Components/Meal";
-import Dishtype from "./Components/Dishtype";
-import Diettype from "./Components/Diettype";
+import Dishtype from "./Components/DishType.js";
+import Diettype from "./Components/DietType.js";
 import Footer from "./Components/Footer";
 
 import EditRecipe from "./Components/EditRecipe";
@@ -40,14 +38,6 @@ function App() {
   const context = useContext(RecipeContext);
   const { alert, progress, setProgress, progressheight } = context;
 
-  // const [mode, setMode] = useState("light mode");
-  // const [button_label, setButton_label] = useState("Dark mode");
-  const [textColor, setTextColor] = useState("dark");
-  // const [textColor_button, setTextColor_button] = useState("dark");
-  const [color, setColor] = useState("dark");
-  // const [topLeftColor, settopLeftColor] = useState("white");
-  // const [headingColor, setheadingColor] = useState("dark");
-
   let location = useLocation();
   return (
     <>
@@ -58,12 +48,9 @@ function App() {
         onLoaderFinished={() => setProgress(0)}
       />
 
-      <Sidebar color={textColor} crossColor={color}></Sidebar>
+      <SideBar></SideBar>
 
-      <Searchbar
-      
-      
-      ></Searchbar>
+      <SearchBar></SearchBar>
 
       <Alert alert={alert}></Alert>
       <AnimatePresence mode="wait">
@@ -98,16 +85,16 @@ function App() {
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
-                  <Profile_Profile></Profile_Profile>
+                  <ProfileProfile></ProfileProfile>
                 </div>
               </section>
             }
           />
-          <Route exact path="/Add_Recipe" element={<AddRecipe></AddRecipe>} />
+          <Route exact path="/AddRecipe" element={<AddRecipe></AddRecipe>} />
           <Route exact path="/health" element={<Health></Health>} />
-          <Route exact path="/mealtype" element={<Meal></Meal>} />
-          <Route exact path="/diettype" element={<Diettype></Diettype>} />
-          <Route exact path="/dishtype" element={<Dishtype></Dishtype>} />
+          <Route exact path="/mealType" element={<Meal></Meal>} />
+          <Route exact path="/dietType" element={<Diettype></Diettype>} />
+          <Route exact path="/dishType" element={<Dishtype></Dishtype>} />
           <Route
             exact
             path="/cuisineType"
@@ -122,33 +109,33 @@ function App() {
           <Route
             exact
             path="/RecipeItself"
-            element={<Individual_Recipe></Individual_Recipe>}
+            element={<IndividualRecipe></IndividualRecipe>}
           />
           <Route
             exact
-            path="/Profile_Profile"
+            path="/ProfileProfile"
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
-                  <Profile_Profile></Profile_Profile>
+                  <ProfileProfile></ProfileProfile>
                 </div>
               </section>
             }
           />
           <Route
             exact
-            path="/Profile_Security"
+            path="/ProfileSecurity"
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
-                  <Profile_Security></Profile_Security>
+                  <ProfileSecurity></ProfileSecurity>
                 </div>
               </section>
             }
           />
           <Route
             exact
-            path="/Profile_Recipe"
+            path="/ProfileRecipe"
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
@@ -159,7 +146,7 @@ function App() {
           />
           <Route
             exact
-            path="/Profile_LikedRecipe"
+            path="/ProfileLikedRecipe"
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
@@ -170,7 +157,7 @@ function App() {
           />
           <Route
             exact
-            path="/Profile_Activity"
+            path="/ProfileActivity"
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
@@ -182,10 +169,10 @@ function App() {
 
           <Route
             exact
-            path="/Individual_description"
+            path="/Individualdescription"
             element={
               <>
-                <Individual_Recipe></Individual_Recipe>
+                <IndividualRecipe></IndividualRecipe>
               </>
             }
           />

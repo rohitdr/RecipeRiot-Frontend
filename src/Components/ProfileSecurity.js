@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import RecipeContext from "../Context/RecipeContext";
 import { useNavigate } from "react-router-dom";
 import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
-export default function Profile_Security() {
+export default function ProfileSecurity() {
  /* Destructuring the context object. */
   const context = useContext(RecipeContext);
   const {
@@ -13,7 +13,6 @@ export default function Profile_Security() {
     setProgress,
     deleteAccount,
     deleteaccount,
-    getUser,
     logoutUser,
     userData,
   } = context;
@@ -64,7 +63,7 @@ export default function Profile_Security() {
         setProgress(50);
         let loginresult = await response.json();
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           setProgress(70);
           setProgress(100);
           showAlert("Your Password has been successfully changed", "success");
@@ -72,7 +71,7 @@ export default function Profile_Security() {
          sessionStorage.getItem('auth-token')?sessionStorage.removeItem('auth-token'):localStorage.removeItem('auth-token')
         
           Navigate("/login");
-        } else if (response.status == 404) {
+        } else if (response.status === 404) {
           showAlert(loginresult.error, "danger");
           setProgress(100);
         } else {
@@ -97,7 +96,7 @@ export default function Profile_Security() {
   return (
     <>
       <AnimatedPage>
-        {servererror == 500 || deleteaccount==500? (
+        {servererror === 500 || deleteaccount===500? (
           <InternalServerError></InternalServerError>
         ) : (
           <div>

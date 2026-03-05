@@ -1,19 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import "./Individiual_recipe.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import {  useLocation, useNavigate } from "react-router-dom";
 import RecipeContext from "../Context/RecipeContext";
 import InternalServerError from "./InternalServerError";
-import { Modal, Image, Text } from "@nextui-org/react";
+import { Modal, Image } from "@nextui-org/react";
 import AnimatedPage from "./AnimatedPage";
-export default function Individual_Recipe() {
+export default function IndividualRecipe() {
 /* The above code is creating a state variable called pageno and setting it to 0. */
   const context = useContext(RecipeContext);
   const { state } = useLocation();
-  const location = useLocation();
   const { RecipeItemid } = state;
   const [Individiual_recipeserver,setIndividiual_recipeserver]=useState({})
-/* Creating a variable called Navigate that is using the useNavigate hook. */
-  let Navigate = useNavigate();
+
   const [pageno, setpageno] = useState(0);
 
 /* Destructuring the context object. */
@@ -21,7 +19,6 @@ export default function Individual_Recipe() {
     CurrentRecipeItem,
     CurrentRecipeItemid,
     setProgress,
-    getUser,
     userData,
     setLoading,
     RecipeBYId,
@@ -81,13 +78,13 @@ export default function Individual_Recipe() {
       );
       setProgress(50);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         setvisiblerepeted(true);
         setTimeout(() => {
           setvisiblerepeted(false);
         }, 4000);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(100);
         setVisible(true);
         RecipeBYId(RecipeItemid);
@@ -119,7 +116,7 @@ export default function Individual_Recipe() {
   return (
     <>
       <AnimatedPage>
-        {userData == 500 || CurrentRecipeItem == 500  || Individiual_recipeserver==500? (
+        {userData === 500 || CurrentRecipeItem === 500  || Individiual_recipeserver===500? (
           <InternalServerError></InternalServerError>
         ) : (
           <div className="min-vh-100">
@@ -136,7 +133,7 @@ export default function Individual_Recipe() {
                   if (ele.rating > 3) {
                     postiverating++;
                   }
-                  if (ele.rating == 3) {
+                  if (ele.rating === 3) {
                     neutralrating++;
                   }
                   if (ele.rating < 3) {
@@ -144,7 +141,7 @@ export default function Individual_Recipe() {
                   }
                   reciperating = reciperating + ele.rating;
                 });
-                element.Comments.length != 0
+                element.Comments.length !== 0
                   ? (totalratings = reciperating / element.Comments.length)
                   : (totalratings = 0);
                 reciperating = 0;
@@ -311,52 +308,56 @@ export default function Individual_Recipe() {
                           <section>
                             <div className="container pt-5">
                               <nav className="nav profile-nav-borders ">
-                                <a
-                                  className={`nav-link   ${
-                                    pageno == 0 ? "active" : ""
+                                <button
+                                type="button"
+                                  className={`btn border-0 ${
+                                    pageno === 0 ? "text-decoration-underline" : ""
                                   }  `}
                                   onClick={() => {
                                     setpageno(0);
                                   }}
                                 >
                                   Description
-                                </a>
-                                <a
-                                  className={`nav-link ${
-                                    pageno == 1 ? "active" : ""
+                                </button>
+                                <button
+                                type="button"
+                                  className={`btn border-0 ${
+                                    pageno === 1 ? "text-decoration-underline" : ""
                                   } `}
                                   onClick={() => {
                                     setpageno(1);
                                   }}
                                 >
                                   Comments& Ratings
-                                </a>
+                                </button>
 
-                                <a
-                                  className={`nav-link ${
-                                    pageno == 2 ? "active" : ""
+                                <button
+                                type="button"
+                                  className={`btn border-0 ${
+                                    pageno === 2 ? "text-decoration-underline" : ""
                                   } `}
                                   onClick={() => {
                                     setpageno(2);
                                   }}
                                 >
                                   Ingredients
-                                </a>
-                                <a
-                                  className={`nav-link ${
-                                    pageno == 3 ? "active" : ""
+                                </button>
+                                <button
+                                type="button"
+                                  className={`btn border-0${
+                                    pageno === 3 ? "text-decoration-underline" : ""
                                   } `}
                                   onClick={() => {
                                     setpageno(3);
                                   }}
                                 >
                                   Nutrients
-                                </a>
+                                </button>
                               </nav>
 
                               <hr className="mt-0 mb-2" />
                               {/* recipe description */}
-                              {pageno == 0 && (
+                              {pageno === 0 && (
                                 <div className="">
                                   {CurrentRecipeItem?.recipe &&
                                     CurrentRecipeItem?.recipe.map((element) => {
@@ -583,7 +584,7 @@ export default function Individual_Recipe() {
                               {/* recipe description */}
 
                               {/* recipe comments */}
-                              {pageno == 1 && (
+                              {pageno === 1 && (
                                 <div>
                                   <div
                                     style={{ backgroundColor: " #edf1f5" }}
@@ -614,70 +615,37 @@ export default function Individual_Recipe() {
                                                       Reviews
                                                     </span>
                                                     <div className="image-box mt-4 mb-4">
-                                                      <a
-                                                        href="#"
-                                                        className="mr-2"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title=""
-                                                        data-original-title="Simmons"
-                                                      >
+                                                     
                                                         <img
                                                           src="https://bootdey.com/img/Content/avatar/avatar1.png"
                                                           className="rounded-circle"
                                                           width="45"
                                                           alt="user"
                                                         />
-                                                      </a>
-                                                      <a
-                                                        href="#"
-                                                        className="mr-2"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title=""
-                                                        data-original-title="Fitz"
-                                                      >
+                                                     
                                                         <img
                                                           src="https://bootdey.com/img/Content/avatar/avatar2.png"
                                                           className="rounded-circle"
                                                           width="45"
                                                           alt="user"
                                                         />
-                                                      </a>
-                                                      <a
-                                                        href="#"
-                                                        className="mr-2"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title=""
-                                                        data-original-title="Phil"
-                                                      >
+                                                     
                                                         <img
                                                           src="https://bootdey.com/img/Content/avatar/avatar3.png"
                                                           className="rounded-circle"
                                                           width="45"
                                                           alt="user"
                                                         />
-                                                      </a>
-                                                      <a
-                                                        href="#"
-                                                        className="mr-2"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title=""
-                                                        data-original-title="Melinda"
-                                                      >
+                                                      
                                                         <img
                                                           src="https://bootdey.com/img/Content/avatar/avatar4.png"
                                                           className="rounded-circle"
                                                           width="45"
                                                           alt="user"
                                                         />
-                                                      </a>
+                                                   
                                                     </div>
-                                                    <a className="btn btn-lg btn-info waves-effect waves-light">
-                                                      Checkout All Reviews
-                                                    </a>
+                                                    
                                                   </div>
                                                 </div>
                                                 <div className="col-sm-12 col-lg-8 border-left ">
@@ -1032,7 +1000,7 @@ export default function Individual_Recipe() {
                               )}
                               {/* recipe comments */}
                               {/* {reicpe Ingredients} */}
-                              {pageno == 2 && (
+                              {pageno === 2 && (
                                 <div style={{ backgroundColor: " #edf1f5" }}>
                                   <div
                                     className="container pt-4 "
@@ -1092,7 +1060,7 @@ export default function Individual_Recipe() {
                               )}
                               {/* {reicpe Ingredients} */}
                               {/* reicpe Nutrients */}
-                              {pageno == 3 && (
+                              {pageno === 3 && (
                                 <div
                                   style={{ backgroundColor: " #edf1f5" }}
                                   className="pb-4"

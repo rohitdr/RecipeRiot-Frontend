@@ -1,11 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+
 export default function Alert(props) {
-  const animation = {
-    initial: { opacity: 0, y: -80 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, x: -80 },
-  };
   return (
     <>
       {props.alert && (

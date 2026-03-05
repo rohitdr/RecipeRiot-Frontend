@@ -345,11 +345,11 @@ export default function EditRecipe() {
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 200) {
+      if (response.status === 200) {
         setProgress(100);
         showAlert("Wow! Recipe is successfully Updated", "success");
         Navigate("/Profile_Activity");
-      } else if (response.status == 404) {
+      } else if (response.status === 404) {
         setProgress(100);
         showAlert(result.error, "danger");
       } else {
@@ -387,7 +387,7 @@ export default function EditRecipe() {
   return (
     <div className="min-vh-100">
 
-      <AnimatedPage> {editserver==500? <InternalServerError></InternalServerError>:
+      <AnimatedPage> {editserver===500? <InternalServerError></InternalServerError>:
         CurrentRecipeItem.recipe &&
           CurrentRecipeItem.recipe.map((element) => {
             return (
@@ -419,7 +419,7 @@ export default function EditRecipe() {
                               </div>
                               <div className="col-md-8 d-flex  align-items-center">
                                 {/* page 1 */}
-                                {pageno == 0 && (
+                                {pageno === 0 && (
                                   <div className="card-body  py-2 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-2"
@@ -432,7 +432,7 @@ export default function EditRecipe() {
                                         <img
                                           id="reicpe_image"
                                           src={element.image.url}
-                                          alt="Recipe Image"
+                                          alt="Recipe"
                                           style={{
                                             width: "100%",
                                             height: "250px",
@@ -484,7 +484,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 1 */}
                                 {/* page 2 */}
-                                {pageno == 1 && (
+                                {pageno === 1 && (
                                   <div className="card-body  py-5 px-4 p-md-5">
                                     <div className="card-header">
                                       <h4
@@ -603,7 +603,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 2 */}
                                 {/* page 3 */}
-                                {pageno == 2 && (
+                                {pageno === 2 && (
                                   <div className="card-body  px-4 p-md-5">
                                     <div className="card-header">
                                       <h4
@@ -1534,7 +1534,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 3 */}
                                 {/* page 4 */}
-                                {pageno == 3 && (
+                                {pageno === 3 && (
                                   <div className="card-body py-5 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-4"
@@ -1694,7 +1694,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 4 */}
                                 {/* page 5 */}
-                                {pageno == 4 && (
+                                {pageno === 4 && (
                                   <div className="card-body py-5 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-4"
@@ -1847,7 +1847,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 5 */}
                                 {/* page 6 */}
-                                {pageno == 5 && (
+                                {pageno === 5 && (
                                   <div className="card-body py-5 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-4"
@@ -2000,7 +2000,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 6 */}
                                 {/* page 7 */}
-                                {pageno == 6 && (
+                                {pageno === 6 && (
                                   <div className="card-body py-5 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-4"
@@ -2153,7 +2153,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 7 */}
                                 {/* page 8 */}
-                                {pageno == 7 && (
+                                {pageno === 7 && (
                                   <div className="card-body py-5 px-4 p-md-5">
                                     <h4
                                       className="fw-bold mb-4"
@@ -2306,7 +2306,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 8 */}
                                 {/* page 9 */}
-                                {pageno == 8 && (
+                                {pageno === 8 && (
                                   <div className="card-body  px-4 p-md-5">
                                     <h4
                                       className="fw-bold "
@@ -2609,7 +2609,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 9 */}
                                 {/* page 10 */}
-                                {pageno == 9 && (
+                                {pageno === 9 && (
                                   <div className="card-body px-4 p-md-5">
                                     <form action="">
                                       <table className="table">
@@ -2934,7 +2934,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 10 */}
                                 {/* page 11 */}
-                                {pageno == 10 && (
+                                {pageno === 10 && (
                                   <div className="card-body  px-4 p-md-5">
                                     <form action="">
                                       <table className="table">
@@ -3252,7 +3252,7 @@ export default function EditRecipe() {
                                 )}
                                 {/* page 11 */}
                                 {/* page 12 */}
-                                {pageno == 11 && (
+                                {pageno === 11 && (
                                   <div className="card-body  py-5 px-4 p-md-5">
                                     <div className="card-header">
                                       <h4

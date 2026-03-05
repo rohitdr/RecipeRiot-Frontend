@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import RecipeContext from "../Context/RecipeContext";
-import BlankRecipeItem from "./BlankRecipeItem";
 import Loader from "./Loader";
 import RecipeItem from "./RecipeItem";
 import { useNavigate } from "react-router-dom";
 import NoResult from "./NoResult";
 import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
-export default function Profile_LikedRecipe() {
+export default function ProfileLikedRecipe() {
 /* Destructuring the context object. */
   const context = useContext(RecipeContext);
   const { LikedRecipe, AllLikedRecipe, likedrecipeloading } = context;
@@ -31,7 +30,7 @@ export default function Profile_LikedRecipe() {
   return (
     <>
       <AnimatedPage>
-        {LikedRecipe == 500 ? (
+        {LikedRecipe === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div className="min-vh-100">
@@ -59,7 +58,7 @@ export default function Profile_LikedRecipe() {
                       element?.Comments?.map((ele) => {
                         reciperating = reciperating + ele?.rating;
                       });
-                      element?.Comments?.length != 0
+                      element?.Comments?.length !== 0
                         ? (totalratings =
                             reciperating / element?.Comments?.length)
                         : (totalratings = 0);

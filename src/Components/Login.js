@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RecipeContext from "../Context/RecipeContext";
 import InternalServerError from "./InternalServerError";
-import {Modal,Image,Text,Input,Button,} from "@nextui-org/react";
+import {Modal,Text,Input,Button,} from "@nextui-org/react";
 import "./login.css";
 import 'animate.css'
 import AnimatedPage from "./AnimatedPage";
@@ -23,7 +23,7 @@ export default function Login() {
   const [visibleforgetmodal, setvisibleforgetmodal] = useState(false);
   const context = useContext(RecipeContext);
   const [servererror, setservererror] = useState(0);
-  const { login, showAlert, setProgress ,logoutUser,getUser} = context;
+  const {  showAlert, setProgress ,logoutUser,getUser} = context;
 
  /**
   * It checks if the user is already logged in, if not, it sends a POST request to the server with the
@@ -59,7 +59,7 @@ export default function Login() {
         setProgress(50);
         let loginresult = await response.json();
 
-        if (response.status == 200) {
+        if (response.status === 200) {
           setProgress(70);
           //if remember me is checked than store auth-token in localstorage else in session storage
           if (document.querySelector(".rememberme").checked) {
@@ -82,7 +82,7 @@ export default function Login() {
           getUser()
           Navigate("/Home");
           showAlert("Your had successfully logged in", "success");
-        } else if (response.status == 404) {
+        } else if (response.status === 404) {
           setvisiblemodalerror(loginresult.error)
           setProgress(100);
           setvisiblemodal(true);
@@ -146,12 +146,12 @@ export default function Login() {
       setProgress(50);
       let result = await response.json();
       setProgress(70);
-      if (response.status == 200) {
+      if (response.status === 200) {
         setProgress(100);
         setvisibleforgetmodal(false);
         showAlert(result.succcess, "success");
         setvisibleforgetmodal(false);
-      } else if (response.status == 404) {
+      } else if (response.status === 404) {
         setProgress(100);
         setvisibleforgetmodal(false);
         showAlert(result.error, "danger");
@@ -193,7 +193,7 @@ export default function Login() {
   return (
     <>
       <AnimatedPage>
-        {servererror == 500 ? (
+        {servererror === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div className="animate__rollIn">
@@ -311,14 +311,14 @@ export default function Login() {
                             </div>
 
                             <div className="col">
-                              <a
-                              className="px10fontless360"
+                              <button
+                              className="px10fontless360 border-0"
                                 onClick={() => {
                                   setvisibleforgetmodal(true);
                                 }}
                               >
                                 Forgot password?
-                              </a>
+                              </button>
                             </div>
                           </div>
                           <button

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { useEffect } from "react";
 import RecipeContext from "../Context/RecipeContext";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Input, Button } from "@nextui-org/react";
 import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
 
-export default function Profile_Profile() {
+export default function ProfileProfile() {
 
  /* Creating a state variable called user and setting it to an object with the properties username,
  first_name, last_name, email, and phone_number. */
@@ -28,7 +28,7 @@ const [image,setImage]=useState(null)
 /* Setting up the state for the component. */
 
   const context = useContext(RecipeContext);
-  const { getUser, userData, showAlert, setProgress, setAlert } = context;
+  const { getUser, userData, showAlert, setProgress } = context;
   const [servererror, setservererror] = useState(0);
  /* Creating a variable called Navigate and assigning it the useNavigate hook. */
   let Navigate = useNavigate();
@@ -73,10 +73,10 @@ const [image,setImage]=useState(null)
 
       let result = await response.json();
       setProgress(70);
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(result, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(100);
         getUser();
         showAlert("Image has been changed", "success");
@@ -123,7 +123,7 @@ const [image,setImage]=useState(null)
   */
   const visibleSubmit = () => {
     if (
-      document.getElementById("accountdetailsubmit").style.display == "block"
+      document.getElementById("accountdetailsubmit").style.display === "block"
     ) {
       document.getElementById("accountdetailsubmit").style.display = "none";
       document.getElementById("accountdetaildisplay").style.display = "block";
@@ -139,7 +139,7 @@ const [image,setImage]=useState(null)
  */
   const visibleimagecontrols = () => {
     if (
-      document.getElementById("imagechangecontrols").style.display == "block"
+      document.getElementById("imagechangecontrols").style.display === "block"
     ) {
       document.getElementById("imagechangecontrols").style.display = "none";
     } else {
@@ -152,7 +152,7 @@ const [image,setImage]=useState(null)
   * Otherwise, hide the displaysocailform element and show the display-content element.
   */
   const visiblesocailSubmit = () => {
-    if (document.getElementById("display-content").style.display == "block") {
+    if (document.getElementById("display-content").style.display === "block") {
       document.getElementById("display-content").style.display = "none";
       document.getElementById("displaysocailform").style.display = "block";
     } else {
@@ -196,10 +196,10 @@ const [image,setImage]=useState(null)
       let result = await response.json();
       setProgress(70);
 
-      if (response.status == 404) {
+      if (response.status === 404) {
         showAlert(result.error, "danger");
         setProgress(100);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         showAlert(result, "success");
         getUser();
         setProgress(100);
@@ -223,12 +223,12 @@ const [image,setImage]=useState(null)
   */
   const changeaccountdetail = () => {
     if (
-      document.getElementById("username").value == userData?.user?.username &&
-      document.getElementById("email").value == userData?.user?.email &&
-      document.getElementById("first_name").value ==
+      document.getElementById("username").value === userData?.user?.username &&
+      document.getElementById("email").value === userData?.user?.email &&
+      document.getElementById("first_name").value ===
         userData?.user?.first_name &&
-      document.getElementById("last_name").value == userData?.user?.last_name &&
-      document.getElementById("phone_number").value ==
+      document.getElementById("last_name").value === userData?.user?.last_name &&
+      document.getElementById("phone_number").value ===
         userData?.user?.phone_number
     ) {
       showAlert(
@@ -278,7 +278,7 @@ const [image,setImage]=useState(null)
   return (
     <>
       <AnimatedPage>
-        {servererror == 500 ? (
+        {servererror === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div>

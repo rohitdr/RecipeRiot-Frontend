@@ -9,14 +9,14 @@ import InternalServerError from "./InternalServerError";
 import { Modal, Image, Button } from "@nextui-org/react";
 import AnimatedPage from "./AnimatedPage";
 import Loader from "./Loader";
-export default function Profile_Activity() {
+export default function ProfileActivity() {
 /* A hook that is used to store the state of the component. */
   const [visibledelete, setvisibledelete] = useState({ state: false, id: "" });
   const context = useContext(RecipeContext);
-  const [totalLikes, settotalLikes] = useState(0);
+
  /* Destructuring the context object. */
   const {
-    getUser,
+  
     userData,
     LatestRecipebyid,
     Latest_recipebyid,
@@ -53,7 +53,7 @@ the login page. */
   return (
     <>
       <AnimatedPage>
-        {userData == 500 || Latest_recipebyid == 500 ||recipe==500 ? (
+        {userData === 500 || Latest_recipebyid == 500 ||recipe==500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div>
@@ -110,7 +110,7 @@ the login page. */
                                 <img
                                   src={element.image.url}
                                   className="img-fluid shadow-1-strong rounded latest_recipe_image Profile_activity_latest_image "
-                                  alt="Latest Recipe Image"
+                                  alt="Latest Recipe "
                                 />
                                 <div className="ms-4">
                                   <div className="small">{element.label}</div>

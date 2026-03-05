@@ -152,7 +152,7 @@ export default function Home() {
                           <i className="fa-solid fa-bolt"></i>
                         </div>
                         <h4>
-                          <h7 className="stretched-link">Recipe collections</h7>
+                          <h6 className="stretched-link">Recipe collections</h6>
                         </h4>
                         <p className="fs-6">
                           {" "}
@@ -175,7 +175,7 @@ export default function Home() {
                           <i className="fa-solid fa-tower-broadcast"></i>
                         </div>
                         <h4>
-                          <h7 className="stretched-link">Search Anything</h7>
+                          <h6 className="stretched-link">Search Anything</h6>
                         </h4>
                         <p className="fs-6">
                           We have a search bar where user can enter keywords to
@@ -198,7 +198,7 @@ export default function Home() {
                           <i className="fa-sharp fa-solid fa-disease"></i>
                         </div>
                         <h4>
-                          <h7 className="stretched-link">User account</h7>
+                          <h6 className="stretched-link">User account</h6>
                         </h4>
                         <p className="fs-6">
                           This allow users to create an account where they can
@@ -221,9 +221,9 @@ export default function Home() {
                           <i className="fa-solid fa-box"></i>
                         </div>
                         <h4>
-                          <h7 className="stretched-link ">
+                          <h6 className="stretched-link ">
                             User-generated content
-                          </h7>
+                          </h6>
                         </h4>
                         <p className="fs-6">
                           A section that allows users to submit their own

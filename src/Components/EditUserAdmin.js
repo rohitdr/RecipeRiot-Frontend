@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { useEffect } from "react";
 import RecipeContext from "../Context/RecipeContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Input, Button } from "@nextui-org/react";
 import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
-import { motion } from "framer-motion";
+
 
 export default function EditUserAdmin() {
   /* Setting the initial state of the component. */
@@ -83,7 +83,7 @@ export default function EditUserAdmin() {
  */
   const changeprofileimage = async (file) => {
     try {
-      if (filesize == 0) {
+      if (filesize === 0) {
         showAlert("Please Choose a Images of specific size", "danger");
       } else {
         setProgress(30);
@@ -161,7 +161,7 @@ export default function EditUserAdmin() {
    */
   const visibleSubmit = () => {
     if (
-      document.getElementById("accountdetailsubmit").style.display == "block"
+      document.getElementById("accountdetailsubmit").style.display === "block"
     ) {
       document.getElementById("accountdetailsubmit").style.display = "none";
       document.getElementById("accountdetaildisplay").style.display = "block";
@@ -176,7 +176,7 @@ export default function EditUserAdmin() {
   */
   const visibleimagecontrols = () => {
     if (
-      document.getElementById("imagechangecontrols").style.display == "block"
+      document.getElementById("imagechangecontrols").style.display === "block"
     ) {
       document.getElementById("imagechangecontrols").style.display = "none";
     } else {
@@ -189,7 +189,7 @@ export default function EditUserAdmin() {
   * Otherwise, hide the displaysocailform element and show the display-content element.
   */
   const visiblesocailSubmit = () => {
-    if (document.getElementById("display-content").style.display == "block") {
+    if (document.getElementById("display-content").style.display === "block") {
       document.getElementById("display-content").style.display = "none";
       document.getElementById("displaysocailform").style.display = "block";
     } else {
@@ -234,11 +234,11 @@ export default function EditUserAdmin() {
       let result = await response.json();
       setProgress(70);
 
-      if (response.status == 404) {
+      if (response.status === 404) {
         showAlert(result.error, "danger");
         setProgress(100);
       }
-      else  if (response.status == 200){
+      else  if (response.status === 200){
         getUserbyid(userid);
         showAlert(result, "success");
         setProgress(100);
@@ -263,12 +263,12 @@ export default function EditUserAdmin() {
  */
   const changeaccountdetail = () => {
     if (
-      document.getElementById("username").value == userbyid?.user?.username &&
-      document.getElementById("email").value == userbyid?.user?.email &&
-      document.getElementById("first_name").value ==
+      document.getElementById("username").value === userbyid?.user?.username &&
+      document.getElementById("email").value === userbyid?.user?.email &&
+      document.getElementById("first_name").value ===
         userbyid?.user?.first_name &&
-      document.getElementById("last_name").value == userbyid?.user?.last_name &&
-      document.getElementById("phone_number").value ==
+      document.getElementById("last_name").value === userbyid?.user?.last_name &&
+      document.getElementById("phone_number").value ===
         userbyid?.user?.phone_number
     ) {
       showAlert(
@@ -333,7 +333,7 @@ export default function EditUserAdmin() {
   return (
     <>
       <AnimatedPage>
-        {servererror == 500 ||userbyid==500 ? (
+        {servererror === 500 ||userbyid===500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div>

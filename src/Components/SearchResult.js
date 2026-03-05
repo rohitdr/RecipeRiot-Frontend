@@ -8,7 +8,7 @@ import InternalServerError from "./InternalServerError";
 export default function SearchResult() {
 /* This is a react hook that is used to perform side effects in function components. */
   const context = useContext(RecipeContext);
-  const { searchRecipe, NameRecipe, name_to_search, loading , LatesRecipe,Latest_recipe,} = context;
+  const { searchRecipe, NameRecipe, loading , LatesRecipe,Latest_recipe,} = context;
   const { state } = useLocation();
 
   const searchrecipename = state.search_result_reicpe;
@@ -32,7 +32,7 @@ export default function SearchResult() {
 
   return (
     <div>
-    {searchRecipe==500?<InternalServerError></InternalServerError>:  <div className="container">
+    {searchRecipe===500?<InternalServerError></InternalServerError>:  <div className="container">
         <div className="row my-3">
           <h1
             className="text-center my-4 fw-bold text-dark"
@@ -172,7 +172,7 @@ export default function SearchResult() {
                       element.Comments.map((ele) => {
                         reciperating = reciperating + ele.rating;
                       });
-                      element.Comments.length != 0
+                      element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);

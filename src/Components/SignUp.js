@@ -104,7 +104,7 @@ document.title="RecipeRiot-Sign up"
       );
 
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
       
         setusernamecolor("error");
         sethelpercolorusername("error");
@@ -114,7 +114,7 @@ document.title="RecipeRiot-Sign up"
           <i className="fa-solid text-danger fa-circle-exclamation"></i>
         );
       }
-      else if (response.status == 200) {
+      else if (response.status === 200) {
         setusernamecolor("success");
 
         sethelpercolorusername("success");
@@ -162,7 +162,7 @@ document.title="RecipeRiot-Sign up"
   const onchange = (e) => {
     setsignupdetails({ ...signupdetail, [e.target.name]: e.target.value });
     //validation for number
-    if(document.getElementById('phone_number').value.length != 10){
+    if(document.getElementById('phone_number').value.length !== 10){
       setphone_number_helper_text("Phone Number should be of 10 digits")
       setphone_numberhelpercolor("error")
       setphone_numbercolor("error")
@@ -190,7 +190,7 @@ setpasswordhelpercolor("success")
 setpasswordhelpertext("This Looks Nice ")
     }
     //validation for confirm password
-    if(signupdetail.password != document.getElementById('confirm_password').value)
+    if(signupdetail.password !== document.getElementById('confirm_password').value)
     {
      setconfirm_passwordcolor("error")
      setconfirm_passwordhelpercolor("error")
@@ -240,12 +240,12 @@ setlast_namehelpertext("Last name should be of more than 3 words")
       showAlert("OOPs!, First Name must have 3 words", "danger");
     } else if (signupdetail.last_name.length < 3) {
       showAlert("OOPs!, Last Name must have 3 words", "danger");
-    } else if (signupdetail.phone_number.length != 10) {
+    } else if (signupdetail.phone_number.length !== 10) {
       showAlert("OOPs!, Phone Number Must be of 10 digits", "danger");
     }
    else if (signupdetail.password.length < 8) {
       showAlert("OOPs!, Password must have 8 digits", "danger");
-    } else if (signupdetail.password != signupdetail.confirm_password) {
+    } else if (signupdetail.password !== signupdetail.confirm_password) {
       showAlert("OOPs!, Password and Confirm password must be same", "danger");
     } else {
     
@@ -311,7 +311,7 @@ const changethird=(e)=>{
        let signupresult= await response.json();
     
      
-       if(response.status == 200){
+       if(response.status === 200){
          setProgress(70)
 
          setProgress(100)
@@ -320,7 +320,7 @@ const changethird=(e)=>{
            showAlert("Your  account is successfully created , Now You can login.","success")
 
        }
-       else if(response.status== 404){
+       else if(response.status=== 404){
          setProgress(100)
          showAlert(signupresult.error,"danger")
        }
@@ -350,8 +350,8 @@ const changethird=(e)=>{
 
   return (
   <><AnimatedPage>
-    { servererror == 500 ? <InternalServerError></InternalServerError> :<div>
-      {signuppage == 0 && (
+    { servererror === 500 ? <InternalServerError></InternalServerError> :<div>
+      {signuppage === 0 && (
         <section className="background-radial-gradient overflow-hidden">
           <div 
             className="container px-4 py-5 px-md-5 text-center text-lg-start my-5 appear_component"
@@ -361,7 +361,7 @@ const changethird=(e)=>{
               <div className="col-lg-5 mb-5 mb-lg-0 position-relative">
                 <div className="card singupcard border-success align-items-center box_decrease_size_animation">
                   <div className="card-header singupcardheder b d-flex justify-content-center box_decrease_size_animationforlogin">
-                    <h5 className="fw-bold pt-4 text-white">{props.usingfile=="Admin"?<span>Add User</span>:<><span className="sign_s">S</span><span className="sign_i">i</span><span className="sign_g">g</span><span className="sign_n">n</span> <span className="sign_u">U</span><span className="sign_p">p</span></>}</h5>
+                    <h5 className="fw-bold pt-4 text-white">{props.usingfile==="Admin"?<span>Add User</span>:<><span className="sign_s">S</span><span className="sign_i">i</span><span className="sign_g">g</span><span className="sign_n">n</span> <span className="sign_u">U</span><span className="sign_p">p</span></>}</h5>
                   </div>
                   <div className="card-body box_decrease_size_animationforlogin ">
                     <form>
@@ -379,7 +379,7 @@ const changethird=(e)=>{
                           className="bg-white  "
                       
                           type="email"
-                          label={props.usingfile=="Admin"?"Email":`Your Email`}
+                          label={props.usingfile==="Admin"?"Email":`Your Email`}
                           placeholder="Enter Your Email"
                         />
                       </div>
@@ -538,7 +538,7 @@ const changethird=(e)=>{
         </section>
       )}
      
-      {signuppage == 1 && (
+      {signuppage === 1 && (
         <section className="background-radial-gradient overflow-hidden">
           <div
             className="container px-4 py-5 px-md-5 text-center text-lg-start my-5 appear_component"

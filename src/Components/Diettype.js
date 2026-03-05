@@ -6,7 +6,7 @@ import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
 import { motion } from "framer-motion";
 import Loader from "./Loader";
-export default function Diettype() {
+export default function DietType() {
   /**
    * It takes a string, makes it lowercase, then capitalizes the first letter and returns the new
    * string.

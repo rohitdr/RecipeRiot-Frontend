@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
 import RecipeContext from "../Context/RecipeContext";
-import BlankRecipeItem from "./BlankRecipeItem";
 import Loader from "./Loader";
 import RecipeItem from "./RecipeItem";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Profile_Profile from "./Profile_Profile";
-import Profile_Security from "./Profile_Security";
+
+
 import NoResult from "./NoResult";
 import InternalServerError from "./InternalServerError";
 import AnimatedPage from "./AnimatedPage";
@@ -23,7 +21,7 @@ export default function Profile(props) {
   return (
     <>
       <AnimatedPage>
-        {recipe == 500 ? (
+        {recipe === 500 ? (
           <InternalServerError></InternalServerError>
         ) : (
           <div className="container min-vh-100">
@@ -53,7 +51,7 @@ export default function Profile(props) {
                     element.Comments.map((ele) => {
                       reciperating = reciperating + ele.rating;
                     });
-                    element.Comments.length != 0
+                    element.Comments.length !== 0
                       ? (totalratings = reciperating / element.Comments.length)
                       : (totalratings = 0);
                     reciperating = 0;

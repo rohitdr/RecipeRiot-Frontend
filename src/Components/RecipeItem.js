@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 
 import "./RecipeItem.css";
 
@@ -17,14 +17,12 @@ export default function RecipeItem(props) {
   const [star, setstar] = useState(0);
   let location = useLocation();
   const {
-    deleteRecipe,
-    RecipeBYId,
+    
     LikeRecipe,
     UnLikeRecipe,
-    setCurrentRecipeItemid,
-    getUserbyid,
+  
    userData,
-    getUser,
+ 
  
   } = context;
 /* Creating a variable called Navigate that is using the useNavigate hook. */
@@ -58,14 +56,7 @@ export default function RecipeItem(props) {
  
 
   var deg = 180;
-  const onclickRotate = () => {
-    //  getUserbyid(props.user);
-    document.getElementById(
-      `${props.id}`
-    ).style.transform = `rotateY(${deg}deg)`;
 
-    deg = deg === 180 ? 0 : 180;
-  };
   return (
     <>
       <motion.div
@@ -100,7 +91,7 @@ export default function RecipeItem(props) {
                             !sessionStorage.getItem("auth-token") &&
                             !localStorage.getItem("auth-token")
                               ? "/login"
-                              : "/Individual_description"
+                              : "/Individualdescription"
                           }`,
                           { state: { RecipeItemid: props.id } }
                         );
@@ -175,7 +166,7 @@ export default function RecipeItem(props) {
                             !sessionStorage.getItem("auth-token") &&
                             !localStorage.getItem("auth-token")
                               ? "/login"
-                              : "/Individual_description"
+                              : "/Individualdescription"
                           }`,
                           { state: { RecipeItemid: props.id } }
                         );
@@ -193,7 +184,7 @@ export default function RecipeItem(props) {
                           LikeRecipe(props.id);
                           setHeart("solid");
                         }
-                        if (heart == "solid") {
+                        if (heart === "solid") {
                           UnLikeRecipe(props.id);
                           setHeart("regular");
                         }
@@ -209,7 +200,7 @@ export default function RecipeItem(props) {
                             !sessionStorage.getItem("auth-token") &&
                             !localStorage.getItem("auth-token")
                               ? "/login"
-                              : "/Individual_description"
+                              : "/Individualdescription"
                           }`,
                           { state: { RecipeItemid: props.id } }
                         );

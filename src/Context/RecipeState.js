@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import RecipeContext from "./RecipeContext";
@@ -76,11 +76,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         setLoading(false);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
 
         setstaticalData(result);
@@ -121,11 +121,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         setLoading(false);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
         AdminGetAllUserByDate();
         showAlert(result, "success");
@@ -166,11 +166,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setLoading(false);
         showAlert(result.error, "danger");
         setProgress(100);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
 
         localStorage.removeItem("auth-token");
@@ -212,11 +212,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(result.error, "danger");
         setLoading(false);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
         Navigate("/login");
 
@@ -258,11 +258,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(result.error, "danger");
         setLoading(false);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
         GetAllcontactMessages();
         showAlert("This Message is Successfully Deleted", "success");
@@ -301,11 +301,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         setLoading(false);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setProgress(70);
         showAlert("We Will contact You Soon", "success");
         setProgress(100);
@@ -341,11 +341,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setAllContactMessages(false);
         setAdminallmessageloading(false)
         // setProgress(100);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setAllContactMessages(result);
         setAdminallmessageloading(false)
@@ -388,11 +388,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setadmingetalluserbydateloading(false)
         // setProgress(100);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setAdminAllUserByDate(result);
         setadmingetalluserbydateloading(false)
@@ -434,11 +434,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         // setProgress(100);
         setAdminallrecipebydateloading(false)
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setAdminAllRecipeByDate(result);
         setAdminallrecipebydateloading(false)
@@ -484,11 +484,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         // setProgress(100);
         setAdminallrecipeloading(false)
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setAdminAllRecipe(result);
         setAdminallrecipeloading(false)
@@ -530,11 +530,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setadmingetalluserloading(false)
         // setProgress(100);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setAdminAllUser(result);
         setadmingetalluserloading(false)
@@ -573,11 +573,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setdietloading(false)
         // setProgress(100);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setdietdata(result);
         setdietloading(false)
@@ -616,12 +616,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(50);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setdietloading(false)
         // setProgress(100);
 
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
 
         // setProgress(70);
         setdishdata(result);
@@ -652,7 +652,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setmealloading(true)
       const response = await fetch(
         `${
-          type == "lunch/dinner"
+          type === "lunch/dinner"
             ? `${process.env.REACT_APP_Fetch_Api_Start}/recipe/allRecipeswithmealtypelunchdinner`
             : `${process.env.REACT_APP_Fetch_Api_Start}/recipe/allRecipeswithmealtype/${type}`
         }`,
@@ -666,11 +666,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(60);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         showAlert(result.error, "danger");
         // setProgress(100);
         setmealloading(false)
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setmealdata(result);
         // setProgress(100);
@@ -713,13 +713,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(50);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         
      
         showAlert(result.error, "danger");
         // setProgress(100);
         sethealthloading(false)
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         sethealthdata(result);
         // setProgress(100);
@@ -761,11 +761,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(50);
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         // setProgress(100);
         setcuisineloading(false)
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         // setProgress(70);
         setcuisinedata(result);
         // setProgress(100);
@@ -807,7 +807,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
 
       let userDetail = await response.json();
-      if (response.status == 200) {
+      if (response.status === 200) {
         setuserbyid(userDetail);
         setLoading(false);
       } else {
@@ -849,10 +849,10 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60);
       let current = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(current.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setCurrentRecipeItem(current);
         setProgress(100);
       } else {
@@ -892,11 +892,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       // setProgress(50);
       let Liked = await response.json();
    
-      if (response.status == 404) {
+      if (response.status === 404) {
         setLikedRecipe(false);
      setlikedrecipeloading(false)
         // setProgress(100);
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
     
         setLikedRecipe(Liked);
      setlikedrecipeloading(false)
@@ -941,7 +941,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
           }
         );
         let userDetail = await response.json();
-        if (response.status == 200) {
+        if (response.status === 200) {
          
        
           setLoading(false);
@@ -988,10 +988,10 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60)
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setLoading(false);
         setProgress(100);
       } else {
@@ -1035,10 +1035,10 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60)
       let result = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
         showAlert(result.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
         setLoading(false);
         setProgress(100);
       } else {
@@ -1093,13 +1093,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       setProgress(60)
       let Name_recipe = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setProgress(100);
 
         setsearchedRecipe(false);
         setnamereicpeloading(false);
       }
-       else if (response.status == 200) {
+       else if (response.status === 200) {
       
         setnamereicpeloading(false);
 
@@ -1140,11 +1140,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(50)
       let Latest_recipe = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
         setlatestrecipeloading(false)
         // setProgress(100)
    
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
       
     
         setLatest_Recipe(Latest_recipe);
@@ -1189,12 +1189,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       );
       // setProgress(50);
 
-      if (response.status == 404) {
+      if (response.status === 404) {
        
         setLatest_Recipebyid(false);
         // setProgress(100);
         setlatest_recipebyidloading(false)
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
        
         let Latest_recipebyid = await response.json();
 
@@ -1241,12 +1241,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
 
       // setProgress(60);
   
-      if (response.status == 404) {
+      if (response.status === 404) {
         setallrecipeloading(false)
         // setProgress(100);
         setRecipe(false);
       
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
        
         let allrecipe = await response.json();
         setRecipe(allrecipe);
@@ -1294,16 +1294,16 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
 
 
       const json = await response.json();
-      if (response.status == 404) {
+      if (response.status === 404) {
      
         showAlert(json.error, "danger");
-      } else if (response.status == 200) {
+      } else if (response.status === 200) {
        
         showAlert(
           "Recipe is Successfully deleted. It will be updated Soon",
           "success"
         );
-        if (file == "Admindelete") {
+        if (file === "Admindelete") {
           AdminGetAllRecipeByDate();
         }
         

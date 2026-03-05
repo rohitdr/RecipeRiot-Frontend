@@ -2,14 +2,9 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
-import { Accordion } from "react-bootstrap";
-import {
-  Sidebar as mysidebar,
-  Menu,
-  MenuItem,
-  SubMenu,
-} from "react-pro-sidebar";
-export default function Sidebar(props) {
+
+
+export default function SideBar(props) {
   let location = useLocation();
 
   React.useEffect(() => {}, [location]);

@@ -1,7 +1,6 @@
-import React, { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import  { useContext, useEffect } from "react";
+import {  useNavigate } from "react-router-dom";
 import "./searchbar.css";
-import { motion } from "framer-motion";
 import RecipeContext from "../Context/RecipeContext";
 import { useState } from "react";
 import {
@@ -9,35 +8,33 @@ import {
   Text,
   Avatar,
   Dropdown,
-  Input,
   Collapse,
   Modal,
-  Button,
 } from "@nextui-org/react";
 
 import Loader from "./Loader";
-export default function Searchbar() {
+export default function SearchBar() {
   /* Destructuring the context object and assigning it to the variables. */
   const context = useContext(RecipeContext);
   const [searchmodal, setsearchmodal] = useState(false);
   const {
-    recipe,
+  
     NameRecipe,
     setName_to_search,
-    name_to_search,
+   
     searchRecipe,
     Admingetallstaticaldata,
     getUser,
     userData,
     namerecipeloading,
-    setProgress,
+ 
     logoutUser,
     AdminGetAllUser,
     AdminGetAllUserByDate,
     AdminGetAllRecipe,
     AdminGetAllRecipeByDate,
     GetAllcontactMessages,
-    AllLikedRecipe
+   
   } = context;
   /* Creating a variable called Navigate and assigning it the value of the useNavigate() function. */
   let Navigate = useNavigate();
@@ -214,7 +211,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/mealtype", {
+                    Navigate("/mealType", {
                       state: { type: "lunch/dinner", on: true },
                     });
                   }}
@@ -240,7 +237,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/mealtype", {
+                    Navigate("/mealType", {
                       state: { type: "breakfast", on: false },
                     });
                   }}
@@ -259,7 +256,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/mealtype", {
+                    Navigate("/mealType", {
                       state: { type: "lunch/dinner", on: true },
                     });
                   }}
@@ -278,7 +275,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/mealtype", {
+                    Navigate("/mealType", {
                       state: { type: "snack", on: false },
                     });
                   }}
@@ -297,7 +294,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/mealtype", {
+                    Navigate("/mealType", {
                       state: { type: "teatime", on: false },
                     });
                   }}
@@ -356,7 +353,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "bread" } });
+                    Navigate("/dishType", { state: { type: "bread" } });
                   }}
                 >
                   Bread
@@ -373,7 +370,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "cereals" } });
+                    Navigate("/dishType", { state: { type: "cereals" } });
                   }}
                 >
                   Cereals
@@ -391,7 +388,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", {
+                    Navigate("/dishType", {
                       state: { type: "condiments and sauces" },
                     });
                   }}
@@ -414,7 +411,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "desserts" } });
+                    Navigate("/dishType", { state: { type: "desserts" } });
                   }}
                 >
                   Desserts
@@ -435,7 +432,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "drinks" } });
+                    Navigate("/dishType", { state: { type: "drinks" } });
                   }}
                 >
                   Drinks
@@ -456,7 +453,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "main course" } });
+                    Navigate("/dishType", { state: { type: "main course" } });
                   }}
                 >
                   MainCourse
@@ -477,7 +474,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "pancake" } });
+                    Navigate("/dishType", { state: { type: "pancake" } });
                   }}
                 >
                   Pancake
@@ -498,7 +495,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "preps" } });
+                    Navigate("/dishType", { state: { type: "preps" } });
                   }}
                 >
                   Preps
@@ -516,7 +513,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "salad" } });
+                    Navigate("/dishType", { state: { type: "salad" } });
                   }}
                 >
                   Salad
@@ -537,7 +534,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "sandwiches" } });
+                    Navigate("/dishType", { state: { type: "sandwiches" } });
                   }}
                 >
                   Sandwiches
@@ -558,7 +555,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "soup" } });
+                    Navigate("/dishType", { state: { type: "soup" } });
                   }}
                 >
                   Soup
@@ -579,7 +576,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/dishtype", { state: { type: "starter" } });
+                    Navigate("/dishType", { state: { type: "starter" } });
                   }}
                 >
                   Starter
@@ -638,7 +635,7 @@ export default function Searchbar() {
                 {" "}
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "Balanced" } });
+                    Navigate("/dietType", { state: { type: "Balanced" } });
                   }}
                 >
                   Balanced
@@ -655,7 +652,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "High-Fiber" } });
+                    Navigate("/dietType", { state: { type: "High-Fiber" } });
                   }}
                 >
                   highFiber
@@ -670,7 +667,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "High-Protein" } });
+                    Navigate("/dietType", { state: { type: "High-Protein" } });
                   }}
                 >
                   High-Protein
@@ -690,7 +687,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "Low-Carb" } });
+                    Navigate("/dietType", { state: { type: "Low-Carb" } });
                   }}
                 >
                   Low-Carb
@@ -710,7 +707,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "Low-Fat" } });
+                    Navigate("/dietType", { state: { type: "Low-Fat" } });
                   }}
                 >
                   Low-Fat
@@ -727,7 +724,7 @@ export default function Searchbar() {
               >
                 <div
                   onClick={() => {
-                    Navigate("/diettype", { state: { type: "Low-Sodium" } });
+                    Navigate("/dietType", { state: { type: "Low-Sodium" } });
                   }}
                 >
                   Low-Sodium
@@ -1430,7 +1427,7 @@ export default function Searchbar() {
                 <Dropdown.Item key="settings" withDivider>
                   <div
                     onClick={() => {
-                      Navigate("/Profile_Profile");
+                      Navigate("/ProfileProfile");
                     }}
                   >
                     <p className=" pt-3 text-dark searchbardropdown w-100">
@@ -1442,7 +1439,7 @@ export default function Searchbar() {
                   <div
                     onClick={() => {
                     
-                      Navigate("/Profile_Activity");
+                      Navigate("/ProfileActivity");
                      
                     }}
                   >
@@ -1454,7 +1451,7 @@ export default function Searchbar() {
                 <Dropdown.Item key="analytics">
                   <div
                     onClick={() => {
-                      Navigate("/Profile_Security");
+                      Navigate("/ProfileSecurity");
                     }}
                   >
                     <p className=" pt-3 text-dark searchbardropdown w-100">
@@ -1465,7 +1462,7 @@ export default function Searchbar() {
                 <Dropdown.Item key="system" withDivider>
                   <div
                     onClick={() => {
-                      Navigate("/Profile_Recipe");
+                      Navigate("/ProfileRecipe");
                     }}
                   >
                     <p className=" pt-3 text-dark searchbardropdown w-100">
@@ -1476,7 +1473,7 @@ export default function Searchbar() {
                 <Dropdown.Item key="configurations">
                   <div
                     onClick={() => {
-                      Navigate("/Profile_LikedRecipe");
+                      Navigate("/ProfileLikedRecipe");
                     }}
                   >
                     <p className=" pt-3 text-dark searchbardropdown w-100">

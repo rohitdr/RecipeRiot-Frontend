@@ -7,7 +7,7 @@ import RecipeItem from "./RecipeItem";
 import { motion } from "framer-motion";
 import Loader from "./Loader";
 
-export default function Dishtype() {
+export default function DishType() {
  /**
   * It takes a string, makes it lowercase, then capitalizes the first letter and returns the new
   * string.

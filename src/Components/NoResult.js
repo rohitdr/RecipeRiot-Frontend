@@ -1,6 +1,4 @@
-import React from "react";
-import { Button } from "@nextui-org/react";
-import { AnimatePresence } from "framer-motion";
+
 import AnimatedPage from "./AnimatedPage";
 export default function NoResult(props) {
   return (

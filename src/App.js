@@ -1,6 +1,6 @@
 import "./App.css";
 import Sidebar from "./Components/Sidebar.js";
-import SearchBar from "./Components/SearchBar.js";
+import Searchbar from "./Components/Searchbar.js";
 
 import { Routes, Route, useLocation } from "react-router-dom";
 import IndividualRecipe from "./Components/IndividualRecipe.js";
@@ -50,7 +50,7 @@ function App() {
 
       <Sidebar></Sidebar>
 
-      <SearchBar></SearchBar>
+      <Searchbar></Searchbar>
 
       <Alert alert={alert}></Alert>
       <AnimatePresence mode="wait">

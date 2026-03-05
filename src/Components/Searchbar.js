@@ -13,7 +13,7 @@ import {
 } from "@nextui-org/react";
 
 import Loader from "./Loader";
-export default function SearchBar() {
+export default function Searchbar() {
   /* Destructuring the context object and assigning it to the variables. */
   const context = useContext(RecipeContext);
   const [searchmodal, setsearchmodal] = useState(false);

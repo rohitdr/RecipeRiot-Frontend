@@ -108,11 +108,11 @@ export default function EditUserAdmin() {
         );
         setProgress(50);
        let result = await response.json();
-       if(response.status==404){
+       if(response.status===404){
          setProgress(100)
          showAlert(result.error,"danger")
        }
-       else if(response.status==200){
+       else if(response.status===200){
         setProgress(70);
         getUserbyid(userid);
 

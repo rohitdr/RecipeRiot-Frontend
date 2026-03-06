@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import RecipeContext from "./RecipeContext";
@@ -51,14 +51,32 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
   const [likedrecipeloading,setlikedrecipeloading]=useState(false)
   const [Adminallmessageloading,setAdminallmessageloading]=useState(false)
 
-
+  //to show alert on top
+  /**
+   * The showAlert function takes a message and a type as arguments, sets the alert state to an object
+   * with the message and type, and then sets a timeout to clear the alert state after 3 seconds.
+   * @param msg - The message you want to display
+   * @param type - 'success' or 'danger'
+   */
+  const showAlert = useCallback((msg, type) => {
+    setAlert(
+      {
+        message: msg,
+        type: type,
+      },
+      setTimeout(() => {
+        setAlert(null);
+      }, 3000)
+    );
+  },[])
   /* Creating a variable called Navigate and assigning it the useNavigate hook. */
   let Navigate = useNavigate();
   //api for deleting account by admin
   /**
+   * 
    * It fetches data from the server and sets the data to the state.
    */
-  const Admingetallstaticaldata = async () => {
+  const Admingetallstaticaldata = useCallback(async () => {
     try {
       setProgress(30);
       const response = await fetch(
@@ -96,13 +114,58 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
+  },[showAlert])
+   //api to get all user details for admin
+  /**
+   * It fetches data from the server and sets the data to the state.
+   */
+  const AdminGetAllUserByDate = useCallback(async () => {
+    try {
+      // setProgress(30);
+      setadmingetalluserbydateloading(true)
+    
+      const response = await fetch(
+        `${process.env.REACT_APP_Fetch_Api_Start}/auth/AdminGetAllUserByDate`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": sessionStorage.getItem("auth-token")
+              ? sessionStorage.getItem("auth-token")
+              : localStorage.getItem("auth-token"),
+          },
+        }
+      );
+      // setProgress(60);
+      let result = await response.json();
+      if (response.status === 404) {
+        setadmingetalluserbydateloading(false)
+        // setProgress(100);
+        showAlert(result.error, "danger");
+      } else if (response.status === 200) {
+        // setProgress(70);
+        setAdminAllUserByDate(result);
+        setadmingetalluserbydateloading(false)
+        // setProgress(100);
+      } else {
+        // setProgress(100);
+        setadmingetalluserbydateloading(false)
+        setAdminAllUserByDate(500);
+      }
+    } catch (error) {
+      // setProgress(100);
+      setAdminAllUserByDate(500);
+      setadmingetalluserbydateloading(false)
+      console.log(error.message);
+    }
+  },[showAlert])
   //api for deleting account by admin
   /**
    * It deletes an account from the database.
    * @param id - id of the user to be deleted
    */
-  const deleteAccountAdmin = async (id) => {
+  const deleteAccountAdmin = useCallback(async (id) => {
     try {
       setProgress(30);
       const response = await fetch(
@@ -141,13 +204,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
+  },[showAlert,AdminGetAllUserByDate])
   //api for deleting account by user its own
   /**
    * It deletes the user's account from the database.
    * @param id - the id of the user
    */
-  const deleteAccount = async (id) => {
+  const deleteAccount = useCallback(async (id) => {
     try {
       setProgress(30);
       const response = await fetch(
@@ -189,12 +252,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
+  },[showAlert,Navigate])
   //api for logout
   /**
    * It's a function that sends a POST request to the server, and then logs the user out.
    */
-  const logoutUser = async () => {
+  const logoutUser = useCallback(async () => {
     try {
       setProgress(30);
       const response = await fetch(
@@ -233,99 +296,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
-  //api for deleting the message
-  /**
-   * It deletes a message from the database.
-   * </code>
-   * @param id - the id of the message to be deleted
-   */
-  const deletemessage = async (id) => {
-    try {
-      setProgress(30);
-      const response = await fetch(
-        `${process.env.REACT_APP_Fetch_Api_Start}/contact/delete/${id}`,
-        {
-          method: "DELETE",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": sessionStorage.getItem("auth-token")
-              ? sessionStorage.getItem("auth-token")
-              : localStorage.getItem("auth-token"),
-          },
-        }
-      );
-      setProgress(60);
-      let result = await response.json();
-      if (response.status === 404) {
-        setProgress(100);
-        showAlert(result.error, "danger");
-        setLoading(false);
-      } else if (response.status === 200) {
-        setProgress(70);
-        GetAllcontactMessages();
-        showAlert("This Message is Successfully Deleted", "success");
-        setProgress(100);
-      } else {
-        setProgress(100);
-        setLoading(false);
-        setdeletemessageresult(500);
-      }
-    } catch (error) {
-      setProgress(100);
-      setdeletemessageresult(500);
-      setLoading(false);
-      console.log(error.message);
-    }
-  };
-  //api for contact us form
-  /**
-   * It sends a POST request to the server with the message object, and if the response is 200, it sets
-   * the progress to 70, and if the response is 404, it sets the progress to 100.
-   * @param message - {
-   */
-  const ContactusSubmitApi = async (message) => {
-    try {
-      setProgress(30);
-      const response = await fetch(
-        `${process.env.REACT_APP_Fetch_Api_Start}/contact/Message`,
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(message),
-        }
-      );
-      setProgress(60);
-      let result = await response.json();
-      if (response.status === 404) {
-        setProgress(100);
-        setLoading(false);
-        showAlert(result.error, "danger");
-      } else if (response.status === 200) {
-        setProgress(70);
-        showAlert("We Will contact You Soon", "success");
-        setProgress(100);
-      } else {
-        setProgress(100);
-        setLoading(false);
-        setcontactsendmessage(500);
-      }
-    } catch (error) {
-      setProgress(100);
-      setcontactsendmessage(500);
-      setLoading(false);
-      console.log(error.message);
-    }
-  };
-  //api to get all Messages for admin
+  },[Navigate,showAlert])
+   //api to get all Messages for admin
   /**
    * It fetches all the messages from the database and sets the state of the messages to the result
    */
-  const GetAllcontactMessages = async () => {
+  const GetAllcontactMessages = useCallback(async () => {
     try {
       // setProgress(30);
       setAdminallmessageloading(true)
@@ -363,20 +339,20 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setAdminallmessageloading(false)
       console.log(error.message);
     }
-  };
-  //api to get all user details for admin
+  },[])
+  //api for deleting the message
   /**
-   * It fetches data from the server and sets the data to the state.
+   * It deletes a message from the database.
+   * </code>
+   * @param id - the id of the message to be deleted
    */
-  const AdminGetAllUserByDate = async () => {
+  const deletemessage = useCallback(async (id) => {
     try {
-      // setProgress(30);
-      setadmingetalluserbydateloading(true)
-    
+      setProgress(30);
       const response = await fetch(
-        `${process.env.REACT_APP_Fetch_Api_Start}/auth/AdminGetAllUserByDate`,
+        `${process.env.REACT_APP_Fetch_Api_Start}/contact/delete/${id}`,
         {
-          method: "POST",
+          method: "DELETE",
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
@@ -386,35 +362,79 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
           },
         }
       );
-      // setProgress(60);
+      setProgress(60);
       let result = await response.json();
       if (response.status === 404) {
-        setadmingetalluserbydateloading(false)
-        // setProgress(100);
+        setProgress(100);
         showAlert(result.error, "danger");
+        setLoading(false);
       } else if (response.status === 200) {
-        // setProgress(70);
-        setAdminAllUserByDate(result);
-        setadmingetalluserbydateloading(false)
-        // setProgress(100);
+        setProgress(70);
+        GetAllcontactMessages();
+        showAlert("This Message is Successfully Deleted", "success");
+        setProgress(100);
       } else {
-        // setProgress(100);
-        setadmingetalluserbydateloading(false)
-        setAdminAllUserByDate(500);
+        setProgress(100);
+        setLoading(false);
+        setdeletemessageresult(500);
       }
     } catch (error) {
-      // setProgress(100);
-      setAdminAllUserByDate(500);
-      setadmingetalluserbydateloading(false)
+      setProgress(100);
+      setdeletemessageresult(500);
+      setLoading(false);
       console.log(error.message);
     }
-  };
+  },[showAlert,GetAllcontactMessages])
+  //api for contact us form
+  /**
+   * It sends a POST request to the server with the message object, and if the response is 200, it sets
+   * the progress to 70, and if the response is 404, it sets the progress to 100.
+   * @param message - {
+   */
+  const ContactusSubmitApi = useCallback(async (message) => {
+    try {
+      setProgress(30);
+      const response = await fetch(
+        `${process.env.REACT_APP_Fetch_Api_Start}/contact/Message`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(message),
+        }
+      );
+      setProgress(60);
+      let result = await response.json();
+      if (response.status === 404) {
+        setProgress(100);
+        setLoading(false);
+        showAlert(result.error, "danger");
+      } else if (response.status === 200) {
+        setProgress(70);
+        showAlert("We Will contact You Soon", "success");
+        setProgress(100);
+      } else {
+        setProgress(100);
+        setLoading(false);
+        setcontactsendmessage(500);
+      }
+    } catch (error) {
+      setProgress(100);
+      setcontactsendmessage(500);
+      setLoading(false);
+      console.log(error.message);
+    }
+  },[showAlert])
+ 
+ 
   //api to get all Recipes for admin
   /**
    * It fetches all recipes from the database and displays them in a table.
    * </code>
    */
-  const AdminGetAllRecipeByDate = async () => {
+  const AdminGetAllRecipeByDate = useCallback(async () => {
     try {
       // setProgress(30);
       setAdminallrecipebydateloading(true)
@@ -457,14 +477,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get all Recipes for admin
   /**
    * It fetches all the recipes from the database and sets the state of the recipes to the fetched
    * recipes.
    * </code>
    */
-  const AdminGetAllRecipe = async () => {
+  const AdminGetAllRecipe = useCallback(async () => {
     try {
       // setProgress(30);
       setAdminallrecipeloading(true)
@@ -505,12 +525,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setAdminallrecipeloading(false)
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get all user details for admin
   /**
    * It fetches data from the server and sets the data to the state.
    */
-  const AdminGetAllUser = async () => {
+  const AdminGetAllUser = useCallback(async () => {
     try {
       // setProgress(30);
       setadmingetalluserloading(true)
@@ -550,13 +570,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setadmingetalluserloading(false)
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get recipe who has a particular mealtype
   /**
    * It fetches data from an API and sets the data to a state.
    * @param type - the type of diet you want to search for
    */
-  const diettype = async (type) => {
+  const diettype = useCallback(async (type) => {
     try {
       // setProgress(30);
       setdietloading(true)
@@ -594,13 +614,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setdietloading(false)
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get recipe who has a particular mealtype
   /**
    * It fetches data from an API and sets the data to a state.
    * @param type - The type of dish you want to search for.
    */
-  const dishtype = async (type) => {
+  const dishtype = useCallback(async (type) => {
     try {
       // setProgress(30);
       setdietloading(true)
@@ -640,13 +660,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setdishdata(500);
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get recipe who has a particular mealtype
   /**
    * It fetches data from an API and sets the data to a state.
    * @param type - the type of meal you want to fetch
    */
-  const mealtype = async (type) => {
+  const mealtype = useCallback(async (type) => {
     try {
       // setProgress(30);
       setmealloading(true)
@@ -690,14 +710,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setmealloading(false)
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get recipe who has a particular healthlabel
   /**
    * It fetches data from an API and sets the data to a state.
    * </code>
    * @param type - the type of health label
    */
-  const health = async (type) => {
+  const health = useCallback(async (type) => {
     try {
       // setProgress(30);
       sethealthloading(true)
@@ -739,13 +759,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       sethealthloading(false)
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to get recipe according to cuisine type
   /**
    * It fetches data from an API and sets the data to a state.
    * @param type - The type of cuisine you want to search for.
    */
-  const cuisine = async (type) => {
+  const cuisine = useCallback(async (type) => {
     try {
       // setProgress(30);
       setcuisineloading(true)
@@ -782,14 +802,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setcuisinedata(500);
       console.log(error.message);
     }
-  };
+  },[showAlert])
   ////api to get user detail by giving id
   /**
    * I'm trying to fetch data from the server and if the response is 200, I'm setting the state to the
    * response data, else I'm setting the state to 500.
    * @param id - id,
    */
-  const getUserbyid = async (id) => {
+  const getUserbyid = useCallback(async (id) => {
     try {
       setLoading(true);
       const response = await fetch(
@@ -821,7 +841,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setuserbyid(500);
       console.log(error.message);
     }
-  };
+  },[])
 
   ///api to search recipe by id
   /**
@@ -830,7 +850,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
    * </code>
    * @param id - the id of the recipe
    */
-  const RecipeBYId = async (id) => {
+  const RecipeBYId = useCallback(async (id) => {
     try {
       setLoading(true);
       setProgress(30);
@@ -866,12 +886,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setCurrentRecipeItem(500);
       console.log(error.message);
     }
-  };
+  },[showAlert])
 
   /**
    * It fetches all the liked recipes from the database and sets the state of the component.
    */
-  const AllLikedRecipe = async () => {
+  const AllLikedRecipe = useCallback(async () => {
     try {
       // setProgress(30);
       setlikedrecipeloading(true)
@@ -914,13 +934,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLikedRecipe(500);
       console.log(e.message);
     }
-  };
+  },[])
 
   //api to get user details
   /**
    * It fetches the user data from the server and sets the user data in the state.
    */
-  const getUser = async () => {
+  const getUser = useCallback(async () => {
     try {
       if (
         sessionStorage.getItem("auth-token") ||
@@ -958,14 +978,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setUserData(500);
       console.log(e.message);
     }
-  };
+  },[])
 
   //api to unlike a recipe
   /**
    * It sends a POST request to the server with the recipe id and the user's auth-token
    * @param recipeid - The id of the recipe to be liked
    */
-  const UnLikeRecipe = async (recipeid) => {
+  const UnLikeRecipe = useCallback(async (recipeid) => {
     try {
       setProgress(30)
       setLoading(true);
@@ -1005,13 +1025,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       showAlert("Their is Problem in out server", "danger");
       console.log(error.message);
     }
-  };
+  },[showAlert])
   //api to like a recipe
   /**
    * It sends a POST request to the server with the recipe id and the user's auth-token
    * @param recipeid - the id of the recipe that the user wants to like
    */
-  const LikeRecipe = async (recipeid) => {
+  const LikeRecipe = useCallback(async (recipeid) => {
     try {
       setProgress(30)
       setLoading(true);
@@ -1052,27 +1072,10 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       showAlert("Their is Problem in out server", "danger");
       console.log(error.message);
     }
-  };
-  //to show alert on top
-  /**
-   * The showAlert function takes a message and a type as arguments, sets the alert state to an object
-   * with the message and type, and then sets a timeout to clear the alert state after 3 seconds.
-   * @param msg - The message you want to display
-   * @param type - 'success' or 'danger'
-   */
-  const showAlert = (msg, type) => {
-    setAlert(
-      {
-        message: msg,
-        type: type,
-      },
-      setTimeout(() => {
-        setAlert(null);
-      }, 3000)
-    );
-  };
+  },[showAlert])
+
   //api for recipe search
-  const NameRecipe = async (recipename) => {
+  const NameRecipe = useCallback(async (recipename) => {
     try {
       setnamereicpeloading(true);
       setProgress(30)
@@ -1117,14 +1120,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setLoading(false);
       console.log(error.message);
     }
-  };
+  },[])
   //api for latest recipes
   /**
    * I'm trying to fetch data from the server and if the response is 200, I want to set the state to the
    * data I got from the server. If the response is 404, I want to set the state to 404. If the response
    * is 500, I want to set the state to 500.
    */
-  const LatesRecipe = async () => {
+  const LatesRecipe = useCallback(async () => {
     try {
     // setProgress(30)
     setlatestrecipeloading(true)
@@ -1164,12 +1167,12 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setlatestrecipeloading(false)
       console.log(error.message);
     }
-  };
+  },[])
   //api for latest recipe of a parrticular user
   /**
    * It fetches data from the server and sets the data to the state.
    */
-  const LatestRecipebyid = async () => {
+  const LatestRecipebyid = useCallback(async () => {
     try {
       // setProgress(30);
       setlatest_recipebyidloading(true)
@@ -1214,13 +1217,13 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
         setlatest_recipebyidloading(false)
       console.log(error.message);
     }
-  };
+  },[])
   // api for all recipes related to a user
   /**
    * It fetches all the recipes from the database and sets the state of the recipe to the fetched data.
    * </code>
    */
-  const allRecipe = async () => {
+  const allRecipe = useCallback(async () => {
     try {
       // setProgress(30);
       setallrecipeloading(true)
@@ -1265,14 +1268,14 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       setRecipe(500);
       console.log(e.message);
     }
-  };
+  },[])
   // api for delete a recipe
  /**
   * It deletes a recipe from the database and updates the recipe list
   * @param id - the id of the recipe to be deleted
   * @param file - "Admindelete"
   */
-  const deleteRecipe = async (id, file) => {
+  const deleteRecipe = useCallback(async (id, file) => {
     try {
  
       
@@ -1321,12 +1324,95 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
  
       console.log(error.message);
     }
-  };
-  return (
-
-    <RecipeContext.Provider
-      value={{
-        namerecipeloading,
+  },[LatestRecipebyid,getUser,AdminGetAllRecipeByDate,showAlert])
+  const value = useMemo(()=>({
+namerecipeloading,
+        diettype,
+        dietdata,
+        dishdata,
+        dishtype,
+        mealtype,
+        mealdata,
+        health,
+        healthloading,
+        healthdata,
+        cuisineloading,
+        cuisinedata,
+        cuisine,
+        getUserbyid,
+        userbyid,
+        LatestRecipebyid,
+        Latest_recipebyid,
+        signuppage,
+        setsignuppage,
+        showAlert,
+        setProgressHeight,
+        progressheight,
+        progress,
+        setProgress,
+        RecipeBYId,
+        CurrentRecipeItemid,
+        setCurrentRecipeItemid,
+        CurrentRecipeItem,
+        setCurrentRecipeItem,
+        AllLikedRecipe,
+        LikedRecipe,
+        setLikedRecipe,
+        LikeRecipe,
+        UnLikeRecipe,
+        userData,
+        getUser,
+        recipe,
+        alert,
+        setAlert,
+        allRecipe,
+        deleteRecipe,
+        setLoading,
+        loading,
+        Ingrediant_statepage,
+        LatesRecipe,
+        Latest_recipe,
+        NameRecipe,
+        name_to_search,
+        setName_to_search,
+        searchRecipe,
+        latestrecipeloading,
+        setsearchedRecipe,
+        AdminAllUser,
+        AdminGetAllUser,
+        AdminGetAllRecipe,
+        AdminAllRecipe,
+        AdminAllRecipeByDate,
+        AdminGetAllRecipeByDate,
+        AdminAllUserByDate,
+        AdminGetAllUserByDate,
+        GetAllcontactMessages,
+        AllContactMessages,
+        contactsendmessage,
+        ContactusSubmitApi,
+        deletemessage,
+        deletemessageresult,
+        logoutUser,
+        deleteAccount,
+        deleteaccount,
+        deleteaccountAdmin,
+        deleteAccountAdmin,
+        Admingetallstaticaldata,
+        mealloading,
+        staticalData,
+        latest_recipebyidloading,
+        dietloading,
+        dishloading,
+        setdishloading,
+        admingetalluserloading,
+        admingetalluserbydateloading,
+        allrecipeloading,
+        likedrecipeloading,
+        Adminallrecipeloading,
+        Adminallrecipebydateloading,
+        Adminallmessageloading
+  }),[
+    namerecipeloading,
         diettype,
         dietdata,
         dishdata,
@@ -1410,7 +1496,11 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
         Adminallrecipeloading,
         Adminallrecipebydateloading,
         Adminallmessageloading
-      }}
+  ])
+  return (
+
+    <RecipeContext.Provider
+      value={value}
     >
       {props.children}
     </RecipeContext.Provider>

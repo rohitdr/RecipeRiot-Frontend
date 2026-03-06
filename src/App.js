@@ -1,12 +1,10 @@
 import "./App.css";
 import Sidebar from "./Components/Sidebar.js";
 import Searchbar from "./Components/Searchbar.js";
-
 import { Routes, Route, useLocation } from "react-router-dom";
 import IndividualRecipe from "./Components/IndividualRecipe.js";
 import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
-
 import Profile from "./Components/Profile";
 import Home from "./Components/Home";
 import AddRecipe from "./Components/AddRecipe";
@@ -16,8 +14,8 @@ import RecipeContext from "./Context/RecipeContext";
 
 import ProfileProfile from "./Components/ProfileProfile";
 import ProfileSecurity from "./Components/ProfileSecurity";
-import Profile_LikedRecipe from "./Components/ProfileLikedRecipe.js";
-import Profile_Activity from "./Components/ProfileActivity.js";
+import ProfileLikedRecipe from "./Components/ProfileLikedRecipe.js";
+import ProfileActivity from "./Components/ProfileActivity.js";
 
 import SignUp from "./Components/SignUp";
 import CuisineType from "./Components/CuisineType";
@@ -150,7 +148,7 @@ function App() {
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
-                  <Profile_LikedRecipe></Profile_LikedRecipe>
+                  <ProfileLikedRecipe></ProfileLikedRecipe>
                 </div>
               </section>
             }
@@ -161,7 +159,7 @@ function App() {
             element={
               <section style={{ backgroundColor: "#eee" }}>
                 <div className="container py-5">
-                  <Profile_Activity></Profile_Activity>
+                  <ProfileActivity></ProfileActivity>
                 </div>
               </section>
             }

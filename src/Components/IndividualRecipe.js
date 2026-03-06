@@ -1,6 +1,6 @@
 import  { useContext, useEffect, useState } from "react";
 import "./Individiual_recipe.css";
-import {  useLocation, useNavigate } from "react-router-dom";
+import {  useLocation } from "react-router-dom";
 import RecipeContext from "../Context/RecipeContext";
 import InternalServerError from "./InternalServerError";
 import { Modal, Image } from "@nextui-org/react";
@@ -30,7 +30,7 @@ export default function IndividualRecipe() {
     document.title=`RecipeRiot`
  
     RecipeBYId(RecipeItemid);
-  }, [RecipeItemid, CurrentRecipeItem?.recipe?.Comments]);
+  }, [RecipeItemid, RecipeBYId,CurrentRecipeItem?.recipe?.Comments]);
 
   //comments functons
  /* Creating a state variable called visible and setting it to false. */
@@ -129,7 +129,7 @@ export default function IndividualRecipe() {
                 var negativerating = 0;
                 var neutralrating = 0;
                 var totalComments = element.Comments.length;
-                element.Comments.map((ele) => {
+                element.Comments.forEach((ele) => {
                   if (ele.rating > 3) {
                     postiverating++;
                   }

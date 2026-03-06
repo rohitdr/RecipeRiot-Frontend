@@ -57,7 +57,7 @@ function called setvisibledelete. */
   /* Checking if the adminActivePageNumber is not null or undefined and if it is not then it is setting
 the adminactivepage state to the adminActivePageNumber. */
   useEffect(() => {
-    if (!adminActivePageNumber && adminActivePageNumber !== 0) {
+    if (adminActivePageNumber === undefined || adminActivePageNumber === null) {
       Navigate("/Home");
     }
 
@@ -90,7 +90,7 @@ the adminactivepage state to the adminActivePageNumber. */
       },
     };
     pageAction[adminActivePageNumber]?.();
-  }, [adminActivePageNumber]);
+  }, [adminActivePageNumber,Navigate,Admingetallstaticaldata,AdminGetAllUser,AdminGetAllUserByDate,AdminGetAllRecipe,AdminGetAllRecipeByDate,GetAllcontactMessages]);
   /**
    * When the user clicks on the delete button, the delete modal is displayed and the id of the recipe is
    * passed to the modal.
@@ -118,7 +118,7 @@ the adminactivepage state to the adminActivePageNumber. */
           <nav className="nav nav-pills flex-column flex-sm-row mt-3  hideinlessthan768 my-3 ">
             <span
               className={`flex-sm-fill text-sm-center nav-link   cursor-pointer ${
-                adminactivepage == 0 ? "active " : ""
+                adminactivepage === 0 ? "active " : ""
               } `}
               onClick={() => {
                 Navigate("/Admin", { state: { adminActivePageNumber: 0 } });
@@ -302,7 +302,7 @@ the adminactivepage state to the adminActivePageNumber. */
           </Navbar>
 
           <div
-            className={` container  ${adminactivepage == 6 ? "py-0" : "py-3"}`}
+            className={` container  ${adminactivepage === 6 ? "py-0" : "py-3"}`}
           >
             {adminactivepage === 0 && (
               <>
@@ -751,19 +751,18 @@ the adminactivepage state to the adminActivePageNumber. */
                     All Recipe
                   </h1>
                   {Adminallrecipeloading && <Loader></Loader>}
-                  {Adminallrecipeloading &&
-                    !AdminAllRecipe?.AllRecipe &&
+                  {!Adminallrecipeloading &&
+                    AdminAllRecipe?.AllRecipe &&
                     AdminAllRecipe?.AllRecipe?.map((element) => {
                       //setting recipe for recipitm
-                      var reciperating = 0;
-                      element.Comments.map((ele) => {
-                        reciperating = reciperating + ele.rating;
-                      });
-                      element.Comments.length != 0
+                     
+                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
+                    
+                      element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);
-                      reciperating = 0;
+                    
 
                       //setting recipe for recipitm
                       return (

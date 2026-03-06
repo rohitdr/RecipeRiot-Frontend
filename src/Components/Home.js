@@ -613,22 +613,15 @@ export default function Home() {
                 <div className="row">
                   {latestrecipeloading && <Loader></Loader>}
                   { !latestrecipeloading && Latest_recipe.recipe &&
-                    Latest_recipe.recipe.map((element) => {
-                      fourth++;
-
-                      //sending rating to recipeitem
-                      var reciperating = 0;
-                      element.Comments.map((ele) => {
-                        reciperating = reciperating + ele.rating;
-                      });
+                    Latest_recipe.recipe.slice(0, 12).map((element) => {
+                     
+                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
+                    
                       element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);
-                      reciperating = 0;
 
-                      //sending rating to recipeitem
-                      if (fourth < 13) {
                         return (
                           <div
                             className="col-md-3 mt-4 profilerecipe "
@@ -675,7 +668,7 @@ export default function Home() {
                             ></RecipeItem>
                           </div>
                         );
-                      }
+                      
                     })}
                 </div>
               </div>
@@ -806,21 +799,17 @@ export default function Home() {
 
                 <div className="row" key={cuisineactive}>
                   {!cuisineloading && cuisinedata.recipe &&
-                    cuisinedata.recipe.map((element) => {
-                      cuisinenumber++;
-                      //setting recipe for recipitm
-                      var reciperating = 0;
-
-                      element.Comments.map((ele) => {
-                        reciperating = reciperating + ele.rating;
-                      });
+                    cuisinedata.recipe.slice(0, 12).map((element) => {
+                 
+                     
+                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
+                    
                       element.Comments.length !== 0
                         ? (totalratings =
                             reciperating / element.Comments.length)
                         : (totalratings = 0);
-                      reciperating = 0;
+                    
                       //setting recipe for recipitm
-                      if (cuisinenumber < 13) {
                         return (
                           <div
                             className="col-md-3 mt-4 profilerecipe "
@@ -867,7 +856,7 @@ export default function Home() {
                             ></RecipeItem>
                           </div>
                         );
-                      }
+                      
                     })}
                 </div>
               </div>

@@ -24,7 +24,7 @@ export default function ProfileLikedRecipe() {
       AllLikedRecipe();
     
     }
-  }, []);
+  }, [Navigate,AllLikedRecipe]);
   var totalratings = 0;
 
   return (
@@ -53,16 +53,15 @@ export default function ProfileLikedRecipe() {
 
                   { !likedrecipeloading && LikedRecipe?.LikedRecipe &&
                     LikedRecipe?.LikedRecipe?.map((element) => {
-                      //setting recipe for recipitm
-                      var reciperating = 0;
-                      element?.Comments?.map((ele) => {
-                        reciperating = reciperating + ele?.rating;
-                      });
-                      element?.Comments?.length !== 0
+             
+                     
+                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
+                    
+                      element.Comments.length !== 0
                         ? (totalratings =
-                            reciperating / element?.Comments?.length)
+                            reciperating / element.Comments.length)
                         : (totalratings = 0);
-                      reciperating = 0;
+                    
                       //setting recipe for recipitm
                       return (
                         <div

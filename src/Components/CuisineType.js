@@ -129,14 +129,15 @@ export default function CuisineType() {
                 {cuisinedata.recipe &&
                   cuisinedata.recipe.map((element) => {
                     //setting recipe for recipitm
-                    var reciperating = 0;
-                    element.Comments.map((ele) => {
-                      reciperating = reciperating + ele.rating;
-                    });
-                    element.Comments.length !== 0
-                      ? (totalratings = reciperating / element.Comments.length)
-                      : (totalratings = 0);
-                    reciperating = 0;
+                  
+                     
+                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
+                    
+                      element.Comments.length !== 0
+                        ? (totalratings =
+                            reciperating / element.Comments.length)
+                        : (totalratings = 0);
+                    
                     //setting recipe for recipitm
                     return (
                       <div

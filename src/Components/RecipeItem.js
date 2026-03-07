@@ -14,16 +14,13 @@ export default function RecipeItem(props) {
   const context = useContext(RecipeContext);
  
 
-  const [star, setstar] = useState(0);
+ 
   let location = useLocation();
   const {
     
     LikeRecipe,
     UnLikeRecipe,
-  
    userData,
- 
- 
   } = context;
 /* Creating a variable called Navigate that is using the useNavigate hook. */
   let Navigate = useNavigate();
@@ -38,9 +35,7 @@ export default function RecipeItem(props) {
       } else {
         setHeart("regular");
       }
-
-
-  }, [sessionStorage.getItem('auth-token'),localStorage.getItem('auth-token')]);
+  }, [props.id,userData]);
 /* Setting the state of the heart to regular. */
 
 
@@ -55,7 +50,6 @@ export default function RecipeItem(props) {
 
  
 
-  var deg = 180;
 
   return (
     <>
@@ -115,41 +109,31 @@ export default function RecipeItem(props) {
                       className={`fa-${
                         props.rating > 0 ? "solid" : "regular"
                       } text-danger fa-star`}
-                      onClick={() => {
-                        setstar(1);
-                      }}
+                     
                     ></i>
                     <i
                       className={`fa-${
                         props.rating > 1 ? "solid" : "regular"
                       } text-danger fa-star`}
-                      onClick={() => {
-                        setstar(2);
-                      }}
+                      
                     ></i>
                     <i
                       className={`fa-${
                         props.rating > 2 ? "solid" : "regular"
                       } text-danger fa-star`}
-                      onClick={() => {
-                        setstar(3);
-                      }}
+                     
                     ></i>
                     <i
                       className={`fa-${
                         props.rating > 3 ? "solid" : "regular"
                       } text-danger fa-star`}
-                      onClick={() => {
-                        setstar(4);
-                      }}
+                    
                     ></i>
                     <i
                       className={`fa-${
                         props.rating > 4 ? "solid" : "regular"
                       } text-danger fa-star`}
-                      onClick={() => {
-                        setstar(5);
-                      }}
+                     
                     ></i>
                   </p>
                   {/* <i

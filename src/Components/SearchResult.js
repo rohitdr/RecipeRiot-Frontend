@@ -18,17 +18,17 @@ export default function SearchResult() {
   useEffect(() => {
     document.title=`RecipeRiot-Searched Recipe`
     if (!searchrecipename) {
-      Navigate("/Home");
+      Navigate("/home");
     }
     else{
 
       NameRecipe(`/${searchrecipename}`);
       LatesRecipe()
     }
-  }, [searchrecipename]);
+  }, [searchrecipename,Navigate,LatesRecipe,NameRecipe]);
   var totalratings = 0;
 
-  var fourth = 0;
+
 
   return (
     <div>
@@ -178,7 +178,6 @@ export default function SearchResult() {
                     
 
                       //sending rating to recipeitem
-                  
                         return (
                           <div
                             className="col-md-3 mt-4 profilerecipe "

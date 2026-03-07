@@ -41,7 +41,7 @@ export default function Searchbar() {
   /* Checking if the user is logged in or not. */
   useEffect(() => {
     getUser();
-  }, []);
+  }, [getUser]);
 
   /**
    * It removes the auth-token from localStorage and sessionStorage.

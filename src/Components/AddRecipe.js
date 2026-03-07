@@ -392,7 +392,7 @@ export default function AddRecipe() {
       );
       if (response.status === 200) {
         setProgress(70);
-        Navigate("/Home");
+        Navigate("/home");
         setProgress(100);
         showAlert("You have successfully added recipe", "success");
       } else {

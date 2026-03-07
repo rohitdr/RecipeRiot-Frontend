@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import "./Addreicpe.css";
-import { Input, Button, Modal, Text, Textarea } from "@nextui-org/react";
+import { Input, Button,  Textarea } from "@nextui-org/react";
 import { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import RecipeContext from "../Context/RecipeContext";
@@ -13,65 +13,47 @@ export default function EditRecipe() {
 
   const context = useContext(RecipeContext);
   const { showAlert, CurrentRecipeItem, RecipeBYId, setProgress } = context;
-  const [totalingrediants, settotalingrediants] = useState("secondary");
-  const [Ingrediantsmodalstate, settotalingrediantsmodalstate] =
-    useState(false);
-  const [totalingrediantsnumber, settotalingrediantsnumber] = useState(0);
+
   const [filesize, setfilesize] = useState(0);
-  const [image, setimage] = useState("");
+  const [image, setImage] = useState("");
   const [editserver, seteditserver] = useState({});
   const { state } = useLocation();
   const { EditingRecipeId } = state;
   const [recipe, setRecipe] = useState({});
+  const [originalRecipe,setOriginalRecipe]=useState({});
   /* Using the useNavigate hook to navigate to a different page. */
   let Navigate = useNavigate();
 
-  //converting image to base64
-  /**
-   * It takes a file and returns a promise that resolves to the base64 representation of the file
-   * @param file - The file to be converted to base64
-   */
-  const toBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
+
 
   /* Setting the recipe state to the current recipe item. */
   useEffect(() => {
-    document.title = `RecipeRiot-Edit Recipe`;
-    RecipeBYId(EditingRecipeId);
-
-    if (CurrentRecipeItem) {
-      CurrentRecipeItem?.recipe?.map((element) => {
-        setRecipe(element);
-      });
+  document.title = "RecipeRiot-Edit Recipe";
+  RecipeBYId(EditingRecipeId);
+}, [RecipeBYId, EditingRecipeId]);
+useEffect(() => {
+  if (CurrentRecipeItem?.recipe?.length) {
+    setRecipe(CurrentRecipeItem.recipe[0]);
+    setOriginalRecipe(CurrentRecipeItem.recipe[0])
+  }
+}, [CurrentRecipeItem]);
+ 
+ //function to store only updated fields in recipe
+ const getUpdated=(original,updated)=>{
+  const changed = {}
+  for (let key in updated){
+    if(updated[key] !== original[key]){
+      changed[key]=updated[key]
     }
-  }, []);
-  //image preview
-  /**
-   * It takes the image file, converts it to a base64 string, and then sets the state of the image to the
-   * base64 string.
-   * @param e - the event object
-   */
-  const imagepreview = async (e) => {
-    const imagefile = e.target.files[0];
 
-    setfilesize(e.target.files[0].size);
-    const imageurl = URL.createObjectURL(imagefile);
-    const previewing = document.querySelector("#reicpe_image");
-    previewing.src = imageurl;
+  }
+  return changed;
 
-    let base64 = await toBase64(imagefile);
-    setRecipe({ ...recipe, image: base64 });
-    setimage(base64);
-  };
+ }
 
   /* Declaring the variables. */
 
-  var first_ingede_text,
+  let first_ingede_text,
     second_ingede_text,
     third_ingede_text,
     fourth_ingede_text,
@@ -81,7 +63,7 @@ export default function EditRecipe() {
     eight_ingede_text,
     nineth_ingede_text,
     tenth_ingede_text = null;
-  var first_ingede_weight,
+  let first_ingede_weight,
     second_ingede_weight,
     third_ingede_weight,
     fourth_ingede_weight,
@@ -91,16 +73,7 @@ export default function EditRecipe() {
     eight_ingede_weight,
     nineth_ingede_weight,
     tenth_ingede_weight = null;
-  var first_ingede_image,
-    second_ingede_image,
-    third_ingede_image,
-    fourth_ingede_image,
-    fifth_ingede_image,
-    sixth_ingede_image,
-    seventh_ingede_image,
-    eight_ingede_image,
-    nineth_ingede_image,
-    tenth_ingede_image = null;
+
 
   /**
    * It takes a name of a select element and returns an array of the selected values.
@@ -155,24 +128,18 @@ export default function EditRecipe() {
   const ingredientsfirstpage = async () => {
     if (first_ingede_text && first_ingede_weight) {
       recipe.ingredientLines.push(first_ingede_text);
-      if (first_ingede_image) {
-        first_ingede_image = await toBase64(first_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: first_ingede_text,
         weight: first_ingede_weight,
-        image: first_ingede_image,
       });
     }
     if (second_ingede_text && second_ingede_weight) {
       recipe.ingredientLines.push(second_ingede_text);
-      if (second_ingede_image) {
-        second_ingede_image = await toBase64(second_ingede_image);
-      }
+      
       recipe.ingredients.push({
         text: second_ingede_text,
         weight: second_ingede_weight,
-        image: second_ingede_image,
       });
     }
 
@@ -193,24 +160,20 @@ export default function EditRecipe() {
   const ingredientssecondpage = async () => {
     if (third_ingede_text && third_ingede_weight) {
       recipe.ingredientLines.push(third_ingede_text);
-      if (third_ingede_image) {
-        third_ingede_image = await toBase64(third_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: third_ingede_text,
         weight: third_ingede_weight,
-        image: third_ingede_image,
+    
       });
     }
     if (fourth_ingede_text && fourth_ingede_weight) {
       recipe.ingredientLines.push(fourth_ingede_text);
-      if (fourth_ingede_image) {
-        fourth_ingede_image = await toBase64(fourth_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: fourth_ingede_text,
         weight: fourth_ingede_weight,
-        image: fourth_ingede_image,
+     
       });
     }
 
@@ -225,24 +188,19 @@ export default function EditRecipe() {
   const ingredientsthirdpage = async () => {
     if (fifth_ingede_text && fifth_ingede_weight) {
       recipe.ingredientLines.push(fifth_ingede_text);
-      if (fifth_ingede_image) {
-        fifth_ingede_image = await toBase64(fifth_ingede_image);
-      }
+    
       recipe.ingredients.push({
         text: fifth_ingede_text,
         weight: fifth_ingede_weight,
-        image: fifth_ingede_image,
+    
       });
     }
     if (sixth_ingede_text && sixth_ingede_weight) {
       recipe.ingredientLines.push(sixth_ingede_text);
-      if (sixth_ingede_image) {
-        sixth_ingede_image = await toBase64(sixth_ingede_image);
-      }
       recipe.ingredients.push({
         text: sixth_ingede_text,
         weight: sixth_ingede_weight,
-        image: sixth_ingede_image,
+    
       });
     }
 
@@ -263,24 +221,20 @@ export default function EditRecipe() {
   const ingredientsfouthpage = async () => {
     if (seventh_ingede_text && seventh_ingede_weight) {
       recipe.ingredientLines.push(seventh_ingede_text);
-      if (seventh_ingede_image) {
-        seventh_ingede_image = await toBase64(seventh_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: seventh_ingede_text,
         weight: seventh_ingede_weight,
-        image: seventh_ingede_image,
+    
       });
     }
     if (eight_ingede_text && eight_ingede_weight) {
       recipe.ingredientLines.push(eight_ingede_text);
-      if (eight_ingede_image) {
-        eight_ingede_image = await toBase64(eight_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: eight_ingede_text,
         weight: eight_ingede_weight,
-        image: eight_ingede_image,
+     
       });
     }
 
@@ -296,72 +250,80 @@ export default function EditRecipe() {
   const ingredientsfifthpage = async () => {
     if (nineth_ingede_text && nineth_ingede_weight) {
       recipe.ingredientLines.push(nineth_ingede_text);
-      if (nineth_ingede_image) {
-        nineth_ingede_image = await toBase64(nineth_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: nineth_ingede_text,
         weight: nineth_ingede_weight,
-        image: nineth_ingede_image,
+  
       });
     }
     if (tenth_ingede_text && tenth_ingede_weight) {
       recipe.ingredientLines.push(tenth_ingede_text);
-      if (tenth_ingede_image) {
-        tenth_ingede_image = await toBase64(tenth_ingede_image);
-      }
+     
       recipe.ingredients.push({
         text: tenth_ingede_text,
         weight: tenth_ingede_weight,
-        image: tenth_ingede_image,
+      
       });
     }
 
     setpageno(8);
   };
 
+  const handleImageUpdate=(e)=>{
+
+    setfilesize(e.target.files[0].size)
+    if(filesize>100000){
+      showAlert("Image should be less than 100kb","danger")
+    }
+    else{
+      setImage(e.target.files[0])
+    }
+  }
   //const api to add recipe
   /**
    * It's a function that sends a PUT request to the server with the recipe object as the body.
    * @param id - the id of the recipe
    */
-  const Addapi = async (id) => {
-    try {
-      setProgress(30);
-      const response = await fetch(
-        `${process.env.REACT_APP_Fetch_Api_Start}/recipe/updateRecipe/${id}`,
-        {
-          method: "PUT",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
+  // const Addapi = async (id,updatedFields) => {
+  //   try {
+     
+  //     const response = await fetch(
+  //       `${process.env.REACT_APP_Fetch_Api_Start}/recipe/updateRecipe/${id}`,
+  //       {
+  //         method: "PUT",
+  //         mode: "cors",
+  //         headers: {
+  //           "Content-Type": "application/json",
 
-            "auth-token": sessionStorage.getItem("auth-token")
-              ? sessionStorage.getItem("auth-token")
-              : localStorage.getItem("auth-token"),
-          },
-          body: JSON.stringify(recipe),
-        }
-      );
-      setProgress(60);
-      let result = await response.json();
-      if (response.status === 200) {
-        setProgress(100);
-        showAlert("Wow! Recipe is successfully Updated", "success");
-        Navigate("/Profile_Activity");
-      } else if (response.status === 404) {
-        setProgress(100);
-        showAlert(result.error, "danger");
-      } else {
-        setProgress(100);
-        seteditserver(500);
-      }
-    } catch (error) {
-      setProgress(100);
-      seteditserver(500);
-      console.log(error.message);
-    }
-  };
+  //           "auth-token": sessionStorage.getItem("auth-token")
+  //             ? sessionStorage.getItem("auth-token")
+  //             : localStorage.getItem("auth-token"),
+  //         },
+  //         body: JSON.stringify(updatedFields),
+  //       }
+  //     );
+    
+  //     let result = await response.json();
+  //     if (response.status === 200) {
+  //       setProgress(70);
+  //     return true;
+  //     } else if (response.status === 404) {
+  //       setProgress(70);
+  //       showAlert(result.error, "danger");
+  //       return false;
+  //     } else {
+  //       setProgress(70);
+  //       seteditserver(500);
+  //         return false;
+  //     }
+  //   } catch (error) {
+  //     setProgress(70);
+  //     seteditserver(500);
+  //       return false;
+   
+  //   }
+  // };
   //on changing of a instruction
   /**
   * It takes the value of the textarea, replaces all instances of ".\n" with ".", and then splits the
@@ -369,6 +331,52 @@ export default function EditRecipe() {
  
   * @param e - the event object
   */
+  const AddApi = async (id,updatedFields) => {
+    try {
+      setProgress(30)
+      const formData =new FormData();
+      formData.append("image",image)
+         
+      Object.keys(updatedFields).forEach((key)=>{
+      formData.append(key,JSON.stringify(updatedFields[key]))
+      })
+     
+      const response = await fetch(
+        `${process.env.REACT_APP_Fetch_Api_Start}/recipe/updateRecipe/${id}`,
+        {
+          method: "PUT",
+          mode: "cors",
+          headers: {
+
+            "auth-token": sessionStorage.getItem("auth-token")
+              ? sessionStorage.getItem("auth-token")
+              : localStorage.getItem("auth-token"),
+          },
+          body: formData,
+        }
+      );
+   setProgress(50)
+      let result = await response.json();
+      if (response.status === 200) {
+        setProgress(100);
+    
+       return true
+      } else if (response.status === 404) {
+        setProgress(100);
+        showAlert(result.error, "danger");
+          return false;
+      } else {
+        setProgress(100);
+        seteditserver(500);
+          return false;
+      }
+    } catch (error) {
+      setProgress(100);
+      seteditserver(500);
+        return false;
+     
+    }
+  };
   const instructionchange = (e) => {
     setRecipe({
       ...recipe,
@@ -380,13 +388,17 @@ export default function EditRecipe() {
    * When the user clicks the submit button, the function will call the Addapi function, which will add
    * the recipe to the database, and then navigate the user to the home page.
    */
-  const insertRecipe = () => {
-    Addapi(EditingRecipeId);
-   
+  const insertRecipe = async () => {
+ const updatedFields = getUpdated(originalRecipe,recipe)
+    if(image!=="" ||Object.keys(updatedFields).length!==0 ){
+     await AddApi(EditingRecipeId,updatedFields)
+    }
+
+     showAlert("Wow! Recipe is successfully Updated", "success");
+    Navigate("/ProfileActivity");
   };
   return (
     <div className="min-vh-100">
-
       <AnimatedPage> {editserver===500? <InternalServerError></InternalServerError>:
         CurrentRecipeItem.recipe &&
           CurrentRecipeItem.recipe.map((element) => {
@@ -431,7 +443,7 @@ export default function EditRecipe() {
                                       <div className="mb-2 d-flex justify-content-center">
                                         <img
                                           id="reicpe_image"
-                                          src={element.image.url}
+                                          src={image?URL.createObjectURL(image):element.image.url}
                                           alt="Recipe"
                                           style={{
                                             width: "100%",
@@ -449,7 +461,7 @@ export default function EditRecipe() {
                                             id="profileimage"
                                             type="file"
                                             accept="image/*"
-                                            onChange={imagepreview}
+                                            onChange={handleImageUpdate}
                                           />
                                         </label>
                                       </div>
@@ -1622,52 +1634,7 @@ export default function EditRecipe() {
                                           />
                                         </div>{" "}
                                       </div>
-                                      <div className="row my-2">
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  first_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  first_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  second_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  second_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>{" "}
-                                      </div>
+                                   
                                     </form>
                                     <div className="mt-2 d-flex justify-content-end">
                                       <Button
@@ -1775,52 +1742,7 @@ export default function EditRecipe() {
                                           />
                                         </div>{" "}
                                       </div>
-                                      <div className="row my-2">
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  third_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  third_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  fourth_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  fourth_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>{" "}
-                                      </div>
+                                   
                                     </form>
                                     <div className="mt-2 d-flex justify-content-end">
                                       <Button
@@ -1928,52 +1850,7 @@ export default function EditRecipe() {
                                           />
                                         </div>{" "}
                                       </div>
-                                      <div className="row my-2">
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  fifth_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  fifth_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  sixth_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  sixth_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>{" "}
-                                      </div>
+                                     
                                     </form>
                                     <div className="mt-2 d-flex justify-content-end">
                                       <Button
@@ -2081,52 +1958,7 @@ export default function EditRecipe() {
                                           />
                                         </div>{" "}
                                       </div>
-                                      <div className="row my-2">
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  seventh_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  seventh_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  eight_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  eight_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>{" "}
-                                      </div>
+                                  
                                     </form>
                                     <div className="mt-2 d-flex justify-content-end">
                                       <Button
@@ -2234,52 +2066,7 @@ export default function EditRecipe() {
                                           />
                                         </div>{" "}
                                       </div>
-                                      <div className="row my-2">
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  nineth_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  nineth_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>
-                                        <div className="col">
-                                          <div className="mb-3">
-                                            <label
-                                              htmlFor="formFile"
-                                              className="form-label"
-                                            >
-                                              Choose the image
-                                            </label>
-                                            <input
-                                              className="form-control"
-                                              type="file"
-                                              id="formFile"
-                                              onChange={(e) => {
-                                                if (e.target.value.length) {
-                                                  tenth_ingede_image =
-                                                    e.target.files[0];
-                                                } else
-                                                  tenth_ingede_image = null;
-                                              }}
-                                            />
-                                          </div>
-                                        </div>{" "}
-                                      </div>
+                                    
                                     </form>
                                     <div className="mt-2 d-flex justify-content-end">
                                       <Button
@@ -3297,6 +3084,7 @@ export default function EditRecipe() {
                                         auto
                                         ghost
                                         onPress={insertRecipe}
+                                        
                                       >
                                         Next
                                       </Button>

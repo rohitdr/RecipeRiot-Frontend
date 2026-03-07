@@ -45,7 +45,7 @@ export default function EditUserAdmin() {
     } else {
       getUserbyid(userid);
     }
-  }, []);
+  }, [Navigate,getUserbyid,userid]);
   //converting image to base64
  /**
   * It takes a file and returns a promise that resolves to the base64 representation of the file

@@ -77,7 +77,7 @@ export default function IndividualRecipe() {
         }
       );
       setProgress(50);
-      let result = await response.json();
+      await response.json();
       if (response.status === 404) {
         setProgress(100);
         setvisiblerepeted(true);
@@ -611,7 +611,7 @@ export default function IndividualRecipe() {
                                                       {totalComments}
                                                     </h2>
                                                     <span className="text-muted">
-                                                      This month we got 346 New
+                                                      So far we got {element.Comments.length +""}  
                                                       Reviews
                                                     </span>
                                                     <div className="image-box mt-4 mb-4">
@@ -621,7 +621,7 @@ export default function IndividualRecipe() {
                                                           className="rounded-circle"
                                                           width="45"
                                                           alt="user"
-                                                        />
+                                                        /> 
                                                      
                                                         <img
                                                           src="https://bootdey.com/img/Content/avatar/avatar2.png"
@@ -675,11 +675,11 @@ export default function IndividualRecipe() {
                                                                 100
                                                               }%`,
                                                             }}
-                                                            aria-valuenow={`${
+                                                            aria-valuenow={
                                                               (postiverating /
                                                                 totalComments) *
                                                               100
-                                                            }%`}
+                                                            }
                                                             aria-valuemin="0"
                                                             aria-valuemax="100"
                                                           ></div>
@@ -709,11 +709,11 @@ export default function IndividualRecipe() {
                                                                 100
                                                               }%`,
                                                             }}
-                                                            aria-valuenow={`${
+                                                            aria-valuenow={
                                                               (negativerating /
                                                                 totalComments) *
                                                               100
-                                                            }%`}
+                                                            }
                                                             aria-valuemin="0"
                                                             aria-valuemax="100"
                                                           ></div>
@@ -743,11 +743,11 @@ export default function IndividualRecipe() {
                                                                 100
                                                               }%`,
                                                             }}
-                                                            aria-valuenow={`${
+                                                            aria-valuenow={
                                                               (neutralrating /
                                                                 totalComments) *
                                                               100
-                                                            }%`}
+                                                            }
                                                             aria-valuemin="0"
                                                             aria-valuemax="100"
                                                           ></div>
@@ -765,9 +765,9 @@ export default function IndividualRecipe() {
                                       {/* // Reviews */}
 
                                       <div className="bg-white rounded shadow-sm p-4 my-4 box_decrease_size_animationforindividualrecipe restaurant-detailed-ratings-and-reviews border border-primary ">
-                                        <a className="btn btn-outline-primary btn-sm float-right">
+                                        <button className="btn btn-outline-primary btn-sm float-right">
                                           Top Rated
-                                        </a>
+                                        </button>
                                         <h5 className="mb-1">
                                           All Ratings and Reviews
                                         </h5>
@@ -784,9 +784,9 @@ export default function IndividualRecipe() {
                                                           key={ele._id}
                                                         >
                                                           <div className="col-md-1">
-                                                            <a href="#">
+                                                           
                                                               <img
-                                                                alt="Generic placeholder image pb-1"
+                                                                alt="Generic placeholder  pb-1"
                                                                 src={
                                                                   ele.Profileimage
                                                                     ? ele.Profileimage
@@ -794,7 +794,7 @@ export default function IndividualRecipe() {
                                                                 }
                                                                 className="mr-3 rounded-pill"
                                                               />
-                                                            </a>
+                                                         
                                                           </div>
                                                           <div className="col-md-11">
                                                             <div className="media-body">

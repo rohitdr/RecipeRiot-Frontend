@@ -40,7 +40,7 @@ the login page. */
 
       LatestRecipebyid();
     }
-  }, []);
+  }, [Navigate,LatestRecipebyid]);
  /**
   * When the user clicks on the delete button, the delete modal is displayed and the id of the recipe
   * is passed to the modal.

@@ -16,7 +16,7 @@ export default function Profile(props) {
   useEffect(() => {
     document.title=`RecipeRiot-Your Recipe`
     allRecipe();
-  }, []);
+  }, [allRecipe]);
   var totalratings = 0;
   return (
     <>

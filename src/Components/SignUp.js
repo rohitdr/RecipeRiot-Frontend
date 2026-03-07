@@ -103,7 +103,7 @@ document.title="RecipeRiot-Sign up"
         }
       );
 
-      let result = await response.json();
+  
       if (response.status === 404) {
       
         setusernamecolor("error");

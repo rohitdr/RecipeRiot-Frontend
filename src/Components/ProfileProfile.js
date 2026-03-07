@@ -43,7 +43,7 @@ const [image,setImage]=useState(null)
     } else {
      
     }
-  }, [userData]);
+  }, [userData,Navigate]);
 
 
 

@@ -20,8 +20,8 @@ export default function Home() {
 
   var totalratings = 0;
 
-  var fourth = 0;
-  var cuisinenumber = 0;
+
+
   /* Destructuring the context object and assigning it to the variables. */
   const context = useContext(RecipeContext);
   const {
@@ -42,7 +42,7 @@ export default function Home() {
     document.title = `RecipeRiot-Home`;
     cuisine("indian");
     LatesRecipe();
-  }, []);
+  }, [cuisine,LatesRecipe]);
 
   //onchange for contact us form
   /**
@@ -151,9 +151,9 @@ export default function Home() {
                         <div className="icon">
                           <i className="fa-solid fa-bolt"></i>
                         </div>
-                        <h4>
-                          <h6 className="stretched-link">Recipe collections</h6>
-                        </h4>
+                       
+                          <h4 className="stretched-link">Recipe collections</h4>
+                        
                         <p className="fs-6">
                           {" "}
                           A way for users to save their favorite recipes and
@@ -174,9 +174,9 @@ export default function Home() {
                         <div className="icon">
                           <i className="fa-solid fa-tower-broadcast"></i>
                         </div>
-                        <h4>
-                          <h6 className="stretched-link">Search Anything</h6>
-                        </h4>
+                     
+                          <h4 className="stretched-link">Search Anything</h4>
+                       
                         <p className="fs-6">
                           We have a search bar where user can enter keywords to
                           find recipes.
@@ -197,9 +197,9 @@ export default function Home() {
                           {" "}
                           <i className="fa-sharp fa-solid fa-disease"></i>
                         </div>
-                        <h4>
-                          <h6 className="stretched-link">User account</h6>
-                        </h4>
+                     
+                          <h4 className="stretched-link">User account</h4>
+                        
                         <p className="fs-6">
                           This allow users to create an account where they can
                           save their favorite recipes, create a shopping list,
@@ -220,11 +220,11 @@ export default function Home() {
                         <div className="icon">
                           <i className="fa-solid fa-box"></i>
                         </div>
-                        <h4>
-                          <h6 className="stretched-link ">
+                       
+                          <h4 className="stretched-link ">
                             User-generated content
-                          </h6>
-                        </h4>
+                          </h4>
+                       
                         <p className="fs-6">
                           A section that allows users to submit their own
                           recipes, which can be reviewed and added to the site
@@ -922,7 +922,7 @@ export default function Home() {
                     <form
                       action=""
                       method="post"
-                      role="form"
+                     
                       className="php-email-form"
                       onSubmit={(e) => {
                         e.preventDefault();

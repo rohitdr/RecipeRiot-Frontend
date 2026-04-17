@@ -1,12 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 
 
 export default function Sidebar(props) {
   let location = useLocation();
-
+let Navigate =useNavigate()
   React.useEffect(() => {}, [location]);
 
   return (
@@ -50,8 +50,7 @@ export default function Sidebar(props) {
                 className={`nav-link text-truncate text-white fw-bold`}
               >
                 <i className=" fa-sharp fa-solid fa-house"></i>
-                <span className="mode">Ho</span>
-                <span className="">me</span>
+               <p>Home</p>
               </Link>
             </li>
             <li
@@ -117,6 +116,7 @@ export default function Sidebar(props) {
               </div>
             </li>
             <li
+            onClick={()=>{Navigate("/Dinner")}}
               className={` li ${location.pathname === "/Dinner" ? "home" : ""}`}
             >
               <Link
@@ -724,16 +724,7 @@ export default function Sidebar(props) {
               </Link>
             </li>
 
-            {/* <mysidebar>
-  <Menu>
-    <SubMenu label="Charts">
-      <MenuItem> Pie charts </MenuItem>
-      <MenuItem> Line charts </MenuItem>
-    </SubMenu>
-    <MenuItem> Documentation </MenuItem>
-    <MenuItem> Calendar </MenuItem>
-  </Menu>
-</mysidebar> */}
+           
           </ul>
         </div>
       </div>

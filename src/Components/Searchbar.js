@@ -153,7 +153,7 @@ export default function Searchbar() {
             }}
           >
             {" "}
-            <p className="navbarhome"> HOME</p>{" "}
+            <p className=""> HOME</p>{" "}
           </Navbar.Link>
           <Dropdown isBordered>
             <Navbar.Item hideIn="md">
@@ -1506,7 +1506,7 @@ export default function Searchbar() {
                       Navigate("/login");
                     }}
                   >
-                    <p className="px-4 pt-3 text-dark searchbardropdown w-100">
+                    <p className="px-4  text-dark searchbardropdown w-100">
                       {" "}
                       Login
                     </p>
@@ -1519,7 +1519,7 @@ export default function Searchbar() {
                       Navigate("/signUp");
                     }}
                   >
-                    <p className="px-4 pt-2 text-dark searchbardropdown w-100">
+                    <p className="px-4  text-dark searchbardropdown w-100">
                       {" "}
                       Sign Up
                     </p>

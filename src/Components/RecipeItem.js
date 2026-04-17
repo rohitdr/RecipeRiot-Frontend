@@ -68,8 +68,9 @@ export default function RecipeItem(props) {
             <div className="face front" style={{height:"525px"}}>
               <img
                 src={props.ImageUrl}
-                className="card-img-top border-primary recipeitemimageopacity box_decrease_size_animation"
+                className="card-img-top  border-primary recipeitemimageopacity box_decrease_size_animation"
                 alt="..."
+                style={{marginTop:"28px"}}
               />
               <div className="card-body">
                 <div className="d-flex justify-content-between">

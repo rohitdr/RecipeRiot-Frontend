@@ -116,7 +116,6 @@ npm install
 npm run start
 ```
 
----
 
 ## 🧠 Key Concepts
 
@@ -126,13 +125,14 @@ npm run start
 * Dynamic filtering & search
 * Responsive layout with Bootstrap CSS
 
----
+## 🌐 Live Links
 
+- Frontend: https://recipe-riot-frontend.vercel.app/ 
+- Backend API: https://reciperiot-backend.onrender.com 
 ## 🔗 Backend Repository
 
 👉 https://github.com/rohitdr/RecipeRiot-Backend.git
 
----
 ## 📌 Note
 
 This project was initially developed as a single full-stack repository combining both frontend and backend.
@@ -147,7 +147,6 @@ Due to this restructuring, the current repository may have a limited commit hist
 
 Rohit Kumar
 
----
 
 ## ⭐ Support
 

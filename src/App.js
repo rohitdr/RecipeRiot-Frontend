@@ -28,9 +28,10 @@ import Footer from "./Components/Footer";
 import EditRecipe from "./Components/EditRecipe";
 
 import Admin from "./Components/Admin";
-import { AnimatePresence } from "framer-motion";
+
 import EditUserAdmin from "./Components/EditUserAdmin";
 import Alert from "./Components/Alert";
+import Navbar from "./Components/Navbar.js";
 
 function App() {
   const context = useContext(RecipeContext);
@@ -45,13 +46,14 @@ function App() {
         height={progressheight}
         onLoaderFinished={() => setProgress(0)}
       />
-
+      <Navbar></Navbar>
+{/* 
       <Sidebar></Sidebar>
 
-      <Searchbar></Searchbar>
+      <Searchbar></Searchbar> */}
 
       <Alert alert={alert}></Alert>
-      <AnimatePresence mode="wait">
+   
         <Routes key={location.pathname} location={location}>
           <Route exact path="/login" element={<Login></Login>} />
 
@@ -175,7 +177,7 @@ function App() {
             }
           />
         </Routes>
-      </AnimatePresence>
+  
 
       <Footer></Footer>
     </>

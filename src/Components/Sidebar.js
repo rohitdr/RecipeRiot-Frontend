@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./sidebar.css";
 import { Link } from "react-router-dom";
 
 

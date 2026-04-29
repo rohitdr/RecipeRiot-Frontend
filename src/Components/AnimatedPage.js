@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import 'animate.css'
 const AnimatedPage = ({ children }) => {
   const animation={
       initial:{opacity:0, y:-100},

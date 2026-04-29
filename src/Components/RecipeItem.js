@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import {  useLocation } from "react-router-dom";
 
-import "./RecipeItem.css";
 
 import RecipeContext from "../Context/RecipeContext";
 import { useNavigate } from "react-router-dom";

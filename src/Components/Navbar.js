@@ -125,7 +125,7 @@ useEffect(() => {
         </div>
 
         {/* MENU */}
-        <ul className="hidden md:flex gap-8 items-center font-medium text-white/80 ">
+        <ul className="hidden lg:flex gap-8 items-center font-medium text-white/80 ">
 
           {menuItems.map((item) => {
 
@@ -194,7 +194,7 @@ useEffect(() => {
         </ul>
 
         {/* SEARCH */}
-        <div className="hidden md:flex items-center bg-white/10 border border-white/20 backdrop-blur-xl rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-orange-400 transition">
+        <div className="hidden lg:flex items-center bg-white/10 border border-white/20 backdrop-blur-xl rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-orange-400 transition">
           <input
             type="search"
             placeholder="Search recipes..."
@@ -204,7 +204,7 @@ useEffect(() => {
         </div>
 
         {/* MOBILE MENU BTN */}
-        <div className="md:hidden" onClick={() => setOpenMenu(!openMenu)}>
+        <div className="lg:hidden" onClick={() => setOpenMenu(!openMenu)}>
           <GiHamburgerMenu className="text-white text-xl" />
         </div>
       </div>

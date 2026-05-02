@@ -33,6 +33,7 @@ import EditUserAdmin from "./Components/EditUserAdmin";
 import Alert from "./Components/Alert";
 import Navbar from "./Components/Navbar.js";
 import CategoryRecipe from "./Components/CategoryRecipe.js";
+import RecipeDetails from "./Components/RecipeDetails.js";
 
 function App() {
   const context = useContext(RecipeContext);
@@ -59,7 +60,8 @@ function App() {
           <Route exact path="/login" element={<Login></Login>} />
 
           <Route exact path="/home" element={
-            <Home></Home>
+            // <Home></Home>
+            <RecipeDetails></RecipeDetails>
         //  <CategoryRecipe></CategoryRecipe>
             } />
           <Route

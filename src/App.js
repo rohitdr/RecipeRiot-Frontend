@@ -32,6 +32,7 @@ import Admin from "./Components/Admin";
 import EditUserAdmin from "./Components/EditUserAdmin";
 import Alert from "./Components/Alert";
 import Navbar from "./Components/Navbar.js";
+import CategoryRecipe from "./Components/CategoryRecipe.js";
 
 function App() {
   const context = useContext(RecipeContext);
@@ -57,7 +58,10 @@ function App() {
         <Routes key={location.pathname} location={location}>
           <Route exact path="/login" element={<Login></Login>} />
 
-          <Route exact path="/home" element={<Home></Home>} />
+          <Route exact path="/home" element={
+            <Home></Home>
+        //  <CategoryRecipe></CategoryRecipe>
+            } />
           <Route
             exact
             path="/Edituser"

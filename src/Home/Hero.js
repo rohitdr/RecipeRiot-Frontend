@@ -1,7 +1,9 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import RecipeItem from '../Components/RecipeItem'
 export default function Hero() {
+
   return (
   <section>
     <div className=' relative min-h-screen flex justify-center items-center overflow-hidden'>
@@ -38,6 +40,9 @@ export default function Hero() {
     </motion.div>  
     
       </div>
+      {/* bottom fade so next section blends */}
+<div className="absolute bottom-0 left-0 w-full h-64 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+
   </section>
   )
 }

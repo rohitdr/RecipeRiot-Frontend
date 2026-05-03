@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function RecipeItem({recipe,size="normal"}) {
+export default function RecipeItem({recipe,size="normal", edit="false"}) {
 //   const recipe ={
 //   recipe: [
 //     {
@@ -5314,7 +5314,7 @@ const sizeClass={
         </h2>
 
         {/* Reveal Section */}
-        <motion.div
+      {!edit && <motion.div
           className="mt-2 flex justify-between items-center"
           variants={{
             rest: { opacity: 0, y: 20 },
@@ -5342,7 +5342,32 @@ const sizeClass={
           >
             View →
           </motion.button>
-        </motion.div>
+        </motion.div>}
+      {edit && <motion.div
+          className="mt-2 flex justify-between items-center"
+          variants={{
+            rest: { opacity: 0, y: 20 },
+            hover: { opacity: 1, y: 0 }
+          }}
+          transition={{ delay: 0.1 }}
+        >
+         
+
+          {/* Button */}
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
+          >
+          edit
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-red-500 border border-red-500/30 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
+          >
+           delete
+          </motion.button>
+        </motion.div>}
+        
       </div>
     </motion.div>
   );

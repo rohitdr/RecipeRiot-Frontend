@@ -5,7 +5,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import IndividualRecipe from "./Components/IndividualRecipe.js";
 import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
-import Profile from "./Components/Profile";
+
 import Home from "./Components/Home";
 import AddRecipe from "./Components/AddRecipe";
 import SearchResult from "./Components/SearchResult";
@@ -28,7 +28,7 @@ import Footer from "./Components/Footer";
 import EditRecipe from "./Components/EditRecipe";
 
 import Admin from "./Components/Admin";
-
+import Profile from "./Profile/Profile.js";
 import EditUserAdmin from "./Components/EditUserAdmin";
 import Alert from "./Components/Alert";
 import Navbar from "./Components/Navbar.js";
@@ -61,8 +61,7 @@ function App() {
 
           <Route exact path="/home" element={
             // <Home></Home>
-            <RecipeDetails></RecipeDetails>
-        //  <CategoryRecipe></CategoryRecipe>
+     <Profile></Profile>
             } />
           <Route
             exact

@@ -7,7 +7,7 @@ import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
 
 import Home from "./Components/Home";
-import AddRecipe from "./Components/AddRecipe";
+
 import SearchResult from "./Components/SearchResult";
 import { useContext } from "react";
 import RecipeContext from "./Context/RecipeContext";
@@ -34,6 +34,7 @@ import Alert from "./Components/Alert";
 import Navbar from "./Components/Navbar.js";
 import CategoryRecipe from "./Components/CategoryRecipe.js";
 import RecipeDetails from "./Components/RecipeDetails.js";
+import AddRecipe from "./AddRecipe.js";
 
 function App() {
   const context = useContext(RecipeContext);
@@ -60,8 +61,8 @@ function App() {
           <Route exact path="/login" element={<Login></Login>} />
 
           <Route exact path="/home" element={
-            // <Home></Home>
-     <Profile></Profile>
+        
+    <AddRecipe></AddRecipe>
             } />
           <Route
             exact

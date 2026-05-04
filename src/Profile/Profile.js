@@ -3,6 +3,7 @@ import ProfileInfo from './ProfileInfo'
 import ProfileCard from './ProfileCard'
 import Settings from './Settings'
 import Recipe from './Recipe'
+import Liked from './Liked'
 
 export default function Profile() {
     const [activeTab,setActiveTab]=useState("profile")
@@ -33,6 +34,7 @@ export default function Profile() {
 {activeTab==="profile" &&   <ProfileInfo></ProfileInfo>}
 {activeTab==="settings" &&   <Settings></Settings>}
 {activeTab==="recipes" &&  <Recipe></Recipe>}
+{activeTab==="Liked" &&  <Liked/>}
  
      
   </div>

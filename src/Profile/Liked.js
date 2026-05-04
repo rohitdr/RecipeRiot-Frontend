@@ -1,8 +1,7 @@
 import React from 'react'
 import RecipeItem from '../Components/RecipeItem'
-
-export default function Recipe() {
-          const recipes ={
+export default function Liked() {
+              const recipes ={
   recipe: [
   
     {
@@ -1097,45 +1096,16 @@ export default function Recipe() {
   count: 23
 }
   return (
-
-<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-  {recipes.recipe.map((recipe) => (
-    <div className="">
-
-        <RecipeItem key={recipe._id} recipe={recipe} />
-
+  <>
+  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {recipes.recipe.map((recipe) => (
+      <div className="">
+  
+          <RecipeItem key={recipe._id} recipe={recipe} />
+  
+      </div>
+    ))}
     </div>
-  ))}
-
-
-
-  <div
-    className="
-      h-full min-h-[320px]
-      flex flex-col items-center justify-center
-      rounded-3xl
-      border-2 border-dashed border-orange-400/40
-      bg-orange-500/5
-      hover:bg-orange-500/10
-      hover:scale-[1.02]
-      transition
-      cursor-pointer
-    "
-  >
-    <div className="text-6xl text-orange-400 mb-4">
-      +
-    </div>
-
-    <h2 className="text-2xl font-bold">
-      Add New Recipe
-    </h2>
-
-    <p className="text-white/50 mt-2 text-center px-6">
-      Share your next delicious creation with RecipeRiot.
-    </p>
-  </div>
-
-</div>
-
+  </>
   )
 }

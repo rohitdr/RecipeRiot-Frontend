@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { motion } from 'framer-motion'
 export default function DietLabel({dietLabels}) {
   return (
        <section className="max-w-7xl mx-auto px-6 py-8">

@@ -2,6 +2,9 @@ import  { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import RecipeContext from "./RecipeContext";
+import api from "../Api/ApiInstances";
+import { getFeaturedRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, getTrendingRecipeApi, searchRecipeApi } from "../Api/RecipeApi";
+import loginApi from "../Api/UserApi";
 export default function RecipeState(props) {
   /* Setting the state of the component. */
   const [LikedRecipe, setLikedRecipe] = useState({});
@@ -15,7 +18,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
   const [userData, setUserData] = useState({});
   const [Ingrediant_statepage] = useState([]);
   const [name_to_search, setName_to_search] = useState("");
-  const [searchRecipe, setsearchedRecipe] = useState({});
+  // const [searchRecipe, setsearchedRecipe] = useState({});
   const [alert, setAlert] = useState(null);
   const [CurrentRecipeItem, setCurrentRecipeItem] = useState({});
   const [CurrentRecipeItemid, setCurrentRecipeItemid] = useState("");
@@ -50,7 +53,6 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
   const [staticalData, setstaticalData] = useState({});
   const [likedrecipeloading,setlikedrecipeloading]=useState(false)
   const [Adminallmessageloading,setAdminallmessageloading]=useState(false)
-
   //to show alert on top
   /**
    * The showAlert function takes a message and a type as arguments, sets the alert state to an object
@@ -58,6 +60,30 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
    * @param msg - The message you want to display
    * @param type - 'success' or 'danger'
    */
+
+
+  const getRecipeByCategory= async (categoryName,categoryType,pageParam,sort)=>{
+     const response = await getRecipeByCategoryApi(categoryName,categoryType,pageParam,15,sort);
+     return response.data
+  }
+  const getRecipeById= async (id)=>{
+     const response = await getRecipeByIdApi(id);
+     return response.data
+  }
+  const searchRecipe= async (query,page)=>{
+     const response = await searchRecipeApi(query,page,15);
+     return response.data
+  }
+  const getTrendingRecipe= async ()=>{
+     const response = await getTrendingRecipeApi();
+     return response.data
+  }
+  const getFeaturedRecipe= async ()=>{
+     const response = await getFeaturedRecipeApi();
+     return response.data
+  }
+
+
   const showAlert = useCallback((msg, type) => {
     setAlert(
       {
@@ -1099,23 +1125,23 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
       if (response.status === 404) {
         setProgress(100);
 
-        setsearchedRecipe(false);
+        // setsearchedRecipe(false);
         setnamereicpeloading(false);
       }
        else if (response.status === 200) {
       
         setnamereicpeloading(false);
 
-        setsearchedRecipe(Name_recipe);
+        // setsearchedRecipe(Name_recipe);
         setProgress(100);
       } 
       else {
-        setsearchedRecipe(500);
+        // setsearchedRecipe(500);
         setProgress(100);
         setLoading(false);
       }
     } catch (error) {
-      setsearchedRecipe(500);
+      // setsearchedRecipe(500);
       setProgress(100);
       setLoading(false);
       console.log(error.message);
@@ -1278,7 +1304,7 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
   const deleteRecipe = useCallback(async (id, file) => {
     try {
  
-      
+  
 
       const response = await fetch(
         `${process.env.REACT_APP_Fetch_Api_Start}/recipe/deleteRecipe/${id}`,
@@ -1375,9 +1401,9 @@ namerecipeloading,
         NameRecipe,
         name_to_search,
         setName_to_search,
-        searchRecipe,
+        // searchRecipe,
         latestrecipeloading,
-        setsearchedRecipe,
+        // setsearchedRecipe,
         AdminAllUser,
         AdminGetAllUser,
         AdminGetAllRecipe,
@@ -1410,7 +1436,12 @@ namerecipeloading,
         likedrecipeloading,
         Adminallrecipeloading,
         Adminallrecipebydateloading,
-        Adminallmessageloading
+        Adminallmessageloading,
+        getRecipeByCategory,
+        getRecipeById,
+        searchRecipe,
+        getTrendingRecipe ,
+        getFeaturedRecipe
   }),[
     namerecipeloading,
         diettype,
@@ -1463,7 +1494,7 @@ namerecipeloading,
         setName_to_search,
         searchRecipe,
         latestrecipeloading,
-        setsearchedRecipe,
+        // setsearchedRecipe,
         AdminAllUser,
         AdminGetAllUser,
         AdminGetAllRecipe,
@@ -1495,7 +1526,12 @@ namerecipeloading,
         likedrecipeloading,
         Adminallrecipeloading,
         Adminallrecipebydateloading,
-        Adminallmessageloading
+        Adminallmessageloading,
+        getRecipeByCategory,
+        getRecipeById,
+        searchRecipe,
+        getTrendingRecipe,
+        getFeaturedRecipe
   ])
   return (
 

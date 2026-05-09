@@ -31,11 +31,17 @@ import {
 } from "react-icons/fa6";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import AuthContext from "../Context/AuthContext";
 
 export default function Navbar() {
+  const {Me}=useContext(AuthContext)
   const [openCategory, setOpenCategory] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [search,setSearch]=useState("")
+  const navigate = useNavigate()
 
   const menuItems = ["Home", "Recipes", "Trending", "Categories", "Contact", "About"];
 
@@ -93,7 +99,17 @@ export default function Navbar() {
     },
   ];
 const [scrolled, setScrolled] = useState(false);
+const handleSearch=()=>{
+if(!search.trim()){
+ toast.info("Enter a name to search")
+ return
+} 
+  setTimeout(() => {
+    navigate(`/search/${search}`);
+  }, 0);
+  setSearch("")
 
+}
 useEffect(() => {
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -116,7 +132,7 @@ useEffect(() => {
   }`}
 >
       {/* TOP BAR */}
-      <div className="flex justify-between items-center px-4 md:px-16 py-4">
+      <div className="flex justify-between items-center px-4 md:pl-16 md:pr-5 py-4">
 
         {/* LOGO */}
         <div className="flex gap-2 items-center text-lg font-extrabold text-white">
@@ -158,6 +174,7 @@ useEffect(() => {
                               {category.items.map((sub, j) => (
                                 <li
                                   key={j}
+                                  onClick={()=>{navigate(`/category/${category.title}/${sub.name}`)}}
                                   className="flex items-center gap-2 text-sm text-white/70 hover:text-orange-400 cursor-pointer transition"
                                 >
                                   <sub.icon className="text-xs text-white/40" />
@@ -184,6 +201,7 @@ useEffect(() => {
               <motion.li
                 key={item}
                 whileHover={{ scale: 1.05 }}
+                onClick={()=>{navigate(`/${item.toLocaleLowerCase()}`)}}
                 className="cursor-pointer hover:text-orange-400 transition"
               >
                 {item}
@@ -193,15 +211,34 @@ useEffect(() => {
 
         </ul>
 
+        <div className="hidden lg:flex  items-center gap-4">
         {/* SEARCH */}
-        <div className="hidden lg:flex items-center bg-white/10 border border-white/20 backdrop-blur-xl rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-orange-400 transition">
+  <div className=" bg-white/10 border border-white/20 backdrop-blur-xl rounded-full px-4 py-2 focus-within:ring-2 focus-within:ring-orange-400 transition">
           <input
+      
             type="search"
             placeholder="Search recipes..."
+            name="search"
+            id="search"
+            value={search}
+            onChange={(e)=>{setSearch(e.target.value)}}
+              onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  }}
             className="bg-transparent outline-none text-sm text-white placeholder-white/50 w-40 focus:w-60 transition-all duration-300"
           />
-          <button className="text-orange-400 text-lg">🔍</button>
+          <button onClick={handleSearch} className="text-orange-400 text-lg">🔍</button>
         </div>
+      {/* profileImage */}
+         <button onClick={()=>{navigate('/profile')}}>
+          <img src={Me?.profileImage?.url || "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg"} className="object-cover h-10 w-10 border-2 shadow-2xl hover:scale-105 border-white rounded-full" alt="user Image" />
+        </button>
+        </div>
+        
+      
+       
 
         {/* MOBILE MENU BTN */}
         <div className="lg:hidden" onClick={() => setOpenMenu(!openMenu)}>

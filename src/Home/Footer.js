@@ -1,7 +1,9 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 export default function Footer() {
+  const Navigate=useNavigate()
   return (
   <section className= ' relative text-white px-8 sm:px-10 py-10 items-center overflow-hidden'>
     
@@ -50,6 +52,7 @@ export default function Footer() {
              <motion.button
                whileHover={{ scale: 1.05 }}
                whileTap={{ scale: 0.95 }}
+               onClick={()=>Navigate(`/addRecipe`)}
                className="px-5 py-2 rounded-lg text-sm font-semibold
                bg-gradient-to-r from-orange-500 to-pink-500"
              >

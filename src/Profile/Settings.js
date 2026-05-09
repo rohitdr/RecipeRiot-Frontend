@@ -1,13 +1,34 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { motion } from 'framer-motion'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 export default function Settings() {
+  const navigate=useNavigate()
+  const queryClient=useQueryClient()
+  const handleLogoutClick=()=>{
+    localStorage.removeItem("accessToken")
+        navigate('/home')
+    toast.info("You have been loggout out successfully")
+  queryClient.removeQueries({
+  queryKey: ["Me"]
+})
+
+queryClient.removeQueries({
+  queryKey: ["user-likedRecipes"]
+})
+queryClient.removeQueries({
+  queryKey: ["user-recipes"]
+})
+
+  }
   return (
    <motion.div
    initial={{opacity:0,y:30}}
    animate={{opacity:1,y:0}}
    exit={{opacity:0,y:30}}
-  
+  className='max-w-7xl mx-auto'
    >
 
 
@@ -110,7 +131,7 @@ export default function Settings() {
           Sign out from your RecipeRiot account.
         </p>
 
-        <button className="mt-4 px-6 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition">
+        <button onClick={handleLogoutClick} className="mt-4 px-6 py-3 bg-white text-black font-bold rounded-full hover:scale-105 transition">
           Logout
         </button>
       </div>

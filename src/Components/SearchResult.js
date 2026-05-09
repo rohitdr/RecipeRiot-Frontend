@@ -1,234 +1,110 @@
-import React, { useContext, useEffect } from "react";
-import RecipeContext from "../Context/RecipeContext";
-import { motion } from "framer-motion";
-import RecipeItem from "./RecipeItem";
-import Loader from "./Loader";
-import { useNavigate, useLocation } from "react-router-dom";
-import InternalServerError from "./InternalServerError";
+
+import React, { useContext, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import useSearchRecipe from '../Hooks/useSearchRecipe'
+import RecipeContext from '../Context/RecipeContext'
+import { motion } from 'framer-motion'
+import RecipeSkeleton from './Skeletons/RecipeSkeleton'
+import RecipeItem from './RecipeItem'
+
+
 export default function SearchResult() {
-/* This is a react hook that is used to perform side effects in function components. */
-  const context = useContext(RecipeContext);
-  const { searchRecipe, NameRecipe, loading , LatesRecipe,Latest_recipe,} = context;
-  const { state } = useLocation();
-
-  const searchrecipename = state.search_result_reicpe;
-/* This is a react hook that is used to perform side effects in function components. */
-  let Navigate = useNavigate();
- /* This is a react hook that is used to perform side effects in function components. */
-  useEffect(() => {
-    document.title=`RecipeRiot-Searched Recipe`
-    if (!searchrecipename) {
-      Navigate("/home");
-    }
-    else{
-
-      NameRecipe(`/${searchrecipename}`);
-      LatesRecipe()
-    }
-  }, [searchrecipename,Navigate,LatesRecipe,NameRecipe]);
-  var totalratings = 0;
-
-
+  const {searchRecipe}=useContext(RecipeContext)
+  const {query}=useParams()
+  const [page,setPage]=useState(1)
+    const {data,isLoading}=useSearchRecipe(query,page,searchRecipe)
 
   return (
-    <div>
-    {searchRecipe===500?<InternalServerError></InternalServerError>:  <div className="container">
-        <div className="row my-3">
-          <h1
-            className="text-center my-4 fw-bold text-dark"
-            style={{ opacity: "0", animation: "drop .4s linear forwards 1s" }}
-          >
-            SEARCH RESULT
-          </h1>
-          {loading && <Loader></Loader>}
-
-          {searchRecipe.recipe &&
-            searchRecipe.recipe.map((element) => {
-              return (
-                <div className="col-md-3 mt-4 " key={element._id}>
-                  <RecipeItem
-                    userData={element.userData}
-                    id={element._id}
-                    title={element.label}
-                    topLeftColor={"dark"}
-                    headingColor={"dark"}
-                    ImageUrl={element.image.url}
-                    date={element.date}
-                    health_labels={element.healthLabels}
-                    Ingridiants={element.ingredientLines
-                      .toString()
-                      .replace(",", " and ")
-                      .substring(0, 60)}
-                    caleroies={Math.ceil(element.calories)}
-                    fat={
-                      element.totalNutrients.FAT.quantity
-                        ? Math.ceil(element.totalNutrients.FAT.quantity)
-                        : " "
-                    }
-                    caution={element.cautions}
-                    time={element.totalTime}
-                    source={element.source}
-                    sugar={element.totalNutrients.SUGAR.quantity}
-                    water={element.totalNutrients.WATER.quantity}
-                    chole={element.totalNutrients.CHOLE.quantity}
-                    vitamin_a={element.totalNutrients.VITA_RAE.quantity}
-                    vitamin_c={element.totalNutrients.VITC.quantity}
-                    vitamin_b6={element.totalNutrients.VITB6A.quantity}
-                    vitamin_d={element.totalNutrients.VITD.quantity}
-                    vitamin_e={element.totalNutrients.TOCPHA.quantity}
-                    // vitamin_k={element.totalNutrients.VITK1.quantity}
-                  ></RecipeItem>
-                </div>
-              );
-            })}
-        </div>
-      </div>}
-
-      <section
-              id="about"
-              className="about mt-3 mb-0 pt-3"
-              style={{ backgroundColor: "#f7fbfe" }}
-            >
-              <div className="container">
-                <div className="row ">
-                  <h3 className="text-primary fs-1 fw-bold text-center">
-                 Relavent Recipes
-                  </h3>
-                  <div
-                    className="col-lg-6 order-1 order-lg-2 py-4"
-                    id="about_img"
-                    data-aos="fade-left"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, x: 100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 1 }}
-                    >
-                      <img
-                        src="Other/mealtype.jpg"
-                        className="img-fluid  box_decrease_size_animationforlogin"
-                        alt=""
-                      />
-                    </motion.div>
-                  </div>
-
-                  <div
-                    className="col-lg-6 py-4 pt-lg-0 order-2 order-lg-1 content "
-                    id="about_content"
-                  >
-                    <motion.div
-                      initial={{ opacity: 0, x: -100 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 1 }}
-                    >
-                      <p className="fst-italic">
-                      Recipes typically include a list of ingredients,
-                       measurements, and step-by-step instructions on how to prepare and cook the dish.
-                      </p>
-                      <ul>
-                        <li>
-                          <i className="fa-solid fa-square-check mt-2"></i>In addition to the basic recipe instructions, 
-                          some recipes may also include tips, variations, or suggestions for serving the dish. {" "}
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-square-check"></i>Recipes can be found in 
-                          cookbooks, magazines, online recipe websites, or shared through family and friends.
-                        </li>
-                        <li>
-                          <i className="fa-solid fa-square-check"></i>Recipes are written in a
-                           standardized format to ensure that the dish can be replicated with consistent results. 
-                        </li>
-                        <li>
-                        <i className="fa-solid fa-square-check"></i>They 
-                        typically begin with a list of ingredients, followed by the preparation and cooking instructions.
-                        </li>
-                      </ul>
-                      <p>
-                      Overall, a recipe is a detailed set of instructions
-                       that helps people prepare and cook a specific dish, whether it's a simple dessert or a complex meal.
-                      </p>
-                    </motion.div>
-                  </div>
-                </div>
+    <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>
+   <div className='flex flex-col gap-6 max-w-7xl mx-auto '>
+   <div className='rounded-3xl bg-gradient-to-r from-orange-500/20 to-red-500/10 border border-white/10 p-8 '>
+  
+  
+   <div className='text-orange-400 text-sm'>
+      CATEGORY COLLECTION
+   </div>
+   <div className='flex gap-4 flex-col py-2'>
+      <h1 className='text-2xl sm:text-4xl lg:text-6xl font-bold'>Search Results for "{query}"</h1>
+           <p className='max-w-2xl text-white/70'>Explore handpicked recipes from this category—crafted for every craving, mood, and occasion</p>
+   </div>
+   <div className='flex gap-4 pt-4'>
+   <div className='text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2 '>{data?.totalResults || 0} Recipes</div>
+    <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2'> Most Loved Category</div>
+   </div> </div>
+  <div className="flex flex-wrap gap-3 text-xs lg:text-base">
+  
+    <button className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white transition">
+      Newest
+    </button>
+  
+    <button className="px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20">
+      Trending
+    </button>
+  
+    <button className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white transition">
+      Quick Meals
+    </button>
+  
+    <button className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white transition">
+      Top Rated
+    </button>
+  
+  </div>
+   <div className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>
+       
+    {isLoading && [...Array(10)].map((_,index) => (
+              <div
+                key={index}
+             className="w-full max-w-[280px] mx-auto"
+              >
+              <RecipeSkeleton></RecipeSkeleton>
               </div>
-            </section>
-
-
-
+            ))}
+        
+   {!isLoading&& data && data.recipe.map((recipe,index) => (
+              <motion.div
+              initial={{opacity:0}}
+              animate={{opacity:1}}
+              transition={{duration:1}}
+              viewport={{once:true}}
+                key={recipe._id}
+             className="w-full max-w-[280px] mx-auto"
+              >
+                <RecipeItem  recipe={recipe} />
+              </motion.div>
+            ))}
+   </div>
+  <div className="flex justify-center py-10 px-3">
+  
+    <div className="flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-xl px-3 sm:px-4 py-2 rounded-xl shadow-lg">
+  
+      {/* Prev */}
+      <button disabled={page===1} onClick={()=>{setPage(prev=>prev-1)}} className="px-3 py-2 text-xs sm:text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition disabled:cursor-not-allowed">
+        Prev
+      </button>
+  
+      {/* Page numbers (responsive visibility) */}
+      <div className="flex items-center gap-1 sm:gap-2">
+        {Array.from({length:data?.totalPages||0}).slice(Math.max(page-3,0),Math.min(page+2,data?.totalPages)).map((_,i)=>{
+          const pageNumber = Math.max(page-3,0)+i+1
+          return <button key={i} onClick={()=>{setPage(pageNumber)}} className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-xs sm:text-sm  transition   ${
+            pageNumber === page
+              ? "bg-white text-black font-semibold"
+              : "text-white/60 hover:bg-white/10 hover:text-white"
+          }`}>
+        {pageNumber}
+        </button>
+        })}
       
-      <section id="pricing" className="pricing section-bg ">
-              <div className="container">
-                
-
-                <div className="row">
-                  {Latest_recipe.recipe &&
-                    Latest_recipe.recipe.slice(0, 12).map((element) => {
-                      
-
-                     //setting recipe for recipitm
-                     
-                      const reciperating = element.Comments.reduce((total,ele)=>total+ele.rating,0)
-                    
-                      element.Comments.length !== 0
-                        ? (totalratings =
-                            reciperating / element.Comments.length)
-                        : (totalratings = 0);
-                    
-
-                      //sending rating to recipeitem
-                        return (
-                          <div
-                            className="col-md-3 mt-4 profilerecipe "
-                            key={element._id}
-                          >
-                            <RecipeItem
-                              userData={element.userData}
-                              id={element._id}
-                              rating={totalratings}
-                              title={element.label}
-                              topLeftColor={"dark"}
-                              headingColor={"dark"}
-                              ImageUrl={element.image.url}
-                              user={element.user}
-                              date={element.date}
-                              health_labels={element.healthLabels}
-                              Ingridiants={element.ingredientLines
-                                .toString()
-                                .replace(",", " and ")
-                                .substring(0, 60)}
-                              caleroies={Math.ceil(element.calories)}
-                              fat={
-                                element.totalNutrients.FAT.quantity
-                                  ? Math.ceil(
-                                      element.totalNutrients.FAT.quantity
-                                    )
-                                  : " "
-                              }
-                              caution={element.cautions}
-                              time={element.totalTime}
-                              source={element.source}
-                              sugar={element.totalNutrients.SUGAR.quantity}
-                              water={element.totalNutrients.WATER.quantity}
-                              chole={element.totalNutrients.CHOLE.quantity}
-                              vitamin_a={
-                                element.totalNutrients.VITA_RAE.quantity
-                              }
-                              vitamin_c={element.totalNutrients.VITC.quantity}
-                              vitamin_b6={
-                                element.totalNutrients.VITB6A.quantity
-                              }
-                              vitamin_d={element.totalNutrients.VITD.quantity}
-                              vitamin_e={element.totalNutrients.TOCPHA.quantity}
-                            ></RecipeItem>
-                          </div>
-                        );
-                      
-                    })}
-                </div>
-              </div>
-            </section>
+      </div>
+      {/* Next */}
+      <button disabled={page===data?.totalPages} onClick={()=>{setPage(prev=>prev+1)}} className="px-3 py-2 text-xs sm:text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition disabled:cursor-not-allowed">
+        Next
+      </button>
+  
     </div>
-  );
+  </div>
+   </div>
+    </section>
+  )
 }

@@ -1,191 +1,68 @@
 import "./App.css";
-import Sidebar from "./Components/Sidebar.js";
-import Searchbar from "./Components/Searchbar.js";
-import { Routes, Route, useLocation } from "react-router-dom";
-import IndividualRecipe from "./Components/IndividualRecipe.js";
+
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+
 import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
 
 import Home from "./Components/Home";
 
-import SearchResult from "./Components/SearchResult";
-import { useContext } from "react";
-import RecipeContext from "./Context/RecipeContext";
 
-import ProfileProfile from "./Components/ProfileProfile";
-import ProfileSecurity from "./Components/ProfileSecurity";
-import ProfileLikedRecipe from "./Components/ProfileLikedRecipe.js";
-import ProfileActivity from "./Components/ProfileActivity.js";
+
+
+
 
 import SignUp from "./Components/SignUp";
-import CuisineType from "./Components/CuisineType";
-import Health from "./Components/Health";
-import Meal from "./Components/Meal";
-import Dishtype from "./Components/DishType.js";
-import Diettype from "./Components/DietType.js";
-import Footer from "./Components/Footer";
 
-import EditRecipe from "./Components/EditRecipe";
 
-import Admin from "./Components/Admin";
+
 import Profile from "./Profile/Profile.js";
-import EditUserAdmin from "./Components/EditUserAdmin";
-import Alert from "./Components/Alert";
+
 import Navbar from "./Components/Navbar.js";
 import CategoryRecipe from "./Components/CategoryRecipe.js";
 import RecipeDetails from "./Components/RecipeDetails.js";
 import AddRecipe from "./AddRecipe.js";
-
+import { Toaster } from "sonner";
+import SearchResult from "./Components/SearchResult.js";
+import PublicRoute from "./Components/PublicRoute.js";
+import ProtectedRoute from "./Components/ProtectedRoute.js";
+import ForgetPassword from "./Components/ForgetPassword.js";
 function App() {
-  const context = useContext(RecipeContext);
-  const { alert, progress, setProgress, progressheight } = context;
+let location = useLocation()
+const hideLayoutRoutes=['/login','/signUp','/forgetPassword']
+const hideLayout = hideLayoutRoutes.includes(location.pathname)
 
-  let location = useLocation();
   return (
     <>
-      <LoadingBar
-        color="blue"
-        progress={progress}
-        height={progressheight}
-        onLoaderFinished={() => setProgress(0)}
-      />
-      <Navbar></Navbar>
-{/* 
-      <Sidebar></Sidebar>
+    
+    
+    {!hideLayout && <Navbar></Navbar>}
 
-      <Searchbar></Searchbar> */}
-
-      <Alert alert={alert}></Alert>
+     <Toaster
+  theme="dark"
+  toastOptions={{
+    style: {
+      background: "#111827",
+      color: "#fff",
+      border: "1px solid rgba(255,255,255,0.1)",
+      borderRadius: "14px",
+    }
+  }}
+/>
    
-        <Routes key={location.pathname} location={location}>
-          <Route exact path="/login" element={<Login></Login>} />
+        <Routes>
+          <Route exact path="/login" element={<PublicRoute><Login></Login></PublicRoute>} />
+          <Route exact path="/forgetPassword" element={<PublicRoute><ForgetPassword></ForgetPassword></PublicRoute>} />
+          <Route exact path="/" element={<Home></Home>}/>
+          <Route exact path="/home" element={<Navigate to="/" replace></Navigate>}/>
+          <Route exact path="/signUp" element={<PublicRoute><SignUp></SignUp></PublicRoute>}/>
+          <Route exact path="/category/:categoryType/:categoryName" element={<CategoryRecipe/>} />
+          <Route exact path="/recipePage/:recipeId" element={<RecipeDetails></RecipeDetails>} />
+          <Route exact path="/search/:query" element={<SearchResult></SearchResult>} />
+          <Route exact path="/addRecipe" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
+          <Route exact path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}/>
 
-          <Route exact path="/home" element={
-        
-    <AddRecipe></AddRecipe>
-            } />
-          <Route
-            exact
-            path="/Edituser"
-            element={<EditUserAdmin></EditUserAdmin>}
-          />
-          <Route exact path="/Admin" element={<Admin></Admin>} />
-
-          <Route
-            exact
-            path="/AddRecipe"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <AddRecipe></AddRecipe>
-                </div>
-              </section>
-            }
-          />
-          <Route exact path="/signUp" element={<SignUp></SignUp>} />
-          <Route exact path="/Edit" element={<EditRecipe></EditRecipe>} />
-
-          <Route
-            exact
-            path="/Profile"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <ProfileProfile></ProfileProfile>
-                </div>
-              </section>
-            }
-          />
-          <Route exact path="/AddRecipe" element={<AddRecipe></AddRecipe>} />
-          <Route exact path="/health" element={<Health></Health>} />
-          <Route exact path="/mealType" element={<Meal></Meal>} />
-          <Route exact path="/dietType" element={<Diettype></Diettype>} />
-          <Route exact path="/dishType" element={<Dishtype></Dishtype>} />
-          <Route
-            exact
-            path="/cuisineType"
-            element={<CuisineType></CuisineType>}
-          />
-          <Route exact path="/" element={<Home></Home>} />
-          <Route
-            exact
-            path="/SearchResult"
-            element={<SearchResult></SearchResult>}
-          />
-          <Route
-            exact
-            path="/RecipeItself"
-            element={<IndividualRecipe></IndividualRecipe>}
-          />
-          <Route
-            exact
-            path="/ProfileProfile"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <ProfileProfile></ProfileProfile>
-                </div>
-              </section>
-            }
-          />
-          <Route
-            exact
-            path="/ProfileSecurity"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <ProfileSecurity></ProfileSecurity>
-                </div>
-              </section>
-            }
-          />
-          <Route
-            exact
-            path="/ProfileRecipe"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <Profile></Profile>
-                </div>
-              </section>
-            }
-          />
-          <Route
-            exact
-            path="/ProfileLikedRecipe"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <ProfileLikedRecipe></ProfileLikedRecipe>
-                </div>
-              </section>
-            }
-          />
-          <Route
-            exact
-            path="/ProfileActivity"
-            element={
-              <section style={{ backgroundColor: "#eee" }}>
-                <div className="container py-5">
-                  <ProfileActivity></ProfileActivity>
-                </div>
-              </section>
-            }
-          />
-
-          <Route
-            exact
-            path="/Individualdescription"
-            element={
-              <>
-                <IndividualRecipe></IndividualRecipe>
-              </>
-            }
-          />
         </Routes>
-  
-
-      <Footer></Footer>
     </>
   );
 }

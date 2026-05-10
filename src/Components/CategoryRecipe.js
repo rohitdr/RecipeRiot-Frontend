@@ -11,6 +11,7 @@ import Pagination from './Pagination'
 export default function CategoryRecipe() {
   const {categoryName,categoryType}=useParams()
   const {getRecipeByCategory}=useContext(RecipeContext)
+
   const [sort,setSort]=useState("Newest")
   const sortOptions=["Newest","Top Rated","Trending","Mintue Meals","Low Calories","High Calories"]
  const [page,setPage]=useState(1)
@@ -27,8 +28,24 @@ setPage(1)
     .join('');
 }
   const {data,isLoading,isFetching}=useRecipes(categoryName.toLocaleLowerCase(),toCamelCase(categoryType),getRecipeByCategory,page,toCamelCase(sort))
-
-
+const isMobile=window.innerWidth<640
+const container={
+  hidden:{opacity:1},
+  show:{opacity:1,
+    transition:{
+      staggerChildren:isMobile?0.02:0.06
+    }
+  }
+}
+const item={
+  hidden:{opacity:0,y:20,scale:0.95},
+  show:{opacity:1,y:0,scale:1,
+    transition:{
+      duration:0.3,
+      ease:"easeOut"
+    }
+  }
+}
   return (
   <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>
  <div className='flex flex-col gap-6 max-w-7xl mx-auto '>
@@ -46,27 +63,29 @@ setPage(1)
  <div className='text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2 '>{data?.totalResults} Recipes</div>
   <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2'> Most Loved Category</div>
  </div> </div>
-<div className="flex flex-wrap gap-3 text-xs lg:text-base">
+<div className="flex  gap-3 text-xs lg:text-base overflow-x-auto w-full ">
  {sortOptions.map((item)=>{
- return   <button onClick={()=>{setSort(item)}} className={`px-4 py-2 rounded-full  transition ${sort===item?"bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20":"bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"}`}>
+ return   <button onClick={()=>{setSort(item)}} className={`px-4 py-2 text-nowrap rounded-full  transition ${sort===item?"bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20":"bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"}`}>
     {item}
   </button>
  })}
 
 </div>
- <div className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>
+ <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>
      
   {isLoading && [...Array(10)].map((_,index) => (
-            <div
+            <motion.div
+            variants={item} 
               key={index}
            className="w-full max-w-[280px] mx-auto"
             >
             <RecipeSkeleton></RecipeSkeleton>
-            </div>
+            </motion.div>
           ))}
       
  {!isLoading&& data && data.recipe.map((recipe,index) => (
             <motion.div
+               variants={item} 
             initial={{opacity:0}}
             animate={{opacity:1}}
             transition={{duration:1}}
@@ -77,7 +96,7 @@ setPage(1)
               <RecipeItem  recipe={recipe} />
             </motion.div>
           ))}
- </div>
+ </motion.div>
  <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>
 {/* <div className="flex justify-center py-10 px-3">
 

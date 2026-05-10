@@ -1,15 +1,19 @@
 import { motion } from "framer-motion";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
 import { useMutation } from "@tanstack/react-query";
 import { useLikeMutation } from "../Mutations/userMutations";
+import DeleteRecipeDialog from "./DailogBoxes/DangerDailogBox";
+import { useRecipeDeleteMutation } from "../Mutations/RecipeMutation";
 
-export default function RecipeItem({recipe,size="normal", edit=null}) {
-const Navigate=useNavigate()
+export default function RecipeItem({recipe,size="normal",edit=null, mode}) {
+const navigate=useNavigate()
 const {Me,likeRecipe,handleError}=useContext(AuthContext)
+const recipeDeleteMutation=useRecipeDeleteMutation(handleError)
 const likeRecipeMutation=useLikeMutation(handleError)
+const [openDailogBox,setOpenDailogBox]=useState(false)
 const sizeClass={
   normal:{
     footerPadding:"",
@@ -30,13 +34,20 @@ const sizeClass={
      likePadding:"px-4 py-4"
   }
 }
-  const rating =
-    recipe?.Comments?.length > 0
-      ? recipe.Comments[0].rating
-      : 0;
 
-  const user = recipe?.Comments?.[0];
+const handleRecipeDeleteClick=()=>{
+recipeDeleteMutation.mutate(recipe._id,{
+  onSuccess:()=>{
+    setOpenDailogBox(false)
+  }
+})
+
+}
 const handleLikeClick=()=>{
+  if(!Me){
+    navigate('/login')
+    return
+  }
 likeRecipeMutation.mutate(recipe)
 }
 const isLiked = Me?.likedRecipes?.some(
@@ -84,10 +95,10 @@ const isLiked = Me?.likedRecipes?.some(
       {/* Top Info (minimal) */}
       <div className="absolute top-3 left-3 right-3 flex justify-between items-center text-xs">
         <span className={`bg-black/60 ${sizeClass[size].ratingPadding} px-2 py-1 rounded-full text-orange-400 backdrop-blur`}>
-          ⭐ {rating}
+          ⭐ {recipe?.averageRating || 0}
         </span>
 
-        <button disabled={likeRecipeMutation.isPending} onClick={handleLikeClick} className={`bg-black/60 ${sizeClass[size].likePadding}  rounded-full backdrop-blur`}>
+        <button disabled={likeRecipeMutation.isPending} onClick={handleLikeClick} className={`bg-black/60 ${sizeClass[size].likePadding}  rounded-full backdrop-blur hover:scale-110`}>
           <FaHeart className={`${isLiked?"text-red-600":"text-white/70"}`} ></FaHeart>
         </button>
       </div>
@@ -110,26 +121,27 @@ const isLiked = Me?.likedRecipes?.some(
           transition={{ delay: 0.1 }}
         >
           {/* User */}
-          {user && (
+         
             <div className="flex items-center gap-2">
               <img
-                src={user.Profileimage}
+                src={recipe?.user?.profileImage?.url ||  "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg" }
                 className="w-6 h-6 rounded-full border border-orange-400"
+                alt="Recipe User"
               />
               <span className="text-[11px] text-gray-300">
-                {user.username}
+                {recipe?.user?.username || "Rohit"}
               </span>
             </div>
-          )}
+         
 
           {/* Button */}
-          <motion.button
+         {mode !=="view" && <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={()=>{Navigate(`/recipePage/${recipe._id}`)}}
+            onClick={()=>{navigate(`/recipePage/${recipe._id}`)}}
             className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
           >
             View →
-          </motion.button>
+          </motion.button>}
         </motion.div>}
       {edit && <motion.div
           className="mt-2 flex justify-between items-center"
@@ -144,19 +156,22 @@ const isLiked = Me?.likedRecipes?.some(
           {/* Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
+            onClick={()=>{navigate(`/editRecipe/${recipe._id}`)}}
             className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
           >
-          edit
+          Edit
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
+            onClick={()=>{setOpenDailogBox(true)}}
             className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-red-500 border border-red-500/30 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
           >
-           delete
+           Delete
           </motion.button>
         </motion.div>}
         
       </div>
+      <DeleteRecipeDialog open={openDailogBox} setOpen={setOpenDailogBox} handleDelete={handleRecipeDeleteClick} pending={recipeDeleteMutation.isPending}></DeleteRecipeDialog>
     </motion.div>
   );
 }

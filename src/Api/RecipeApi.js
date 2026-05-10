@@ -15,4 +15,19 @@ return api.get(`/recipe/trending`)
 export const getFeaturedRecipeApi =()=>{
 return api.get(`/recipe/featured`)
 }
+export const addRecipeApi =(data)=>{
+return api.post(`/recipe/addRecipe`,data)
+}
+export const editRecipeApi =(id,data)=>{
+return api.put(`/recipe/editRecipe/${id}`,data)
+}
+export const deleteRecipeApi =(id)=>{
+return api.delete(`/recipe/deleteRecipe/${id}`)
+}
+export const postCommentApi =(data)=>{
+return api.post(`/comment/addComment`,data)
+}
+export const getCommentsApi =(id,page)=>{
+return api.get(`/comment/comments/${id}?page=${page}&limit=${5}`)
+}
 

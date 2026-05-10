@@ -14,6 +14,9 @@ export  function signUpApi(data){
 export  function forgetPasswordApi(data){
     return api.patch('/auth/forgetPassword',data)
 }
+export  function changePasswordApi(data){
+    return api.patch('/auth/changePassword',data)
+}
 export  function userUpdateApi(data){
     return api.patch('/user/updateUser',data)
 }

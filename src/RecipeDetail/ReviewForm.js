@@ -1,7 +1,37 @@
 import { motion } from 'framer-motion'
-import React from 'react'
-import { FaStar } from 'react-icons/fa'
+import React, { useContext, useState } from 'react'
+import { FaStar,FaSpinner } from 'react-icons/fa'
+import { usePostCommnetMutation } from '../Mutations/RecipeMutation'
+import AuthContext from '../Context/AuthContext'
+import { toast } from 'sonner'
+import { useNavigate, useParams } from 'react-router-dom'
 export default function ReviewForm() {
+  const navigate=useNavigate()
+  const {handleError,Me}=useContext(AuthContext)
+  const [rating,setRating]=useState(0)
+  const [hoverStar,setHoverStar]=useState(0)
+  const {recipeId}=useParams() 
+   const [comment,setComment]=useState("")
+   const commentMutation=usePostCommnetMutation(recipeId,handleError)
+   const handleChange=({target:{value}})=>{
+setComment(value)
+   }
+   const handleClick=()=>{
+    if(!comment.length){
+        toast.error("Comment cannot be blank")
+        return
+    }
+  if(comment.length<4){
+    toast.error("Comment Should be more than 4 characters")
+    return
+  }
+   if(!Me){
+    navigate('/login')
+    return
+  }
+  const payload={recipeId,comment,rating}
+  commentMutation.mutate(payload)
+   }
   return (
    <div>
     <div className="">
@@ -21,7 +51,10 @@ export default function ReviewForm() {
         {[1, 2, 3, 4, 5].map((star) => (
           <FaStar
             key={star}
-            className="hover:text-orange-400 transition"
+            onClick={()=>{setRating(prev=>prev===1?0:star)}}
+            onMouseEnter={()=>{setHoverStar(star)}}
+            onMouseLeave={()=>{setHoverStar(0)}}
+            className={`${(rating>=star || hoverStar>=star) && "text-orange-400"} transition  `}
           />
         ))}
       </div>
@@ -35,16 +68,18 @@ export default function ReviewForm() {
           placeholder:text-white/40
           outline-none
           focus:border-orange-400/30
-          resize-none"  placeholder="Share Your Cooking Experience...."></textarea>
+          resize-none" onChange={handleChange}  placeholder="Share Your Cooking Experience...."></textarea>
       </div>
-      <button className=" my-2 px-4 py-1 sm:px-6 sm:py-3
+      <button type='submit' disabled={!comment.length || commentMutation.isPending} onClick={handleClick} className=" my-2 px-4 py-1 sm:px-6 sm:py-3
         rounded-full
         bg-orange-500
         text-black
         font-semibold
         hover:scale-105
-        transition">
-        Post Review
+        transition
+        disabled:cursor-not-allowed
+        disabled:opacity-30">
+        {commentMutation.isPending?<FaSpinner className='animate-spin text-white'></FaSpinner>:"Post Review"}
       </button>
     </motion.div>
 </div>

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient, useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { forgetPasswordApi, loginApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
+import { changePasswordApi, forgetPasswordApi, loginApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
 export const useLoginMutation=(handleError)=>{
     const queryClient=useQueryClient()
     const navigate=useNavigate()
@@ -48,6 +48,18 @@ export const useForgetPasswordMutation=(handleError)=>{
          onSuccess:()=>{
      toast.success("Your Password Changed successfully ")
      navigate('/login')
+        }
+    })
+}
+export const useChangePasswordMutation=(handleError)=>{
+    return useMutation({
+        mutationFn:async(data)=>{
+         return await changePasswordApi(data)
+        },
+         retry:false,
+        onError:(error)=>handleError(error),
+         onSuccess:()=>{
+     toast.success("Your Password Changed successfully ")
         }
     })
 }

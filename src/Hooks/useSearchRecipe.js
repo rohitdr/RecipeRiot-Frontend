@@ -9,6 +9,9 @@ const useSearchRecipe=(query,page,fn)=>{
        keepPreviousData: true,
        placeholderData:keepPreviousData,
     enabled: !!query,
+    refetchOnWindowFocus:false,
+  staleTime: 1000 * 60 * 5,
+    
     })
 }
 export default useSearchRecipe

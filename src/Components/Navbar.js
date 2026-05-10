@@ -43,7 +43,7 @@ export default function Navbar() {
   const [search,setSearch]=useState("")
   const navigate = useNavigate()
 
-  const menuItems = ["Home", "Recipes", "Trending", "Categories", "Contact", "About"];
+  const menuItems = ["Home", "Trending", "Categories", "Contact", "About"];
 
   const categoriesItems = [
     {

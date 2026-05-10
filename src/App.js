@@ -60,6 +60,7 @@ const hideLayout = hideLayoutRoutes.includes(location.pathname)
           <Route exact path="/recipePage/:recipeId" element={<RecipeDetails></RecipeDetails>} />
           <Route exact path="/search/:query" element={<SearchResult></SearchResult>} />
           <Route exact path="/addRecipe" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
+          <Route exact path="/editRecipe/:id" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
           <Route exact path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}/>
 
         </Routes>

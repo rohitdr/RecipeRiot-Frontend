@@ -4,6 +4,7 @@ import AuthContext from '../Context/AuthContext'
 import Pagination from '../Components/Pagination'
 import { useUserRecipes } from '../Hooks/useUserRecipes'
 import { useNavigate } from 'react-router-dom'
+import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
 
 export default function Recipe() {
 const {Me}=useContext(AuthContext)
@@ -13,7 +14,10 @@ const {data,isLoading}=useUserRecipes(page,Me)
   return (
 <section className='max-w-7xl mx-auto'>
 <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8">
-  {data?.recipes?.map((recipe) => (
+  {isLoading && [...Array(10)].map((_,index)=>  <div key={index}  className="w-full max-w-[280px] mx-auto">
+            <RecipeSkeleton  />
+    </div>)}
+  {!isLoading && data &&data?.recipes?.map((recipe) => (
     <div key={recipe._id} className='w-full max-w-[280px] mx-auto'>
         <RecipeItem  recipe={recipe} edit="true"/>
         </div>

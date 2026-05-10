@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 
 const useRecipe=(id,getrecipeByid)=>{
-    console.log(id)
+  
 return useQuery({
     queryKey:["recipe",id],
     queryFn:()=>{

@@ -1,7 +1,7 @@
 
 import { FaStar } from "react-icons/fa";
 import { motion } from "framer-motion";
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Hero from "../RecipeDetail/Hero";
 import Ingridients from "../RecipeDetail/Ingridients";
 import Nutrients from "../RecipeDetail/Nutrients";
@@ -12,15 +12,14 @@ import { useParams } from "react-router-dom";
 import useRecipe from "../Hooks/useRecipe";
 import RecipeContext from "../Context/RecipeContext";
 import DietLabel from "../RecipeDetail/DietLabel";
+import useCommnets from "../Hooks/useComments";
 
 export default function RecipeDetails() {
   const {getRecipeById}=useContext(RecipeContext)
       const {recipeId}=useParams()
       const {data,isLoading}=useRecipe(recipeId,getRecipeById)
-      useEffect(()=>{
-        if(!data) return
-console.log(data)
-      },[data])
+    
+   
  if(isLoading) return "hood"
   return (
     <div className='relative min-h-screen overflow-hidden bg-[#06070d] text-white'>
@@ -33,7 +32,7 @@ console.log(data)
 
 <section className="mx-auto max-w-7xl px-6 ">
 <ReviewForm></ReviewForm>
-<Comments></Comments>
+<Comments ></Comments>
 </section>
 <section className="max-w-7xl mx-auto px-6 py-24 text-center">
   <h1 className="text-3xl sm:text-5xl font-black text-white">

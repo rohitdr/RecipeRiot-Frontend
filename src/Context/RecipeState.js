@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 import RecipeContext from "./RecipeContext";
 import api from "../Api/ApiInstances";
-import { getFeaturedRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, getTrendingRecipeApi, searchRecipeApi } from "../Api/RecipeApi";
-import loginApi from "../Api/UserApi";
+import { addRecipeApi, editRecipeApi, getFeaturedRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, getTrendingRecipeApi, searchRecipeApi } from "../Api/RecipeApi";
+import loginApi, { uploadCloudinaryApi } from "../Api/UserApi";
 export default function RecipeState(props) {
   /* Setting the state of the component. */
   const [LikedRecipe, setLikedRecipe] = useState({});
@@ -81,6 +81,48 @@ const [latestrecipeloading,setlatestrecipeloading]=useState(false)
   const getFeaturedRecipe= async ()=>{
      const response = await getFeaturedRecipeApi();
      return response.data
+  }
+  const addRecipe=async(data,file)=>{
+ try{
+
+         const formData=new FormData() 
+         formData.append("file",file)
+       formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
+        const res = await uploadCloudinaryApi(formData);
+       let image = {
+        publicId: res.data.public_id,
+        url: res.data.secure_url,
+      };
+      const recipe = { ...data,image }
+    
+     const response= await addRecipeApi(recipe)
+      return response.data
+    }catch (error){
+      console.log(error)
+      throw error
+    }
+  }
+  const editRecipe=async(id,data,file)=>{
+ try{
+      if(file){
+  const formData=new FormData() 
+         formData.append("file",file) 
+       formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
+        const res = await uploadCloudinaryApi(formData);
+       let image = {
+        publicId: res.data.public_id,
+        url: res.data.secure_url,
+      };
+      const recipe = { ...data,image }
+      const response= await editRecipeApi(id,recipe)
+       return response.data
+      }
+       const response= await editRecipeApi(id,data)
+       return response.data
+    }catch (error){
+      console.log(error)
+      throw error
+    }
   }
 
 
@@ -1441,7 +1483,9 @@ namerecipeloading,
         getRecipeById,
         searchRecipe,
         getTrendingRecipe ,
-        getFeaturedRecipe
+        getFeaturedRecipe,
+        addRecipe,
+        editRecipe
   }),[
     namerecipeloading,
         diettype,
@@ -1531,7 +1575,9 @@ namerecipeloading,
         getRecipeById,
         searchRecipe,
         getTrendingRecipe,
-        getFeaturedRecipe
+        getFeaturedRecipe,
+        addRecipe,
+        editRecipe
   ])
   return (
 

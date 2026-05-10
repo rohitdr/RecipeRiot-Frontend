@@ -27,6 +27,7 @@ import SearchResult from "./Components/SearchResult.js";
 import PublicRoute from "./Components/PublicRoute.js";
 import ProtectedRoute from "./Components/ProtectedRoute.js";
 import ForgetPassword from "./Components/ForgetPassword.js";
+import About from "./Components/About.js";
 function App() {
 let location = useLocation()
 const hideLayoutRoutes=['/login','/signUp','/forgetPassword']
@@ -62,6 +63,7 @@ const hideLayout = hideLayoutRoutes.includes(location.pathname)
           <Route exact path="/addRecipe" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
           <Route exact path="/editRecipe/:id" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
           <Route exact path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}/>
+          <Route exact path="/about" element={<About></About>}/>
 
         </Routes>
     </>

@@ -45,6 +45,7 @@ return "Password Length Cannot be less than 8"
   }
   const handleLogoutClick=()=>{
     localStorage.removeItem("accessToken")
+    setOpen(false)
         navigate('/home')
     toast.info("You have been loggout out successfully")
   queryClient.removeQueries({
@@ -64,7 +65,7 @@ queryClient.removeQueries({
    initial={{opacity:0,y:30}}
    animate={{opacity:1,y:0}}
    exit={{opacity:0,y:30}}
-  className='max-w-7xl mx-auto'
+  className='max-w-7xl mx-auto p-2'
    >
 
 
@@ -202,7 +203,7 @@ queryClient.removeQueries({
           Delete Account
         </button>
       </div>
-<LogoutConfirmDialog open={open} setOpen={setOpen}></LogoutConfirmDialog>
+<LogoutConfirmDialog open={open} setOpen={setOpen} handleLogout={handleLogoutClick}></LogoutConfirmDialog>
 
     </div>
   </motion.div>

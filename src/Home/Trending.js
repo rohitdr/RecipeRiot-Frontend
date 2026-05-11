@@ -8,7 +8,6 @@ import RecipeSkeleton from "../Components/Skeletons/RecipeSkeleton";
 export default function Trending() {
   const {getTrendingRecipe}=useContext(RecipeContext)
     const {data,isLoading}=useTrendingRecipe(getTrendingRecipe)
-  
   return (
     <section className="px-6 py-10 sm:py-20 text-white ">
 
@@ -25,21 +24,21 @@ export default function Trending() {
             </p>
           </div>
 
-          <button className="text-sm text-orange-400 hover:text-orange-300 transition">
+          {/* <button className="text-sm text-orange-400 hover:text-orange-300 transition">
             View all →
-          </button>
+          </button> */}
         </div>
 
         {/* Cards */}
-        <div className="flex gap-8 overflow-x-auto overflow-y-hidden  no-scrollbar">
-  {isLoading && [...Array(7)].map((_,index)=>{return <div   className="w-64 h-80 flex-shrink-0"><RecipeSkeleton key={index}/></div> })}
+        <div className="flex gap-8 overflow-x-auto overflow-y-hidden no-scrollbar">
+  {isLoading && [...Array(7)].map((_,index)=>{return <div  key={index}   className="w-64 h-80 flex-shrink-0"><RecipeSkeleton/></div> })}
           {!isLoading && data && data?.recipes.map((recipe,index) => (
             <motion.div
               key={recipe._id}
-              key={recipe._id} initial={{opacity:0,y:100,x:40}} whileInView={{opacity:1,y:0,x:0}} transition={{delay:index*0.1}} viewport={{once:true}}
+               initial={{opacity:0,y:100,x:40}} whileInView={{opacity:1,y:0,x:0}} transition={{delay:index*0.1}} viewport={{once:true}}
               className="w-64 h-80 flex-shrink-0"
             >
-              <RecipeItem  recipe={recipe}/>
+              <RecipeItem  recipe={recipe} />
             </motion.div>
           ))}
 

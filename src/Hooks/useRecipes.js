@@ -5,6 +5,8 @@ return useQuery({
     queryFn:()=>{
         return getRecipes(categoryName,categoryType,page,sort)
     },
+    staleTime: 1000 * 60 * 5,
+  gcTime: 1000 * 60 * 10,
       keepPreviousData: true,
     placeholderData: keepPreviousData
 

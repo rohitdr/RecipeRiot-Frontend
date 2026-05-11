@@ -3,3 +3,7 @@
     transform: translateX(100%);
   }
 }
+body {
+  background: #06070d;
+  color: white;
+}

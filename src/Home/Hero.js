@@ -5,7 +5,6 @@ import RecipeItem from '../Components/RecipeItem'
 import { useNavigate } from 'react-router-dom'
 export default function Hero() {
   const Navigate=useNavigate()
-
   return (
   <section>
     <div className=' relative min-h-screen flex justify-center items-center overflow-hidden'>
@@ -13,6 +12,7 @@ export default function Hero() {
         <img  
          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920"
          alt="Food"
+           loading='lazy'
          className='h-full w-full object-cover' />
          
        </div>
@@ -37,7 +37,7 @@ export default function Hero() {
       </div>
       </div>
       <div>
-        <form action=""></form>
+     
       </div>
     </motion.div>  
     

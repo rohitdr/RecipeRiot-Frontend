@@ -5,6 +5,7 @@ export default function Hero({recipe}) {
     <section className='relative h-screen flex overflow-hidden items-end py-2 '>
        
          <motion.img
+           loading='lazy'
             initial={{ scale: 1.15 }}
             animate={{ scale: 1 }}
              transition={{ duration: 1.5 }}

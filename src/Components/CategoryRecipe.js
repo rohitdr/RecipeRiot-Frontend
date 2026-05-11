@@ -8,27 +8,31 @@ import RecipeContext from '../Context/RecipeContext'
 import RecipeSkeleton from './Skeletons/RecipeSkeleton'
 import { toast } from 'sonner'
 import Pagination from './Pagination'
+import NoRecipesFound from './NoResult'
+import { toCamelCase } from '../Utility/Utility'
+import usePrefetch from '../Hooks/PrefetchHooks/usePrefetch'
+
 export default function CategoryRecipe() {
   const {categoryName,categoryType}=useParams()
   const {getRecipeByCategory}=useContext(RecipeContext)
-
   const [sort,setSort]=useState("Newest")
+const {prefetchRecipe}=usePrefetch()
   const sortOptions=["Newest","Top Rated","Trending","Mintue Meals","Low Calories","High Calories"]
  const [page,setPage]=useState(1)
  useEffect(()=>{
 setPage(1)
+setSort("Newest")
  },[categoryName,categoryType])
-  const toCamelCase=(str)=> {
-  return str
-    .split(' ')
-    .map((word, index) => {
-      if (index === 0) return word.toLowerCase();
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join('');
-}
+
   const {data,isLoading,isFetching}=useRecipes(categoryName.toLocaleLowerCase(),toCamelCase(categoryType),getRecipeByCategory,page,toCamelCase(sort))
-const isMobile=window.innerWidth<640
+ useEffect(()=>{
+  if(page<data?.totalPages){
+    
+    prefetchRecipe({categoryName:categoryName.toLocaleLowerCase(),categoryType:toCamelCase(categoryType),getRecipes:getRecipeByCategory,page:page+1,sort:toCamelCase(sort)})
+  }
+ },[categoryName,categoryType,sort,page])
+
+  const isMobile=window.innerWidth<640
 const container={
   hidden:{opacity:1},
   show:{opacity:1,
@@ -73,7 +77,7 @@ const item={
 </div>
  <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>
      
-  {isLoading && [...Array(10)].map((_,index) => (
+  {!data && [...Array(10)].map((_,index) => (
             <motion.div
             variants={item} 
               key={index}
@@ -83,7 +87,7 @@ const item={
             </motion.div>
           ))}
       
- {!isLoading&& data && data.recipe.map((recipe,index) => (
+ {data?.recipe?.length > 0 && data.recipe.map((recipe,index) => (
             <motion.div
                variants={item} 
             initial={{opacity:0}}
@@ -96,6 +100,9 @@ const item={
               <RecipeItem  recipe={recipe} />
             </motion.div>
           ))}
+       { data?.recipe?.length === 0 && (
+  <NoRecipesFound />
+)}
  </motion.div>
  <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>
 {/* <div className="flex justify-center py-10 px-3">

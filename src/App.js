@@ -1,7 +1,6 @@
-import "./App.css";
-
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-
+import { lazy, Suspense, useContext } from "react";
+import "./App.css";
 import Login from "./Components/Login";
 import LoadingBar from "react-top-loading-bar";
 
@@ -16,23 +15,31 @@ import SignUp from "./Components/SignUp";
 
 
 
-import Profile from "./Profile/Profile.js";
-
 import Navbar from "./Components/Navbar.js";
-import CategoryRecipe from "./Components/CategoryRecipe.js";
-import RecipeDetails from "./Components/RecipeDetails.js";
-import AddRecipe from "./AddRecipe.js";
 import { Toaster } from "sonner";
-import SearchResult from "./Components/SearchResult.js";
 import PublicRoute from "./Components/PublicRoute.js";
 import ProtectedRoute from "./Components/ProtectedRoute.js";
-import ForgetPassword from "./Components/ForgetPassword.js";
-import About from "./Components/About.js";
+
+
+import AuthContext from "./Context/AuthContext.js";
+import AppLoader from "./Components/AppLoader.js";
+
+
+const CategoryRecipe = lazy(()=>import("./Components/CategoryRecipe.js"))
+const RecipeDetails=lazy(()=>import("./Components/RecipeDetails.js"))
+const AddRecipe =lazy(()=>import("./AddRecipe.js"))
+const InternalServerError=lazy(()=>import("./Components/InternalServerError.js"))
+const Profile=lazy(()=>import("./Profile/Profile.js"))
+const ForgetPassword=lazy(()=>import("./Components/ForgetPassword.js"))
+const About=lazy(()=>import("./Components/About.js"))
+const SearchResult=lazy(()=>import("./Components/SearchResult.js"))
+
 function App() {
+  const {isServerDown}=useContext(AuthContext)
 let location = useLocation()
 const hideLayoutRoutes=['/login','/signUp','/forgetPassword']
 const hideLayout = hideLayoutRoutes.includes(location.pathname)
-
+if(isServerDown) return <InternalServerError></InternalServerError>
   return (
     <>
     
@@ -50,7 +57,7 @@ const hideLayout = hideLayoutRoutes.includes(location.pathname)
     }
   }}
 />
-   
+         <Suspense fallback={<AppLoader></AppLoader>}>
         <Routes>
           <Route exact path="/login" element={<PublicRoute><Login></Login></PublicRoute>} />
           <Route exact path="/forgetPassword" element={<PublicRoute><ForgetPassword></ForgetPassword></PublicRoute>} />
@@ -65,7 +72,7 @@ const hideLayout = hideLayoutRoutes.includes(location.pathname)
           <Route exact path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}/>
           <Route exact path="/about" element={<About></About>}/>
 
-        </Routes>
+        </Routes></Suspense>
     </>
   );
 }

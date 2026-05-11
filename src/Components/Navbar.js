@@ -28,23 +28,41 @@ import {
   FaFlag,
   FaPepperHot,
   FaWineGlass,
+  FaCross,
 } from "react-icons/fa6";
+import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
-
+import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
+import usePrefetch from "../Hooks/PrefetchHooks/usePrefetch";
+import { toCamelCase } from "../Utility/Utility";
+import RecipeContext from "../Context/RecipeContext";
 export default function Navbar() {
   const {Me}=useContext(AuthContext)
+  const {getRecipeByCategory}=useContext(RecipeContext)
+  const {prefetchRecipe}=usePrefetch()
+  const {handleHover}=useHoverPrefetch(prefetchRecipe)
   const [openCategory, setOpenCategory] = useState(false);
+  const [mobileMenuItems,setMobileMenuItems]=useState(["Home",  "Categories","SignUp","Login", "About"])
   const [openMenu, setOpenMenu] = useState(false);
   const [search,setSearch]=useState("")
   const navigate = useNavigate()
 
   const menuItems = ["Home",  "Categories", "About"];
+  useEffect(()=>{
+if(Me){
+setMobileMenuItems(["Home",  "Categories","Profile", "About"])
+}
+else{
+  setMobileMenuItems(["Home",  "Categories","SignUp","Login", "About"])
+}
 
+  },[Me])
   const categoriesItems = [
     {
       title: "Meal Type",
@@ -123,6 +141,11 @@ useEffect(() => {
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
+const handleItemsClick=(title,type)=>{
+  setOpenMenu(false)
+  prefetchRecipe({categoryName:title.toLocaleLowerCase(),categoryType:toCamelCase(type),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})
+  navigate(`/category/${title}/${type}`)
+}
   return (
 <nav
   className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
@@ -174,6 +197,7 @@ useEffect(() => {
                               {category.items.map((sub, j) => (
                                 <li
                                   key={j}
+                                  onMouseEnter={()=>{handleHover({categoryName:category.title.toLocaleLowerCase(),categoryType:toCamelCase(sub.name),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})}}
                                   onClick={()=>{navigate(`/category/${category.title}/${sub.name}`)}}
                                   className="flex items-center gap-2 text-sm text-white/70 hover:text-orange-400 cursor-pointer transition"
                                 >
@@ -233,7 +257,7 @@ useEffect(() => {
         </div>
       {/* profileImage */}
          <button onClick={()=>{navigate('/profile')}}>
-          <img src={Me?.profileImage?.url || "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg"} className="object-cover h-10 w-10 border-2 shadow-2xl hover:scale-105 border-white rounded-full" alt="user Image" />
+          <img   loading='lazy' src={Me?.profileImage?.url || "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg"} className="object-cover h-10 w-10 border-2 shadow-2xl hover:scale-105 border-white rounded-full" alt="user Image" />
         </button>
         </div>
         
@@ -242,7 +266,7 @@ useEffect(() => {
 
         {/* MOBILE MENU BTN */}
         <div className="lg:hidden" onClick={() => setOpenMenu(!openMenu)}>
-          <GiHamburgerMenu className="text-white text-xl" />
+          {!openMenu?<GiHamburgerMenu className="text-white text-xl" />: <IoMdClose className="text-white text-xl" />}
         </div>
       </div>
 
@@ -257,12 +281,12 @@ useEffect(() => {
           >
             <ul className="flex flex-col gap-4 text-white/80">
 
-              {menuItems.map((item) => {
+              {mobileMenuItems.map((item) => {
                 if (item !== "Categories") {
                   return (
-                    <li key={item} className="hover:text-orange-400 cursor-pointer">
+                    <Link  onClick={() => setOpenMenu(false)} to={`/${item.toLocaleLowerCase()}`} key={item} className="hover:text-orange-400 cursor-pointer">
                       {item}
-                    </li>
+                    </Link>
                   );
                 }
 
@@ -270,7 +294,7 @@ useEffect(() => {
                   <div key="categories">
                     <div
                       onClick={() => setOpenCategory(!openCategory)}
-                      className="flex justify-between cursor-pointer hover:text-orange-400"
+                      className="flex justify-between cursor-pointer hover:text-orange-400 "
                     >
                       Categories
                       <span>{openCategory ? "-" : "+"}</span>
@@ -282,17 +306,17 @@ useEffect(() => {
                           initial={{ height: 0 }}
                           animate={{ height: "auto" }}
                           exit={{ height: 0 }}
-                          className="overflow-hidden mt-2"
+                          className="overflow-y-auto max-h-60 mt-2 pl-2e  "
                         >
                           {categoriesItems.map((cat, i) => (
-                            <div key={i} className="mb-3">
+                            <div key={i} className="mb-3 ">
                               <h4 className="text-sm font-semibold text-white mb-1">
                                 {cat.title}
                               </h4>
 
                               <ul className="pl-3 space-y-1">
                                 {cat.items.map((sub, j) => (
-                                  <li key={j} className="text-sm text-white/70">
+                                  <li    onClick={()=>{handleItemsClick(cat.title,sub.name)}} key={j} className="text-sm text-white/70">
                                     {sub.name}
                                   </li>
                                 ))}

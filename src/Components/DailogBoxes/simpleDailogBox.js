@@ -1,11 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function LogoutConfirmDialog({ open, setOpen }) {
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    console.log("Logged out");
-    setOpen(false);
-  };
+export default function LogoutConfirmDialog({ open, setOpen,handleLogout }) {
 
   return (
     <AnimatePresence>

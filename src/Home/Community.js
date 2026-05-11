@@ -58,6 +58,8 @@ export default function Community() {
               <div className="p-[2px] rounded-full bg-gradient-to-tr from-orange-400 to-pink-500">
                 <img
                   src={user.img}
+                    loading='lazy'
+                    alt="user"
                   className="w-14 h-14 rounded-full object-cover border-2 border-white/20"
                 />
               </div>
@@ -80,6 +82,8 @@ export default function Community() {
               {/* Image */}
               <img
                 src={post.image}
+                  loading='lazy'
+                  alt="post-image"
                 className="w-24 h-24 rounded-xl object-cover"
               />
 

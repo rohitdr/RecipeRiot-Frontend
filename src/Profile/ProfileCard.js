@@ -35,7 +35,7 @@ export default function ProfileCard({user}) {
         className='flex flex-col gap-2 items-center bg-white/[0.03] border border-white/10 py-8 rounded-3xl h-fit'>
             <div className='relative w-fit cursor-pointer '>
               <label htmlFor="profile-image">
-         <img src={preview ||user?.profileImage?.url ||"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"}  className="w-32 h-32 cursor-pointer rounded-full object-cover border-4 border-orange-500" alt="User Image" loading='lazy' />
+         <img src={preview ||user?.profileImage?.url ||"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"}   loading='lazy'  className="w-32 h-32 cursor-pointer rounded-full object-cover border-4 border-orange-500" alt="User Image" loading='lazy' />
            <button className="absolute bottom-2 right-2 bg-orange-500 p-3 rounded-full text-black">
               {userImageMutation.isPending && <FaSpinner className='animate-spin text-white'></FaSpinner>}{!userImageMutation.isPending &&(!preview?<FaCamera />:<FaUpload onClick={handleClick}/>)}
                <input type='file' accept="image/*" id='profile-image' onChange={handleChange} hidden/>

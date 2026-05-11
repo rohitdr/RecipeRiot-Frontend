@@ -1,45 +1,66 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { FaSearch, FaUtensils } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-import AnimatedPage from "./AnimatedPage";
-export default function NoResult(props) {
+export default function NoRecipesFound() {
+  const navigate = useNavigate();
+
   return (
-    <>
-      <AnimatedPage>
-        <section className="">
-          <div
-            className="px-4 py-5 px-md-5 text-center text-lg-start"
-            style={{ backgroundColor: "hsl(0, 0%, 96%)" }}
-          >
-            <div className="container">
-              <div className="row gx-lg-5 align-items-center">
-                <div className="col-lg-6 mb-5 mb-lg-0">
-                  <h1 className="my-5 display-3 fw-bold ls-tight text-primary">
-                    {props.heading}
-                    <br />
-                    <span className=""></span>
-                  </h1>
-                  <p style={{ color: "hsl(217, 10%, 50.8%)" }}>
-                    {props.paragraph}
-                  </p>
-                  <div className="d-flex justify-content-center">  {props.button}</div>
-                
-                </div>
+    <section className="min-h-screen bg-[#06070d] text-white flex items-center justify-center px-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-lg text-center"
+      >
+        {/* Icon */}
+        <motion.div
+          animate={{
+            y: [0, -10, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+          }}
+          className="w-24 h-24 mx-auto rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 text-4xl"
+        >
+          <FaUtensils />
+        </motion.div>
 
-                <div className="col-lg-6 mb-5 mb-lg-0">
-                  <div className="card box_decrease_size_animation_for_recipeitem">
-                    <div className="card-body py-5 px-md-5 ">
-                      <img
-                        src={props.img}
-                        alt="result not found"
-                        className=""
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </AnimatedPage>
-    </>
+        {/* Heading */}
+        <h1 className="text-3xl md:text-5xl font-bold mt-6">
+          No Recipes Found 🍽️
+        </h1>
+
+        {/* Description */}
+        <p className="text-gray-400 mt-4 leading-relaxed">
+          We searched the kitchen but couldn’t find any matching recipes.
+          Try searching with another keyword or explore all recipes.
+        </p>
+
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <button
+            onClick={() => navigate("/")}
+            className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 transition font-semibold"
+          >
+            Explore Recipes
+          </button>
+
+          <button
+            onClick={() => navigate("/addRecipe")}
+            className="px-6 py-3 rounded-xl border border-white/20 hover:border-orange-400 transition"
+          >
+            Add Your Recipe
+          </button>
+        </div>
+
+        {/* Small Search Tip */}
+        <div className="mt-10 text-sm text-gray-500 flex items-center justify-center gap-2">
+          <FaSearch />
+          Try searching: Pasta, Indian, Healthy, Dessert
+        </div>
+      </motion.div>
+    </section>
   );
 }

@@ -3,11 +3,22 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 export default function Footer() {
-  const Navigate=useNavigate()
+  const navigate=useNavigate()
+ const exploreList=[
+  {name:"Home",link:"/home"},
+  {name:"Profile",link:"/profile"},
+  {name:"Category",link:"/category/Meal%20Type/Breakfast"},
+  {name:"About",link:"/about"}
+ ]
+ const profileList=[
+  {name:"My Portfolio",link:"https://rohit-portfolio-mern.vercel.app/"},
+  {name:"RecipeRiot",link:"https://recipe-riot-frontend.vercel.app/"},
+  {name:"ChatNova",link:"https://chat-nova-frontend-4nna.vercel.app/"},
+  {name:"GitHun",link:"https://github.com/rohitdr"}
+ ]
   return (
   <section className= ' relative text-white px-8 sm:px-10 py-10 items-center overflow-hidden'>
-    
-   
+
        {/* 🌈 Glow Effects */}
        <div className="absolute bottom-[-100px] left-[-100px] w-[300px] h-[300px] bg-orange-500/10 blur-[140px] rounded-full"></div>
        <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] bg-pink-500/10 blur-[140px] rounded-full"></div>
@@ -27,20 +38,19 @@ export default function Footer() {
  <div>
              <h3 className="font-semibold mb-3">Explore</h3>
              <ul className="space-y-2 text-white/60 text-sm">
-               <li className="hover:text-white cursor-pointer">Recipes</li>
-               <li className="hover:text-white cursor-pointer">Trending</li>
-              <li className="hover:text-white cursor-pointer">Categories</li>
-               <li className="hover:text-white cursor-pointer">Community</li>
+             {exploreList.map(({name,link},index)=>{
+  return <li className="hover:text-white cursor-pointer" key={index} onClick={()=>{navigate(link)}}>{name}</li>
+             })}
+           
              </ul>
            </div>
                    <div>
-             <h3 className="font-semibold mb-3">Company</h3>
+             <h3 className="font-semibold mb-3">Rohit Kumar</h3>
              <ul className="space-y-2 text-white/60 text-sm">
-               <li className="hover:text-white cursor-pointer">About</li>
-               <li className="hover:text-white cursor-pointer">Contact</li>
-               <li className="hover:text-white cursor-pointer">Privacy Policy</li>
-               <li className="hover:text-white cursor-pointer">Terms</li>
-             </ul>
+                {profileList.map(({name,link},index)=>{
+  return <li className="hover:text-white cursor-pointer" key={index} onClick={()=>{window.open(link,"_blank")}}>{name}</li>
+             })}
+              </ul>
           </div>
       
        <div>
@@ -52,7 +62,7 @@ export default function Footer() {
              <motion.button
                whileHover={{ scale: 1.05 }}
                whileTap={{ scale: 0.95 }}
-               onClick={()=>Navigate(`/addRecipe`)}
+               onClick={()=>navigate(`/addRecipe`)}
                className="px-5 py-2 rounded-lg text-sm font-semibold
                bg-gradient-to-r from-orange-500 to-pink-500"
              >

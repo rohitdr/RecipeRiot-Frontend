@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AuthContext from './AuthContext'
 import {getLoggedUserApi, loginApi, signUpApi, uploadCloudinaryApi, userLikeRecipeApi, userUpdateApi,} from '../Api/UserApi'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { loginMutation } from '../Mutations/userMutations'
 export default function AuthState({children}) {
   const queryClient=useQueryClient()
+  const [isServerDown,setIsServerDown]=useState(false)
     const Navigate = useNavigate()
     const handleError =(error)=>{
   if(!error.response){
@@ -16,7 +17,7 @@ export default function AuthState({children}) {
   }
   const status = error.response?.status;
    if(status>=500){
-    // setIsServerDown(true)
+    setIsServerDown(true)
    }
    else if(status === 401 || status === 403){
    toast.error("Session expired. Please Login again")
@@ -66,7 +67,7 @@ const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser)
 
   return (
 
- <AuthContext.Provider value={{Me,isMeLoading,handleError,updateProfileImage}}>
+ <AuthContext.Provider value={{Me,isMeLoading,handleError,updateProfileImage,isServerDown}}>
     {children}
  </AuthContext.Provider>
       

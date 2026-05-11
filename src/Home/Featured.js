@@ -36,15 +36,15 @@ export default function Featured() {
   {/* BIG CARD */}
  <div className="col-span-2 row-span-2">
    {isLoading &&  <RecipeSkeleton /> }
-    {!isLoading && data && <RecipeItem size="feautedLarge" recipe={data?.recipes[0]} />}
+    {!isLoading && data && <RecipeItem  size="feautedLarge" recipe={data?.recipes[0]} />}
   </div>
 
   {/* SMALL CARDS */}
   {isLoading && [...Array(4)].map((_,index)=>{return <RecipeSkeleton key={index}/> })}
   {!isLoading && data && data?.recipes.slice(1).map((recipe) => (
-    <div className="">
+    <div className="" key={recipe._id}>
         
-        <RecipeItem size="feautedNormal" key={recipe._id} recipe={recipe} />
+        <RecipeItem size="feautedNormal"  recipe={recipe} />
 
     </div>
   ))}

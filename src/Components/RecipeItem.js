@@ -7,6 +7,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useLikeMutation } from "../Mutations/userMutations";
 import DeleteRecipeDialog from "./DailogBoxes/DangerDailogBox";
 import { useRecipeDeleteMutation } from "../Mutations/RecipeMutation";
+import usePrefetchRecipe from "../Hooks/PrefetchHooks/usePrefetchRecipe";
+import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
+import useIsMobile from "../Utility/useIsMobile";
 
 export default function RecipeItem({recipe,size="normal",edit=null, mode}) {
 const navigate=useNavigate()
@@ -14,6 +17,9 @@ const {Me,likeRecipe,handleError}=useContext(AuthContext)
 const recipeDeleteMutation=useRecipeDeleteMutation(handleError)
 const likeRecipeMutation=useLikeMutation(handleError)
 const [openDailogBox,setOpenDailogBox]=useState(false)
+const {prefetchRecipe}=usePrefetchRecipe()
+const {handleHover}=useHoverPrefetch(prefetchRecipe)
+const isMobile=useIsMobile()
 const sizeClass={
   normal:{
     footerPadding:"",
@@ -34,14 +40,17 @@ const sizeClass={
      likePadding:"px-4 py-4"
   }
 }
-
+const handleEditMouseEnter=()=>{
+if(Me?._id===recipe?.user?._id){
+handleHover(recipe._id)
+}
+}
 const handleRecipeDeleteClick=()=>{
 recipeDeleteMutation.mutate(recipe._id,{
   onSuccess:()=>{
     setOpenDailogBox(false)
   }
 })
-
 }
 const handleLikeClick=()=>{
   if(!Me){
@@ -54,11 +63,24 @@ const isLiked = Me?.likedRecipes?.some(
   (liked) =>
     liked?._id === recipe?._id || liked === recipe?._id
 )
+const handleEditClick=()=>{
+  if(isMobile){
+    prefetchRecipe(recipe._id)
+  }
+  navigate(`/editRecipe/${recipe._id}`)
+}
+const handleViewClick=()=>{
+  if(isMobile){
+    prefetchRecipe(recipe._id)
+  }
+ navigate(`/recipePage/${recipe._id}`)
+}
   return (
     <motion.div
       initial="rest"
       whileHover="hover"
       animate="rest"
+      onMouseEnter={()=>{handleHover(recipe._id)}}
       className={`relative w-full aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer group`}
     >
       {/* Image */}
@@ -127,6 +149,7 @@ const isLiked = Me?.likedRecipes?.some(
                 src={recipe?.user?.profileImage?.url ||  "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg" }
                 className="w-6 h-6 rounded-full border border-orange-400"
                 alt="Recipe User"
+                  loading='lazy'
               />
               <span className="text-[11px] text-gray-300">
                 {recipe?.user?.username || "Rohit"}
@@ -137,7 +160,7 @@ const isLiked = Me?.likedRecipes?.some(
           {/* Button */}
          {mode !=="view" && <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={()=>{navigate(`/recipePage/${recipe._id}`)}}
+            onClick={handleViewClick}
             className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
           >
             View →
@@ -156,7 +179,8 @@ const isLiked = Me?.likedRecipes?.some(
           {/* Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
-            onClick={()=>{navigate(`/editRecipe/${recipe._id}`)}}
+            onClick={handleEditClick}
+            onMouseEnter={handleEditMouseEnter}
             className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
           >
           Edit

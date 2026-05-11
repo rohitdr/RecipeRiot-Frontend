@@ -31,6 +31,7 @@ export default function Comments() {
   <img
             src={item?.user?.profileImage?.url}
             alt="User"
+              loading='lazy'
             className="w-12 h-12 rounded-full object-cover"
           />
             </div>

@@ -9,7 +9,7 @@ import Footer from '../Home/Footer';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black ">
       <Hero />
       <SearchSection></SearchSection>
       <Trending />

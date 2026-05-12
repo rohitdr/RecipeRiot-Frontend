@@ -1,70 +1,153 @@
-# Getting Started with Create React App
+# 🍽️ RecipeRiot Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern and responsive recipe discovery UI where users can explore, search, and interact with recipes seamlessly.
 
-## Available Scripts
+## 🚀 Overview
 
-In the project directory, you can run:
+RecipeRiot frontend provides an intuitive user interface for browsing recipes, interacting with content, and managing favorites.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ⚙️ Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* ⚛️ React
+* 🌐 Fetch API (Data fetching)
+* 🎨 Bootstrap (UI styling)
+* 🎞️ Framer Motion (Animations)
+* ⏳ React Top Loading Bar (Progress indicator)
+* ♾️ React Infinite Scroll (Lazy loading content)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ✨ Features
 
-### `npm run build`
+* 🔍 Search recipes by keyword
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* 🧭 Category-based filtering
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* ♾️ Infinite scroll for seamless browsing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* ⏳ Top loading bar for better UX feedback
 
-### `npm run eject`
+* ❤️ Like & save favorite recipes
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* 💬 Comment and rating system
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* 📄 Detailed recipe page (ingredients & instructions)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* 🛠️ Admin Panel
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  * Manage recipes (Add / Update / Delete)
+  * Manage users (View / Control access)
+  * View platform statistics
 
-## Learn More
+* 👤 User Profile
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  * Update profile details
+  * Manage personal data
+  * View liked recipes
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* 🎞️ Smooth animations using Framer Motion
 
-### Code Splitting
+* 📱 Fully responsive UI
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## 🎥 Demo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+[![Watch Demo](https://res.cloudinary.com/do2twyxai/image/upload/v1776501406/RecipeRiot_a7yxem.png)](https://youtu.be/UGOtACSJBls)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📸 Screenshots
 
-### Advanced Configuration
+### 🔍 Search Recipes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Search](https://res.cloudinary.com/do2twyxai/image/upload/v1776501406/Search_o1ck9o.png)
 
-### Deployment
+### 🛠️ Admin Panel
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Admin Panel](https://res.cloudinary.com/do2twyxai/image/upload/v1776501405/AdminPanel_vewg1z.png)
 
-### `npm run build` fails to minify
+### ❤️ Favorite Recipes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Favorite](https://res.cloudinary.com/do2twyxai/image/upload/v1776501405/Favorite_ycunvz.png)
+
+### 🍽️ Recipe Details
+
+![Recipe Item](https://res.cloudinary.com/do2twyxai/image/upload/v1776501405/RecipeItem_u1wra6.png)
+
+### ⭐ Comments & Ratings
+
+![Rating](https://res.cloudinary.com/do2twyxai/image/upload/v1776501404/Comment_Rating_xy9ywp.png)
+
+
+
+## 📁 Folder Structure
+
+```
+src/
+├── components/        # Reusable UI components
+│   └── pages/         # Page components (Home, Recipe, Admin, etc.)
+├── context/           # Global state management (Context API)
+├── App.jsx
+├── main.jsx
+```
+
+
+## 🔧 Environment Variables
+
+Create a `.env` file in the root directory:
+
+```
+REACT_APP_FETCH_API_START=your_api_base_url
+REACT_APP_ADMIN_EMAIL=your_admin_email
+```
+
+### 📌 Notes
+
+* All environment variables must start with `REACT_APP_`
+* Restart the development server after updating `.env`
+* Do not commit `.env` file to GitHub
+
+
+## ▶️ Getting Started
+
+```bash id="rr3"
+git clone https://github.com/your-username/RecipeRiot-Frontend.git
+cd RecipeRiot-Frontend
+npm install
+npm run start
+```
+
+
+## 🧠 Key Concepts
+
+* Component-based UI design
+* API integration using Fetch
+* State handling for user interactions
+* Dynamic filtering & search
+* Responsive layout with Bootstrap CSS
+
+## 🌐 Live Links
+
+- Frontend: https://recipe-riot-frontend.vercel.app/ 
+- Backend API: https://reciperiot-backend.onrender.com 
+## 🔗 Backend Repository
+
+👉 https://github.com/rohitdr/RecipeRiot-Backend.git
+
+## 📌 Note
+
+This project was initially developed as a single full-stack repository combining both frontend and backend.
+It has now been refactored into separate repositories for better scalability, maintainability, and cleaner architecture.
+
+Due to this restructuring, the current repository may have a limited commit history.
+
+👉 Original Monorepo: https://github.com/rohitdr/RecipeRiot.git
+
+
+## 👨‍💻 Author
+
+Rohit Kumar
+
+
+## ⭐ Support
+
+If you like this project, give it a ⭐ on GitHub!

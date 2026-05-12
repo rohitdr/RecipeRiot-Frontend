@@ -17,6 +17,7 @@ const {Me,likeRecipe,handleError}=useContext(AuthContext)
 const recipeDeleteMutation=useRecipeDeleteMutation(handleError)
 const likeRecipeMutation=useLikeMutation(handleError)
 const [openDailogBox,setOpenDailogBox]=useState(false)
+const [isOpen, setIsOpen] = useState(false);
 const {prefetchRecipe}=usePrefetchRecipe()
 const {handleHover}=useHoverPrefetch(prefetchRecipe)
 const isMobile=useIsMobile()
@@ -75,13 +76,20 @@ const handleViewClick=()=>{
   }
  navigate(`/recipePage/${recipe._id}`)
 }
+const handleOpen = () => {
+  setIsOpen(true);
+};
+
+const handleClose = () => {
+  setIsOpen(false);
+};
   return (
     <motion.div
-      initial="rest"
-      whileHover="hover"
-      animate="rest"
+initial="rest" whileHover="hover"  animate="rest"
       onMouseEnter={()=>{handleHover(recipe._id)}}
-      className={`relative w-full aspect-[4/5] rounded-2xl overflow-hidden cursor-pointer group`}
+      className={`relative w-full aspect-[4/5]
+  md:aspect-[3/4]
+  lg:aspect-[1/1] rounded-2xl overflow-hidden cursor-pointer group`}
     >
       {/* Image */}
       <motion.img
@@ -89,11 +97,7 @@ const handleViewClick=()=>{
         alt={recipe?.label}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover"
-        variants={{
-          rest: { scale: 1 },
-          hover: { scale: 1.15 }
-        }}
-        transition={{ duration: 0.5 }}
+     variants={{ rest: { scale: 1 }, hover: { scale: 1.15 } }} transition={{ duration: 0.5 }}
       />
 
       {/* Overlay */}
@@ -129,29 +133,25 @@ const handleViewClick=()=>{
       <div className="absolute bottom-0 w-full p-4">
         
         {/* Title */}
-        <h2 className={`text-white ${sizeClass[size].titleSize}  font-bold leading-tight`}>
+     <h2 className="text-white font-bold line-clamp-2 leading-tight text-[clamp(0.9rem,1.2vw,1.4rem)] ">
           {recipe?.label}
         </h2>
 
         {/* Reveal Section */}
-      {!edit && <motion.div
-          className="mt-2 flex justify-between items-center"
-          variants={{
-            rest: { opacity: 0, y: 20 },
-            hover: { opacity: 1, y: 0 }
-          }}
-          transition={{ delay: 0.1 }}
-        >
+      {!edit && <div className="
+  mt-2 flex justify-between items-center
+  opacity-100 md:opacity-0 md:translate-y-20 md:group-hover:translate-y-0 md:group-hover:opacity-100
+  transition-all duration-300
+">
           {/* User */}
-         
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-w-0">
               <img
                 src={recipe?.user?.profileImage?.url ||  "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg" }
-                className="w-6 h-6 rounded-full border border-orange-400"
+                className="w-6 h-6 rounded-full border border-orange-400 shrink-0"
                 alt="Recipe User"
                   loading='lazy'
               />
-              <span className="text-[11px] text-gray-300">
+              <span className="text-[11px] text-gray-300 truncate max-w-[80px] sm:max-w-[120px]">
                 {recipe?.user?.username || "Rohit"}
               </span>
             </div>
@@ -161,38 +161,65 @@ const handleViewClick=()=>{
          {mode !=="view" && <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={handleViewClick}
-            className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
+            className="shrink-0
+      text-[10px] sm:text-xs md:text-sm
+      px-2 sm:px-3 md:px-4
+      py-1 sm:py-1.5
+      rounded-full
+      bg-gradient-to-r
+      from-orange-500
+      to-pink-500
+      shadow-lg
+      shadow-orange-500/30
+      whitespace-nowrap"
           >
             View →
           </motion.button>}
-        </motion.div>}
-      {edit && <motion.div
-          className="mt-2 flex justify-between items-center"
-          variants={{
-            rest: { opacity: 0, y: 20 },
-            hover: { opacity: 1, y: 0 }
-          }}
-          transition={{ delay: 0.1 }}
-        >
-         
+        </div>}
+      {edit &&  <div className="
+  mt-2 flex justify-between items-center
+  opacity-100 md:opacity-0 md:translate-y-20 md:group-hover:translate-y-0 md:group-hover:opacity-100
+  transition-all duration-300
+">
 
           {/* Button */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={handleEditClick}
             onMouseEnter={handleEditMouseEnter}
-            className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-gradient-to-r from-orange-500 to-pink-500 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
+           className="shrink-0
+        text-[10px] sm:text-xs 
+      px-5 sm:px-3 
+      py-2 sm:py-1
+      rounded-full
+      bg-gradient-to-r
+      from-orange-500
+      to-pink-500
+      shadow-lg
+      shadow-orange-500/30
+      whitespace-nowrap"
+          
           >
           Edit
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={()=>{setOpenDailogBox(true)}}
-            className={`text-xs px-3 py-1 ${sizeClass[size].footerPadding} rounded-full bg-red-500 border border-red-500/30 shadow-lg shadow-orange-500/30 ${size==="large" && ""}`}
+            className="shrink-0
+      text-[10px] sm:text-xs 
+      px-5 sm:px-3 
+      py-2 sm:py-1
+      rounded-full
+      bg-gradient-to-r
+      from-orange-500
+      to-pink-500
+      shadow-lg
+      shadow-orange-500/30
+      whitespace-nowrap"
           >
            Delete
           </motion.button>
-        </motion.div>}
+        </div>}
         
       </div>
       <DeleteRecipeDialog open={openDailogBox} setOpen={setOpenDailogBox} handleDelete={handleRecipeDeleteClick} pending={recipeDeleteMutation.isPending}></DeleteRecipeDialog>

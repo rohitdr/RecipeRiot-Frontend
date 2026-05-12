@@ -8,8 +8,6 @@ import RecipeSkeleton from './Skeletons/RecipeSkeleton'
 import RecipeItem from './RecipeItem'
 import Pagination from './Pagination'
 import NoRecipesFound from './NoResult'
-
-
 export default function SearchResult() {
   const {searchRecipe}=useContext(RecipeContext)
   const {query}=useParams()
@@ -59,7 +57,7 @@ export default function SearchResult() {
             ))}
             {data && data?.recipe?.length===0 && <NoRecipesFound/>}
    </div>
- <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>
+ {data?.recipe?.length>0 &&<Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>}
    </div>
     </section>
   )

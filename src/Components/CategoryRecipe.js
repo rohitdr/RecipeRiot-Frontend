@@ -75,13 +75,13 @@ const item={
  })}
 
 </div>
- <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>
+ <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 px-4 '>
      
   {!data && [...Array(10)].map((_,index) => (
             <motion.div
             variants={item} 
               key={index}
-           className="w-full max-w-[280px] mx-auto"
+           className="w-full sm:max-w-[280px] mx-auto"
             >
             <RecipeSkeleton></RecipeSkeleton>
             </motion.div>
@@ -95,7 +95,7 @@ const item={
             transition={{duration:1}}
             viewport={{once:true}}
               key={recipe._id}
-           className="w-full max-w-[280px] mx-auto"
+           className="w-full sm:max-w-[280px] mx-auto"
             >
               <RecipeItem  recipe={recipe} />
             </motion.div>

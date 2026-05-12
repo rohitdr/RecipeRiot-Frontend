@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient, useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { changePasswordApi, forgetPasswordApi, loginApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
+import { changePasswordApi, forgetPasswordApi, loginApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
 export const useLoginMutation=(handleError)=>{
     const queryClient=useQueryClient()
     const navigate=useNavigate()
@@ -34,6 +34,34 @@ export const useSignUpMutation=(handleError)=>{
          onSuccess:()=>{
      toast.success("Your Account created successfully ")
      navigate('/login')
+        }
+    })
+}
+export const useLogoutMutation=(handleError)=>{
+    const queryClient=useQueryClient()
+    const navigate=useNavigate()
+    return useMutation({
+        mutationFn:async (data)=>{
+           const response=await logoutApi();
+           return response.data
+        },
+        retry:false,
+        onError:(error)=>handleError(error),
+        onSuccess:(data)=>{
+            toast.info("You have been loggout out successfully")
+            navigate('/home')
+  queryClient.removeQueries({
+  queryKey: ["Me"]
+})
+
+queryClient.removeQueries({
+  queryKey: ["user-likedRecipes"]
+})
+queryClient.removeQueries({
+  queryKey: ["user-recipes"]
+})
+  localStorage.removeItem("accessToken")
+
         }
     })
 }

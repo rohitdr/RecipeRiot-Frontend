@@ -17,6 +17,9 @@ export  function forgetPasswordApi(data){
 export  function changePasswordApi(data){
     return api.patch('/auth/changePassword',data)
 }
+export  function logoutApi(){
+    return api.post('/auth/logout')
+}
 export  function userUpdateApi(data){
     return api.patch('/user/updateUser',data)
 }

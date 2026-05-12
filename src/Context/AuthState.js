@@ -19,8 +19,8 @@ export default function AuthState({children}) {
    if(status>=500){
     setIsServerDown(true)
    }
-   else if(status === 401 || status === 403){
-   toast.error("Session expired. Please Login again")
+   else if(status === 401){
+   toast.error(error.response?.data?.message ||"Session expired. Please Login again")
    }
    else if(status >=400){
     toast.error(error.response?.data?.message || "Something went wrong")

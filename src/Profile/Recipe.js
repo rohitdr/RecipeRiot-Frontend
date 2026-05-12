@@ -23,7 +23,7 @@ useEffect(()=>{
   return (
 <section className='max-w-7xl mx-auto'>
 <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 px-4 sm:px-2">
-  {isLoading && [...Array(10)].map((_,index)=>  <div key={index}  className="w-full max-w-[280px] mx-auto">
+  {isLoading && [...Array(10)].map((_,index)=>  <div key={index}  className="w-full sm:max-w-[280px] mx-auto">
             <RecipeSkeleton  />
     </div>)}
   {!isLoading && data?.recipes?.length>0 &&data?.recipes?.map((recipe) => (

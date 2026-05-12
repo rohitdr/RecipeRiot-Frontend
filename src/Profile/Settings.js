@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
  import {FaSpinner } from "react-icons/fa";
 import AuthContext from '../Context/AuthContext'
-import { useChangePasswordMutation } from '../Mutations/userMutations'
+import { useChangePasswordMutation, useLogoutMutation } from '../Mutations/userMutations'
 import LogoutConfirmDialog from '../Components/DailogBoxes/simpleDailogBox'
 import DeleteRecipeDialog from '../Components/DailogBoxes/DangerDailogBox'
 
@@ -18,6 +18,7 @@ export default function Settings() {
   const changePasswordMutation=useChangePasswordMutation(handleError)
   const [formData,setFormData]=useState({oldPassword:"",newPassword:"",confirmPassword:""})
     const [open, setOpen] = useState(false);
+    const logoutmutation=useLogoutMutation(handleError)
   const handleChange=({target:{name,value}})=>{
    setFormData(prev=>({...prev,[name]:value}))
   }
@@ -44,21 +45,10 @@ return "Password Length Cannot be less than 8"
 
   }
   const handleLogoutClick=()=>{
-    localStorage.removeItem("accessToken")
+
     setOpen(false)
-        navigate('/home')
-    toast.info("You have been loggout out successfully")
-  queryClient.removeQueries({
-  queryKey: ["Me"]
-})
-
-queryClient.removeQueries({
-  queryKey: ["user-likedRecipes"]
-})
-queryClient.removeQueries({
-  queryKey: ["user-recipes"]
-})
-
+    logoutmutation.mutate()
+   
   }
   return (
    <motion.div

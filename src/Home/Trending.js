@@ -35,7 +35,7 @@ export default function Trending() {
           {!isLoading && data && data?.recipes.map((recipe,index) => (
             <motion.div
               key={recipe._id}
-               initial={{opacity:0,y:100,x:40}} whileInView={{opacity:1,y:0,x:0}} transition={{delay:index*0.1}} viewport={{once:true}}
+               initial={{opacity:0,y:100,x:40}} whileInView={{opacity:1,y:0,x:0}} transition={{delay:index*0.01}} viewport={{once:true}}
               className="w-64 h-80 flex-shrink-0"
             >
               <RecipeItem  recipe={recipe} />

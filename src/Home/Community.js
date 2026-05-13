@@ -28,7 +28,7 @@ export default function Community() {
   ];
 
   return (
-<section className="relative px-4 py-20 text-white overflow-hidden 
+<section className="relative px-4 py-10 md:py-20 text-white overflow-hidden 
 ">
 
   

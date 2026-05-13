@@ -9,7 +9,7 @@ export default function Featured() {
     const {data,isLoading}=useFeaturedRecipe(getFeaturedRecipe) 
  
   return (
-<section className="relative px-4 py-24 text-white overflow-hidden ">
+<section className="relative px-4 py-2 lg:py-24 text-white overflow-hidden ">
   {/* glow */}
   <div className="absolute top-[-80px] right-[-80px] w-[250px] h-[250px] bg-orange-500/10 blur-[120px] rounded-full"></div>
   <div className="absolute bottom-[-80px] left-[-80px] w-[250px] h-[250px] bg-pink-500/10 blur-[120px] rounded-full"></div>
@@ -31,7 +31,7 @@ export default function Featured() {
         </motion.div>
 
         {/* 🔥 GRID (different from trending) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-8 lg:gap-y-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-4 sm:gap-x-12 sm:gap-y-8 lg:gap-y-6">
 
   {/* BIG CARD */}
  <div className="col-span-2 row-span-2">

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 export default function CTA() {
   const Navigate=useNavigate()
   return (
-   <section className=' relative  py-20 overflow-hidden px-6 text-white text-center'>
+   <section className=' relative py-10 md:py-20 overflow-hidden px-6 text-white text-center'>
      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-orange-500/20 blur-[150px] rounded-full"></div>
      <div className="absolute bottom-[-100px] right-10 w-[300px] h-[300px] bg-pink-500/20 blur-[150px] rounded-full"></div>
 
@@ -21,7 +21,7 @@ export default function CTA() {
     <p className="text-white/60 mt-3">
           Discover, cook, and share your favorite recipes with the community
      </p>
-    <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4 z-10">
+    <div className="mt-8 flex flex-col w-full sm:flex-row justify-center gap-4 z-10">
            <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

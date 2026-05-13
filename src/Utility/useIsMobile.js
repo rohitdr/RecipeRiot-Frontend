@@ -1,4 +1,4 @@
-import { useScroll } from "framer-motion";
+
 import { useEffect, useState } from "react";
 
 export default function useIsMobile(){
@@ -11,4 +11,5 @@ export default function useIsMobile(){
      return () => window.removeEventListener("resize", handleResize)
 
     },[])
+      return isMobile;
 }

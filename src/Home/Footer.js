@@ -23,7 +23,7 @@ export default function Footer() {
        <div className="absolute bottom-[-100px] left-[-100px] w-[300px] h-[300px] bg-orange-500/10 blur-[140px] rounded-full"></div>
        <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] bg-pink-500/10 blur-[140px] rounded-full"></div>
 
-    <div className='grid grid-cols-1 md:grid-cols-4 gap-10  max-w-7xl mx-auto z-20 '>
+    <div className='grid grid-cols-2 md:grid-cols-4 gap-10  max-w-7xl mx-auto z-20 '>
         <div className='flex flex-col'>
             <div>
                   <h2 className="text-2xl font-extrabold">

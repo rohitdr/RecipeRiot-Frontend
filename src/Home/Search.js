@@ -34,8 +34,8 @@ toast.info("Enter something to search")
         Search
     </button>
         </form>
-        <div className='flex gap-3 justify-center flex-wrap mt-5'>
-            {["Healthy", "Desserts", "Quick Meals", "Vegan", "Indian"].map((tag) => (
+        <div className='flex gap-3 justify-center overflow-x-auto py-4 px-5 mt-5'>
+            {["Healthy", "Desserts", "Breakfast", "Vegan", "Indian"].map((tag) => (
             <button
               key={tag}
               onClick={() => setQuery(tag)}

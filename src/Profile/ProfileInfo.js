@@ -73,7 +73,7 @@ toast.warning(error)
            animate={{ opacity: 1, y: 0 }}
            exit={{opacity:0,y:30}}
          
-        className=" bg-white/[0.03] border border-white/10 py-6 rounded-3xl px-8">
+        className=" bg-white/[0.03] border border-white/10 py-6 rounded-3xl px-4 sm:px-8">
          <form className="flex flex-col" onSubmit={handleSubmit}>
             <h1 className="text-2xl sm:text-5xl font-bold">Profile Information</h1>
             <p className="text-white/70 py-1">Update Your Personal detail for RecipeRiot</p>

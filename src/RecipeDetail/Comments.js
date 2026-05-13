@@ -51,7 +51,7 @@ export default function Comments() {
         </div>
     </motion.div>
     })}
-    <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>
+   { data && data.comments.length >0&& <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>}
   
    
 </div>

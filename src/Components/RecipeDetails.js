@@ -34,7 +34,7 @@ export default function RecipeDetails() {
 <ReviewForm></ReviewForm>
 <Comments ></Comments>
 </section>
-<section className="max-w-7xl mx-auto px-6 py-24 text-center">
+<section className="max-w-7xl mx-auto px-6 py-10 sm:py-24 text-center">
   <h1 className="text-3xl sm:text-5xl font-black text-white">
     Ready to cook something else?
   </h1>
@@ -43,7 +43,7 @@ export default function RecipeDetails() {
     Discover more delicious recipes crafted for every mood.
   </p>
 
-  <button className="mt-8 px-8 py-4 rounded-full bg-orange-500 text-black font-bold hover:scale-105 transition">
+  <button className="mt-8 px-8 py-4 w-full rounded-full bg-orange-500 text-black font-bold hover:scale-105 transition">
     Explore More Recipes
   </button>
 </section>

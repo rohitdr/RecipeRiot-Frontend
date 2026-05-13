@@ -1,10 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaUtensils, FaHeart, FaUsers, FaLeaf } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate=useNavigate()
   const stats = [
-    { icon: <FaUtensils />, title: "1000+ Recipes", desc: "Discover recipes from home cooks and food lovers." },
+    { icon: <FaUtensils />, title: "10000+ Recipes", desc: "Discover recipes from home cooks and food lovers." },
     { icon: <FaHeart />, title: "Community Driven", desc: "Save, like and share recipes you love." },
     { icon: <FaUsers />, title: "Growing Creators", desc: "Chefs and creators share their cooking ideas." },
     { icon: <FaLeaf />, title: "Healthy Choices", desc: "Explore diet-friendly and healthy meals." },
@@ -25,11 +27,11 @@ export default function About() {
           Our Story 🍴
         </span>
 
-        <h1 className="text-4xl md:text-6xl font-bold mt-6 leading-tight">
+        <h1 className="text-2xl sm:text-4xl md:text-6xl font-bold mt-6 leading-tight">
           Cooking Made Social with <span className="text-orange-500">RecipeRiot</span>
         </h1>
 
-        <p className="text-gray-400 mt-6 text-lg leading-relaxed">
+        <p className="text-gray-400 mt-6 tex-base sm:text-lg leading-relaxed">
           RecipeRiot is a platform where food lovers can discover, create,
           and share recipes with the world. From quick snacks to gourmet meals,
           we help people turn their cooking passion into something shareable.
@@ -102,7 +104,7 @@ export default function About() {
           Join our growing community of food creators and inspire others.
         </p>
 
-        <button className="mt-6 px-8 py-3 bg-orange-500 hover:bg-orange-600 rounded-xl font-semibold transition">
+        <button onClick={()=>{navigate('/home')}} className="mt-6 px-8 py-3 bg-orange-500 hover:bg-orange-600 rounded-xl font-semibold transition">
           Start Sharing
         </button>
       </motion.div>  </div>

@@ -17,7 +17,7 @@ export default function SearchResult() {
   return (
     <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>
    <div className='flex flex-col gap-6 max-w-7xl mx-auto '>
-   <div className='rounded-3xl bg-gradient-to-r from-orange-500/20 to-red-500/10 border border-white/10 p-8 '>
+   <div className='rounded-3xl bg-gradient-to-r from-orange-500/20 to-red-500/10 border border-white/10 p-4 sm:p-8 '>
   
   
    <div className='text-orange-400 text-sm'>
@@ -28,8 +28,8 @@ export default function SearchResult() {
            <p className='max-w-2xl text-white/70'>Explore handpicked recipes from this category—crafted for every craving, mood, and occasion</p>
    </div>
    <div className='flex gap-4 pt-4'>
-   <div className='text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2 '>{data?.totalResults || 0} Recipes</div>
-    <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2'> Most Loved Category</div>
+   <div className='text-xs lg:text-base rounded-3xl bg-white/10 px-3 sm:px-4 py-2 '>{data?.totalResults || 0} Recipes</div>
+    <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-3 sm:px-4 py-2'> Most Loved Category</div>
    </div> </div>
 
    <div className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 '>

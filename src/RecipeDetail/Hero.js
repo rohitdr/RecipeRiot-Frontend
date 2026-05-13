@@ -13,7 +13,7 @@ export default function Hero({recipe}) {
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-pink-900/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#06070d] via-orange-900/20 to-transparent" />
 
-         <div className=' flex flex-col px-5 md:px-20 py-20 max-w-4xl gap-4'>
+         <div className=' flex flex-col px-5 md:px-20 py-5 md:py-20 max-w-4xl gap-4'>
   <h1 className='relative text-4xl md:text-7xl font-extrabold'>{recipe.label}</h1>
         <p className='relative  text-white/70'>By {recipe.source}</p>
         

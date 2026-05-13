@@ -32,7 +32,7 @@ export default function ProfileCard({user}) {
         <motion.div
        initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-        className='flex flex-col gap-2 items-center bg-white/[0.03] border border-white/10 py-8 rounded-3xl h-fit'>
+        className='flex flex-col gap-2  items-center bg-white/[0.03] border border-white/10 py-8 rounded-3xl h-fit'>
             <div className='relative w-fit cursor-pointer '>
               <label htmlFor="profile-image">
          <img src={preview ||user?.profileImage?.url ||"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400"}   loading='lazy'  className="w-32 h-32 cursor-pointer rounded-full object-cover border-4 border-orange-500" alt="User Image" loading='lazy' />
@@ -43,18 +43,18 @@ export default function ProfileCard({user}) {
             </div>
             <h1 className="text-2xl font-bold pt-2">{user?.name || "User"}</h1>
             <p>{user?.email ||"user.gmail.com"}</p>
-            <div className="flex gap-3 text-center py-2">
-              <div className="bg-white/5 p-3 rounded-2xl">
+            <div className="flex gap-3 text-center py-2 w-full px-4">
+              <div className="bg-white/5 p-3 rounded-2xl w-full">
                <h3 className="font-bold text-orange-400">{user?.totalRecipes  || 0}</h3>
                <p className="text-xs text-white/50">Recipes</p>
              </div>
 
-             <div className="bg-white/5 p-3 rounded-2xl">
+             <div className="bg-white/5 p-3 rounded-2xl w-full">
                <h3 className="font-bold text-orange-400">{user?.likedRecipes?.length || 0}</h3>
                <p className="text-xs text-white/50">Liked</p>
              </div>
 
-             <div className="bg-white/5 p-3 rounded-2xl">
+             <div className="bg-white/5 p-3 rounded-2xl w-full">
                <h3 className="font-bold text-orange-400">{user?.totalComments || 0}</h3>
                <p className="text-xs text-white/50">Comments</p>
             </div>

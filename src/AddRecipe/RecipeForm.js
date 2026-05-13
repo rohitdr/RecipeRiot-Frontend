@@ -28,9 +28,9 @@ const handleImageChange=(e)=>{
              placeholder="Recipe Title"
              value={formData.label}
              onChange={handleChange}
-             className="w-full mt-6 p-4 rounded-xl bg-black/30 border border-gray-700"
+             className="w-full mt-4 sm:mt-6 p-4 rounded-xl bg-black/30 border border-gray-700"
           />
-           <div className="grid grid-cols-2 gap-4 mt-8">
+           <div className="grid grid-cols-2 gap-4 mt-4 sm:mt-8">
              <input placeholder="Cooking Time" name='totalTime' value={formData.totalTime} className="p-3 rounded-xl bg-black/30 border border-gray-700" onChange={handleChange} />
              <input placeholder="Source" name='source' value={formData.source} className="p-3 rounded-xl bg-black/30 border border-gray-700" onChange={handleChange} />
              <input placeholder="Calories" name='calories' value={formData.calories} className="p-3 rounded-xl bg-black/30 border border-gray-700" onChange={handleChange} />

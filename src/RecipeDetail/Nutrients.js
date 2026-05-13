@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 export default function Nutrients({totalNutrients}) {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-16">
+    <section className="max-w-7xl mx-auto px-6 py-5 md:py-16">
 
   <div className="mb-8">
     <h1 className="text-5xl font-black text-white">

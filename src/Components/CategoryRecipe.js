@@ -53,7 +53,7 @@ const item={
   return (
   <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>
  <div className='flex flex-col gap-6 max-w-7xl mx-auto '>
- <div className='rounded-3xl bg-gradient-to-r from-orange-500/20 to-red-500/10 border border-white/10 p-8 '>
+ <div className='rounded-3xl bg-gradient-to-r from-orange-500/20 to-red-500/10 border border-white/10 p-5 sm:p-8 '>
 
 
  <div className='text-orange-400 text-sm'>
@@ -67,7 +67,7 @@ const item={
  <div className='text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2 '>{data?.totalResults} Recipes</div>
   <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2'> Most Loved Category</div>
  </div> </div>
-<div className="flex  gap-3 text-xs lg:text-base overflow-x-auto w-full ">
+<div className="flex  gap-3 text-xs lg:text-base overflow-x-auto w-full py-2 ">
  {sortOptions.map((item)=>{
  return   <button onClick={()=>{setSort(item)}} className={`px-4 py-2 text-nowrap rounded-full  transition ${sort===item?"bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20":"bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"}`}>
     {item}

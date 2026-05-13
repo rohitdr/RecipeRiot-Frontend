@@ -25,7 +25,6 @@ export default function Pagination({page,setPage,totalPages}) {
       })}
     
     </div>
-    {/* Next */}
     <button disabled={page===totalPages} onClick={()=>{setPage(prev=>prev+1)}} className="px-3 py-2 text-xs sm:text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition disabled:cursor-not-allowed">
       Next
     </button>

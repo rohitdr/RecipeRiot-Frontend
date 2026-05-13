@@ -45,12 +45,7 @@ const getLoggedUser=async()=>{
 }
 
 const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser)
-  useEffect(()=>{
-    const token=localStorage.getItem('accessToken')
-      if(!token){
-        navigate('/login')
-      }
-    },[Me])
+ 
   const updateProfileImage=async(file)=>{
     try{
          const formData=new FormData()

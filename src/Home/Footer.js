@@ -12,7 +12,7 @@ export default function Footer() {
  ]
  const profileList=[
   {name:"My Portfolio",link:"https://rohit-portfolio-mern.vercel.app/"},
-  {name:"RecipeRiot",link:"https://recipe-riot-frontend.vercel.app/"},
+  {name:"RecipeRiot",link:"https://recipe-riot-frontend-aed5.vercel.app/"},
   {name:"ChatNova",link:"https://chat-nova-frontend-4nna.vercel.app/"},
   {name:"GitHun",link:"https://github.com/rohitdr"}
  ]

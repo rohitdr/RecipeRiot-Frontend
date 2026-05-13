@@ -43,7 +43,7 @@ export default function RecipeDetails() {
     Discover more delicious recipes crafted for every mood.
   </p>
 
-  <button className="mt-8 px-8 py-4 w-full rounded-full bg-orange-500 text-black font-bold hover:scale-105 transition">
+  <button className="mt-8 px-8 py-4  rounded-full bg-orange-500 text-black font-bold hover:scale-105 transition">
     Explore More Recipes
   </button>
 </section>

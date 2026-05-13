@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AuthContext from './AuthContext'
 import {getLoggedUserApi, loginApi, signUpApi, uploadCloudinaryApi, userLikeRecipeApi, userUpdateApi,} from '../Api/UserApi'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,8 @@ import { loginMutation } from '../Mutations/userMutations'
 export default function AuthState({children}) {
   const queryClient=useQueryClient()
   const [isServerDown,setIsServerDown]=useState(false)
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
+  
     const handleError =(error)=>{
   if(!error.response){
     toast.error("Network error. Please check your connection")
@@ -44,7 +45,12 @@ const getLoggedUser=async()=>{
 }
 
 const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser)
-
+  useEffect(()=>{
+    const token=localStorage.getItem('accessToken')
+      if(!token){
+        navigate('/login')
+      }
+    },[Me])
   const updateProfileImage=async(file)=>{
     try{
          const formData=new FormData()

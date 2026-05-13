@@ -68,8 +68,8 @@ const item={
   <div className=' text-xs lg:text-base rounded-3xl bg-white/10 px-2 sm:px-4 py-2'> Most Loved Category</div>
  </div> </div>
 <div className="flex  gap-3 text-xs lg:text-base overflow-x-auto w-full py-2 ">
- {sortOptions.map((item)=>{
- return   <button onClick={()=>{setSort(item)}} className={`px-4 py-2 text-nowrap rounded-full  transition ${sort===item?"bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20":"bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"}`}>
+ {sortOptions.map((item,index)=>{
+ return   <button onClick={()=>{setSort(item)}} key={index} className={`px-4 py-2 text-nowrap rounded-full  transition ${sort===item?"bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md shadow-orange-500/20":"bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white"}`}>
     {item}
   </button>
  })}
@@ -105,36 +105,7 @@ const item={
 )}
  </motion.div>
  <Pagination page={page} setPage={setPage} totalPages={data?.totalPages}></Pagination>
-{/* <div className="flex justify-center py-10 px-3">
 
-  <div className="flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-xl px-3 sm:px-4 py-2 rounded-xl shadow-lg">
-
-  
-    <button disabled={page===1} onClick={()=>{setPage(prev=>prev-1)}} className="px-3 py-2 text-xs sm:text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition disabled:cursor-not-allowed">
-      Prev
-    </button>
-
-  
-    <div className="flex items-center gap-1 sm:gap-2">
-      {Array.from({length:data?.totalPages||0}).slice(Math.max(page-3,0),Math.min(page+2,data?.totalPages)).map((_,i)=>{
-        const pageNumber = Math.max(page-3,0)+i+1
-        return <button key={i} onClick={()=>{setPage(pageNumber)}} className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-xs sm:text-sm  transition   ${
-          pageNumber === page
-            ? "bg-white text-black font-semibold"
-            : "text-white/60 hover:bg-white/10 hover:text-white"
-        }`}>
-      {pageNumber}
-      </button>
-      })}
-    
-    </div>
-  
-    <button disabled={page===data?.totalPages} onClick={()=>{setPage(prev=>prev+1)}} className="px-3 py-2 text-xs sm:text-sm text-white/60 hover:text-white hover:bg-white/10 rounded-lg transition disabled:cursor-not-allowed">
-      Next
-    </button>
-
-  </div>
-</div> */}
  </div>
   </section>
   )

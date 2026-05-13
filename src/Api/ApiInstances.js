@@ -1,5 +1,6 @@
 import axios from "axios";
 import { queryClient } from "./queryClient";
+import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API,
@@ -59,8 +60,6 @@ api.interceptors.response.use(
 const handleLogout = () => {
   localStorage.removeItem("accessToken");
   queryClient.clear(); 
-
-
 };
 
 export default api;

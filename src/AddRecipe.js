@@ -138,9 +138,7 @@ mealType: [],
 dishType: []})
   useEffect(()=>{
     if(data){
-      console.log(data)
       setFormData(data.recipe)
-    
     }
       },[data])
    useEffect(()=>{

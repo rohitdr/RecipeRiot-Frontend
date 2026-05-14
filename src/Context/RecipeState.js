@@ -30,8 +30,8 @@ export default function RecipeState(props) {
   }
   const addRecipe=async(data,file)=>{
  try{
-
-         const formData=new FormData() 
+  if(file){
+   const formData=new FormData() 
          formData.append("file",file)
        formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
         const res = await uploadCloudinaryApi(formData);
@@ -41,8 +41,15 @@ export default function RecipeState(props) {
       };
       const recipe = { ...data,image }
     
-     const response= await addRecipeApi(recipe)
+     const response= await addRecipeApi({...recipe,link:false})
       return response.data
+  }
+  else{
+      
+     const response= await addRecipeApi({...data,link:true})
+      return response.data
+  }
+      
     }catch (error){
       console.log(error)
       throw error
@@ -60,10 +67,10 @@ export default function RecipeState(props) {
         url: res.data.secure_url,
       };
       const recipe = { ...data,image }
-      const response= await editRecipeApi(id,recipe)
+      const response= await editRecipeApi(id,{...recipe,link:false})
        return response.data
       }
-       const response= await editRecipeApi(id,data)
+       const response= await editRecipeApi(id,{...data,link:true})
        return response.data
     }catch (error){
       console.log(error)

@@ -12,7 +12,7 @@ import AuthContext from "./Context/AuthContext";
 import validateRecipeForm from "./AddRecipe/Validation";
 import { toast } from "sonner";
 import RecipeContext from "./Context/RecipeContext";
-import { useAddRecipeMutation, useEditRecipeMutation } from "./Mutations/RecipeMutation";
+import { useAddRecipeMutation, useAutoGenerateImage, useEditRecipeMutation } from "./Mutations/RecipeMutation";
 import { useParams } from "react-router-dom";
 import useRecipe from "./Hooks/useRecipe";
 
@@ -22,6 +22,7 @@ export default function AddRecipe() {
   const {addRecipe,getRecipeById,editRecipe}=useContext(RecipeContext)
   const addRecipeMutation=useAddRecipeMutation(addRecipe,handleError)
   const editRecipeMutation=useEditRecipeMutation(editRecipe,handleError)
+
   const {id}=useParams();
   const isEditMode=!!id
       const {data}=useRecipe(id,getRecipeById)
@@ -136,6 +137,7 @@ export default function AddRecipe() {
   },cuisineType: [],
 mealType: [],
 dishType: []})
+  const autoImageMutation=useAutoGenerateImage(setFormData,setImage)
   useEffect(()=>{
     if(data){
       setFormData(data.recipe)
@@ -176,7 +178,7 @@ addRecipeMutation.mutate({data:formData,image})
       </motion.div>
       <div className="grid lg:grid-cols-2 gap-3">
           <div   className="bg-white/5 backdrop-blur-lg p-4 md:p-8 rounded-3xl border border-white/10">
-           <RecipeForm formData={formData}  setFormData={setFormData} image={image} setImage={setImage} ></RecipeForm>
+           <RecipeForm formData={formData} autoImageMutation={autoImageMutation}   setFormData={setFormData} image={image} setImage={setImage} ></RecipeForm>
         <Ingredients setFormData={setFormData} formData={formData}></Ingredients>
 
 <Nutrients formData={formData} setFormData={setFormData} ></Nutrients>

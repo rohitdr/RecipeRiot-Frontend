@@ -33,7 +33,7 @@ export default function validateRecipeForm(formData,image,isEditMode) {
   }
 
   // image validation
-  if (!isEditMode &&!image) {
+  if (!isEditMode &&!image && !formData.image.url) {
     return "Recipe image is required";
   }
 

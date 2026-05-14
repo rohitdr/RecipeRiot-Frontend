@@ -1,5 +1,5 @@
 import api from "./ApiInstances"
-
+import axios from "axios"
 export const getRecipeByCategoryApi =(name,type,page,limit,sort)=>{
 return api.get(`/recipe/recipeByCategroy/${type}/${name}?page=${page}&limit=${limit}&sort=${sort}`)
 }
@@ -29,5 +29,15 @@ return api.post(`/comment/addComment`,data)
 }
 export const getCommentsApi =(id,page)=>{
 return api.get(`/comment/comments/${id}?page=${page}&limit=${5}`)
+}
+export const getImageApi =(query)=>{
+return axios.get(
+    `https://api.pexels.com/v1/search?query=${query}&per_page=1`,
+    {
+      headers: {
+        Authorization: process.env.REACT_APP_PEXEL_API_KEY
+      }
+    }
+  )
 }
 

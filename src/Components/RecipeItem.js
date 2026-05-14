@@ -94,6 +94,10 @@ initial="rest" whileHover="hover"  animate="rest"
       {/* Image */}
       <motion.img
         src={recipe?.image?.url}
+        onError={(e) => {
+    e.target.onerror = null;
+    e.target.src = "/fallbackRecipe.jpg";
+  }}
         alt={recipe?.label}
         loading="lazy"
         className="absolute inset-0 w-full h-full object-cover"

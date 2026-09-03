@@ -3,7 +3,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 export default function CTA() {
-  const Navigate=useNavigate()
+  const navigate=useNavigate()
   return (
    <section className=' relative py-10 md:py-20 overflow-hidden px-6 text-white text-center'>
      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-orange-500/20 blur-[150px] rounded-full"></div>
@@ -25,7 +25,7 @@ export default function CTA() {
            <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={()=>Navigate(`/addRecipe`)}
+            onClick={()=>navigate(`/addrecipe`)}
             className="px-6 py-3 rounded-xl font-semibold 
             bg-gradient-to-r from-orange-500 to-pink-500 
             shadow-lg shadow-orange-500/20"
@@ -37,7 +37,7 @@ export default function CTA() {
            <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-             onClick={()=>Navigate(`/category/health/vegan`)}
+             onClick={()=>navigate(`/category/health/vegan`)}
             className="px-6 py-3 rounded-xl font-semibold 
             border border-white/20 hover:bg-white/10 transition"
           >

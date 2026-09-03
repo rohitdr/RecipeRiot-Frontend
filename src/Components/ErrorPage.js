@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { FaTriangleExclamation, FaArrowRotateRight, FaHouse } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
-export default function InternalServerError() {
+export default function ErrorPage({code,message,description}) {
   const navigate = useNavigate();
 
   return (
@@ -19,17 +19,16 @@ export default function InternalServerError() {
 
         {/* Heading */}
         <h1 className="text-3xl sm:text-5xl font-bold mb-3">
-          500
+          {code}
         </h1>
 
         <h2 className="text-xl sm:text-2xl font-semibold mb-4">
-          Internal Server Error
+       {message}
         </h2>
 
         {/* Description */}
         <p className="text-white/60 mb-8">
-          Something went wrong while fetching your delicious recipes.
-          Our kitchen servers might be overheating 🍳
+       {description}
         </p>
 
         {/* Buttons */}

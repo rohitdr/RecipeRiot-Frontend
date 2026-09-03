@@ -189,7 +189,7 @@ return "Password Length Cannot be less than 8"
           Permanently delete your account and all your recipes.
         </p>
 
-        <button onClick={()=>{setOpen(true)}}  className="mt-4 px-6 py-3 bg-red-500 text-white font-bold rounded-full hover:scale-105 transition disabled:opacity-10">
+        <button disabled  className="mt-4 px-6 py-3 bg-red-500 text-white font-bold rounded-full hover:scale-105 transition disabled:opacity-10">
           Delete Account
         </button>
       </div>

@@ -37,10 +37,10 @@ async function searchPexels(query) {
 
   return null;
 }
-async function transferRecipe() {
+async function transferRecipe(skip) {
   try {
     const apiResponse = await axios.get(
-      "http://localhost:5000/api/auth/imageUpdate"
+      `http://localhost:5000/api/auth/imageUpdate?skip=${skip}`
     );
 
     const recipes = apiResponse.data.recipe;
@@ -91,5 +91,9 @@ async function transferRecipe() {
     );
   }
 }
+let skip=10450
+setInterval(()=>{
+  transferRecipe(skip)
+  skip=skip+50
+}, 900000);
 
-transferRecipe();

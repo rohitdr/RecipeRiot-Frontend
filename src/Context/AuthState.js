@@ -9,7 +9,7 @@ import { loginMutation } from '../Mutations/userMutations'
 export default function AuthState({children}) {
   const queryClient=useQueryClient()
   const [isServerDown,setIsServerDown]=useState(false)
-    const navigate = useNavigate()
+  
   
     const handleError =(error)=>{
   if(!error.response){

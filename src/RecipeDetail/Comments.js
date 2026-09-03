@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa'
 import useCommnets from '../Hooks/useComments'
 import { useParams } from 'react-router-dom'
 import Pagination from '../Components/Pagination'
+import { captalizeFirstLetter } from '../Utility/Utility'
 
 export default function Comments() {
   const [page,setPage]=useState(1)
@@ -24,10 +25,10 @@ export default function Comments() {
         border border-white/10
         backdrop-blur-xl
         hover:border-orange-400/20
-        transition">
+        transition">{console.log(item)}
         <div className="flex items-center justify-between">
             <div className="flex  gap-3">
-                <div>{console.log(data)}
+                <div>
   <img
             src={item?.user?.profileImage?.url}
             alt="User"
@@ -36,12 +37,12 @@ export default function Comments() {
           />
             </div>
             <div>
-                <h2>{item?.user?.name}</h2>
+                <h2>{captalizeFirstLetter(item?.user?.name)} </h2>
                 <p className="text-xs text-white/70">Verfied Cook</p>
             </div></div>
              <div className="flex gap-1 text-orange-400">
           {[...Array(item?.rating)].map((_, index) => (
-            <FaStar key={index}  />
+            <FaStar key={index} />
           ))}
         </div>
    

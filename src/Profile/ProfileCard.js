@@ -40,12 +40,12 @@ export default function ProfileCard({user}) {
               {userImageMutation.isPending && <FaSpinner className='animate-spin text-white'></FaSpinner>}{!userImageMutation.isPending &&(!preview?<FaCamera />:<FaUpload onClick={handleClick}/>)}
                <input type='file' accept="image/*" id='profile-image' onChange={handleChange} hidden/>
              </button></label>
-            </div>
+            </div>{console.log(user)}
             <h1 className="text-2xl font-bold pt-2">{user?.name || "User"}</h1>
             <p>{user?.email ||"user.gmail.com"}</p>
             <div className="flex gap-3 text-center py-2 w-full px-4">
               <div className="bg-white/5 p-3 rounded-2xl w-full">
-               <h3 className="font-bold text-orange-400">{user?.totalRecipes  || 0}</h3>
+               <h3 className="font-bold text-orange-400">{user?.recipes  || 0}</h3>
                <p className="text-xs text-white/50">Recipes</p>
              </div>
 
@@ -55,7 +55,7 @@ export default function ProfileCard({user}) {
              </div>
 
              <div className="bg-white/5 p-3 rounded-2xl w-full">
-               <h3 className="font-bold text-orange-400">{user?.totalComments || 0}</h3>
+               <h3 className="font-bold text-orange-400">{user?.comments || 0}</h3>
                <p className="text-xs text-white/50">Comments</p>
             </div>
             </div>

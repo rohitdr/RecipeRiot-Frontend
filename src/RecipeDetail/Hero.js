@@ -4,7 +4,7 @@ import {FaShareAlt} from 'react-icons/fa'
 import { toast } from 'sonner'
 export default function Hero({recipe}) {
   const handleShareClick=async()=>{
-    const url=`${window.location.origin}/recipePage/${recipe._id}`
+    const url=`${window.location.origin}/recipepage/${recipe._id}`
     try{
       if(navigator.share){
         await navigator.share({

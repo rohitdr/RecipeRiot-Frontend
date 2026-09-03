@@ -46,7 +46,7 @@ useEffect(()=>{
       transition
       cursor-pointer
     "
-    onClick={()=>{navigate('/addRecipe')}}
+    onClick={()=>{navigate('/addrecipe')}}
   >
     
     <div className="text-6xl text-orange-400 mb-4">

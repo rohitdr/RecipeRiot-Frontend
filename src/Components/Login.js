@@ -172,7 +172,7 @@ export default function Login() {
           New here?{" "}
           <Link
             className="text-white font-semibold hover:text-orange-300 transition"
-            to="/signUp"
+            to="/signup"
           >
             Create an account
           </Link>

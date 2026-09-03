@@ -68,13 +68,13 @@ const handleEditClick=()=>{
   if(isMobile){
     prefetchRecipe(recipe._id)
   }
-  navigate(`/editRecipe/${recipe._id}`)
+  navigate(`/editrecipe/${recipe._id}`)
 }
 const handleViewClick=()=>{
   if(isMobile){
     prefetchRecipe(recipe._id)
   }
- navigate(`/recipePage/${recipe._id}`)
+ navigate(`/recipepage/${recipe._id}`)
 }
 const handleOpen = () => {
   setIsOpen(true);

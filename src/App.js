@@ -24,28 +24,22 @@ import ProtectedRoute from "./Components/ProtectedRoute.js";
 import AuthContext from "./Context/AuthContext.js";
 import AppLoader from "./Components/AppLoader.js";
 
+import { appRoutes } from "./Routes/appRoutes.js";
+import ErrorPage from "./Components/ErrorPage.js";
 
-const CategoryRecipe = lazy(()=>import("./Components/CategoryRecipe.js"))
-const RecipeDetails=lazy(()=>import("./Components/RecipeDetails.js"))
-const AddRecipe =lazy(()=>import("./AddRecipe.js"))
-const InternalServerError=lazy(()=>import("./Components/InternalServerError.js"))
-const Profile=lazy(()=>import("./Profile/Profile.js"))
-const ForgetPassword=lazy(()=>import("./Components/ForgetPassword.js"))
-const About=lazy(()=>import("./Components/About.js"))
-const SearchResult=lazy(()=>import("./Components/SearchResult.js"))
+
+
 
 function App() {
   const {isServerDown}=useContext(AuthContext)
 let location = useLocation()
-const hideLayoutRoutes=['/login','/signUp','/forgetPassword']
-const hideLayout = hideLayoutRoutes.includes(location.pathname)
-if(isServerDown) return <InternalServerError></InternalServerError>
+const hideLayoutRoutes=['/login','/signup','/forgetpassword']
+const hideLayout = hideLayoutRoutes.includes(location.pathname.toLocaleLowerCase())
+if(isServerDown) return <ErrorPage code={500} message="Internal Server Error" description="   Something went wrong while fetching your delicious recipes.
+          Our kitchen servers might be overheating 🍳"></ErrorPage>
   return (
     <>
-    
-    
     {!hideLayout && <Navbar></Navbar>}
-
      <Toaster
   theme="dark"
   toastOptions={{
@@ -59,18 +53,11 @@ if(isServerDown) return <InternalServerError></InternalServerError>
 />
          <Suspense fallback={<AppLoader></AppLoader>}>
         <Routes>
-          <Route exact path="/login" element={<PublicRoute><Login></Login></PublicRoute>} />
-          <Route exact path="/forgetPassword" element={<PublicRoute><ForgetPassword></ForgetPassword></PublicRoute>} />
-          <Route exact path="/" element={<Home></Home>}/>
-          <Route exact path="/home" element={<Navigate to="/" replace></Navigate>}/>
-          <Route exact path="/signUp" element={<PublicRoute><SignUp></SignUp></PublicRoute>}/>
-          <Route exact path="/category/:categoryType/:categoryName" element={<CategoryRecipe/>} />
-          <Route exact path="/recipePage/:recipeId" element={<RecipeDetails></RecipeDetails>} />
-          <Route exact path="/search/:query" element={<SearchResult></SearchResult>} />
-          <Route exact path="/addRecipe" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
-          <Route exact path="/editRecipe/:id" element={<ProtectedRoute><AddRecipe></AddRecipe></ProtectedRoute>}/>
-          <Route exact path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}/>
-          <Route exact path="/about" element={<About></About>}/>
+          {appRoutes.map((route)=>{
+            return   <Route key={route.path}  path={route.path} element={route.element} />
+          })}
+        
+    
 
         </Routes></Suspense>
     </>

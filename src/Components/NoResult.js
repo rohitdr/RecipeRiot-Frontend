@@ -48,7 +48,7 @@ export default function NoRecipesFound() {
           </button>
 
           <button
-            onClick={() => navigate("/addRecipe")}
+            onClick={() => navigate("/addrecipe")}
             className="px-6 py-3 rounded-xl border border-white/20 hover:border-orange-400 transition"
           >
             Add Your Recipe

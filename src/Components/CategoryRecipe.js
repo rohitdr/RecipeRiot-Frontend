@@ -11,6 +11,8 @@ import Pagination from './Pagination'
 import NoRecipesFound from './NoResult'
 import { toCamelCase } from '../Utility/Utility'
 import usePrefetch from '../Hooks/PrefetchHooks/usePrefetch'
+import Loader from './Loader'
+import AppLoader from './AppLoader'
 
 export default function CategoryRecipe() {
   const {categoryName,categoryType}=useParams()
@@ -75,6 +77,11 @@ const item={
  })}
 
 </div>
+{isFetching && data && (
+  <div className="flex justify-center py-4">
+    <AppLoader height="h-1" spinnerHight='h-2' spinnerWidth='w-1' text=''/>
+  </div>
+)}
  <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 px-4 '>
      
   {!data && [...Array(10)].map((_,index) => (

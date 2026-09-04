@@ -12,8 +12,8 @@ export default function Login() {
     password: "",
   });
 
-  const { handleError } = useContext(AuthContext);
-  const loginMutation = useLoginMutation(handleError);
+  const { handleError ,setIsAuthenticated} = useContext(AuthContext);
+  const loginMutation = useLoginMutation(handleError,setIsAuthenticated);
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));

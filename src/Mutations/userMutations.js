@@ -2,7 +2,7 @@ import { useMutation, useQueryClient, useQueryErrorResetBoundary } from '@tansta
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { changePasswordApi, forgetPasswordApi, loginApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
-export const useLoginMutation=(handleError)=>{
+export const useLoginMutation=(handleError,setIsAuthenticated)=>{
     const queryClient=useQueryClient()
     const navigate=useNavigate()
     return useMutation({
@@ -12,11 +12,9 @@ export const useLoginMutation=(handleError)=>{
         },
         retry:false,
         onError:(error)=>handleError(error),
-        onSuccess:(data)=>{
+        onSuccess:async (data)=>{
         localStorage.setItem("accessToken",data.accessToken)
-  queryClient.invalidateQueries({
-  queryKey: ["Me"]
-})
+        setIsAuthenticated(true)
      toast.success("You Logged in Successlly ")
      navigate('/home')
         }
@@ -37,7 +35,7 @@ export const useSignUpMutation=(handleError)=>{
         }
     })
 }
-export const useLogoutMutation=(handleError)=>{
+export const useLogoutMutation=(handleError,setIsAuthenticated)=>{
     const queryClient=useQueryClient()
     const navigate=useNavigate()
     return useMutation({
@@ -48,8 +46,8 @@ export const useLogoutMutation=(handleError)=>{
         retry:false,
         onError:(error)=>handleError(error),
         onSuccess:(data)=>{
-            toast.info("You have been loggout out successfully")
-            navigate('/home')
+            localStorage.removeItem("accessToken")
+            setIsAuthenticated(false)
   queryClient.removeQueries({
   queryKey: ["Me"]
 })
@@ -60,8 +58,8 @@ queryClient.removeQueries({
 queryClient.removeQueries({
   queryKey: ["user-recipes"]
 })
-  localStorage.removeItem("accessToken")
-
+  toast.info("You have been loggout out successfully")
+            navigate('/home')
         }
     })
 }

@@ -13,12 +13,12 @@ import DeleteRecipeDialog from '../Components/DailogBoxes/DangerDailogBox'
 
 export default function Settings() {
   const navigate=useNavigate()
-  const {handleError}=useContext(AuthContext)
+  const {handleError,setIsAuthenticated}=useContext(AuthContext)
   const queryClient=useQueryClient()
   const changePasswordMutation=useChangePasswordMutation(handleError)
   const [formData,setFormData]=useState({oldPassword:"",newPassword:"",confirmPassword:""})
     const [open, setOpen] = useState(false);
-    const logoutmutation=useLogoutMutation(handleError)
+    const logoutmutation=useLogoutMutation(handleError,setIsAuthenticated)
   const handleChange=({target:{name,value}})=>{
    setFormData(prev=>({...prev,[name]:value}))
   }

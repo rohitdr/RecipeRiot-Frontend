@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 
-const  useMe=(fn)=>{
+const  useMe=(fn,isAuthenticated)=>{
     return useQuery({
     queryKey:["Me"],
     queryFn:()=>fn(),
-    enabled:!!localStorage.getItem("accessToken"),
+    enabled:isAuthenticated,
+    retry:false
     })
+    
     
     
 }

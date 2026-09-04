@@ -9,7 +9,9 @@ import { loginMutation } from '../Mutations/userMutations'
 export default function AuthState({children}) {
   const queryClient=useQueryClient()
   const [isServerDown,setIsServerDown]=useState(false)
-  
+const [isAuthenticated, setIsAuthenticated] = useState(
+  !!localStorage.getItem("accessToken")
+)
   
     const handleError =(error)=>{
   if(!error.response){
@@ -44,7 +46,7 @@ const getLoggedUser=async()=>{
         }
 }
 
-const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser)
+const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser,isAuthenticated)
  
   const updateProfileImage=async(file)=>{
     try{
@@ -68,7 +70,7 @@ const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser)
 
   return (
 
- <AuthContext.Provider value={{Me,isMeLoading,handleError,updateProfileImage,isServerDown}}>
+ <AuthContext.Provider value={{Me,isMeLoading,handleError,updateProfileImage,isServerDown,isAuthenticated,setIsAuthenticated}}>
     {children}
  </AuthContext.Provider>
       

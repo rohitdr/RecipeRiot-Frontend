@@ -34,7 +34,7 @@ import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
@@ -52,6 +52,9 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
   const [search,setSearch]=useState("")
   const navigate = useNavigate()
+  const location = useLocation();
+
+const isCategoryActive = location.pathname.startsWith("/category/");
 
   const menuItems = ["Home",  "Categories", "About"];
   useEffect(()=>{
@@ -144,7 +147,7 @@ useEffect(() => {
 const handleItemsClick=(title,type)=>{
   setOpenMenu(false)
   prefetchRecipe({categoryName:title.toLocaleLowerCase(),categoryType:toCamelCase(type),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})
-  navigate(`/category/${title}/${type}`)
+
 }
   return (
 <nav
@@ -170,16 +173,29 @@ const handleItemsClick=(title,type)=>{
 
             if (item === "Categories") {
               return (
-                <li key={item} className="relative group cursor-pointer">
-
+              <li
+  className={`relative group cursor-pointer ${
+    isCategoryActive ? "text-orange-400" : "text-white/80"
+  }`}
+>
                   <span className="hover:text-orange-400 transition">
                     {item}
                   </span>
 
                   {/* MEGA MENU */}
-                  <div
-                   className={`absolute left-1/2 -translate-x-1/2 top-full mt-6 w-screen  backdrop-blur-xl  opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ${scrolled?"bg-[#111827]/95 border-t border-orange-500/20 ":"bg-black/90 border-t border-white/10"} `}                   >
-
+                 <div
+  className={`fixed left-0 top-[72px] w-full
+    backdrop-blur-xl
+    opacity-0 invisible
+    group-hover:opacity-100
+    group-hover:visible
+    transition-all duration-300
+    ${
+      scrolled
+        ? "bg-[#111827]/95 border-t border-orange-500/20"
+        : "bg-black/90 border-t border-white/10"
+    }`}
+>
                     <div className="max-w-7xl mx-auto px-10 py-8">
                       <div className="grid grid-cols-5 gap-10">
 
@@ -195,17 +211,17 @@ const handleItemsClick=(title,type)=>{
 
                             <ul className="space-y-2">
                               {category.items.map((sub, j) => (
-                                <li
+                                <NavLink
                                   key={j}
                                   onMouseEnter={()=>{handleHover({categoryName:category.title.toLocaleLowerCase(),categoryType:toCamelCase(sub.name),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})}}
-                                  onClick={()=>{navigate(`/category/${category.title}/${sub.name}`)}}
-                                  className="flex items-center gap-2 text-sm text-white/70 hover:text-orange-400 cursor-pointer transition"
+                                  to={`/category/${category.title}/${sub.name}`}
+                                  className={`flex items-center gap-2 text-sm text-white/70 hover:text-orange-400 cursor-pointer transition `}
                                 >
                                   <sub.icon className="text-xs text-white/40" />
                                   <span className="hover:translate-x-1 transition">
                                     {sub.name}
                                   </span>
-                                </li>
+                                </NavLink>
                               ))}
                             </ul>
 
@@ -222,14 +238,15 @@ const handleItemsClick=(title,type)=>{
             }
 
             return (
-              <motion.li
+              <NavLink
                 key={item}
-                whileHover={{ scale: 1.05 }}
-                onClick={()=>{navigate(`/${item.toLocaleLowerCase()}`)}}
-                className="cursor-pointer hover:text-orange-400 transition"
+              
+                to={`/${item.toLocaleLowerCase()}`}
+                className={({isActive})=>`cursor-pointer transition ${isActive?"text-orange-400":""}`}
+       
               >
                 {item}
-              </motion.li>
+              </NavLink>
             );
           })}
 
@@ -256,9 +273,22 @@ const handleItemsClick=(title,type)=>{
           <button onClick={handleSearch} className="text-orange-400 text-lg">🔍</button>
         </div>
       {/* profileImage */}
-         <button onClick={()=>{navigate('/profile')}}>
-          <img   loading='lazy' src={Me?.profileImage?.url || "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg"} className="object-cover h-10 w-10 border-2 shadow-2xl hover:scale-105 border-white rounded-full" alt="user Image" />
-        </button>
+        <NavLink
+  to="/profile"
+  className={({ isActive }) =>
+    `block rounded-full ${isActive ? "ring-2 ring-orange-400" : ""}`
+  }
+>
+  <img
+    loading="lazy"
+    src={
+      Me?.profileImage?.url ||
+      "https://res.cloudinary.com/do2twyxai/image/upload/v1776313793/e4jvjyvfwvvo0kyalzie.jpg"
+    }
+    className="object-cover h-10 w-10 border-2 shadow-2xl hover:scale-105 border-white rounded-full"
+    alt="User "
+  />
+</NavLink>
         </div>
         
       
@@ -284,9 +314,9 @@ const handleItemsClick=(title,type)=>{
               {mobileMenuItems.map((item) => {
                 if (item !== "Categories") {
                   return (
-                    <Link  onClick={() => setOpenMenu(false)} to={`/${item.toLocaleLowerCase()}`} key={item} className="hover:text-orange-400 cursor-pointer">
+                    <NavLink  onClick={() => setOpenMenu(false)} to={`/${item.toLocaleLowerCase()}`} key={item} className={ ({isActive})=>`${isActive?"text-orange-400":""} cursor-pointer hover:text-orange-500`}>
                       {item}
-                    </Link>
+                    </NavLink>
                   );
                 }
 
@@ -294,7 +324,7 @@ const handleItemsClick=(title,type)=>{
                   <div key="categories">
                     <div
                       onClick={() => setOpenCategory(!openCategory)}
-                      className="flex justify-between cursor-pointer hover:text-orange-400 "
+                      className={`flex justify-between cursor-pointer hover:text-orange-400 ${isCategoryActive?"text-orange-500":""}`}
                     >
                       Categories
                       <span>{openCategory ? "-" : "+"}</span>
@@ -316,9 +346,9 @@ const handleItemsClick=(title,type)=>{
 
                               <ul className="pl-3 space-y-1">
                                 {cat.items.map((sub, j) => (
-                                  <li    onClick={()=>{handleItemsClick(cat.title,sub.name)}} key={j} className="text-sm text-white/70">
+                                  <NavLink to={`/category/${cat.title}/${sub.name}`}   onClick={()=>{handleItemsClick(cat.title,sub.name)}} key={j} className="text-sm text-white/70">
                                     {sub.name}
-                                  </li>
+                                  </NavLink>
                                 ))}
                               </ul>
                             </div>

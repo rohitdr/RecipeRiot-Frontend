@@ -77,11 +77,12 @@ const item={
  })}
 
 </div>
+<div className='h-2'>
 {isFetching && data && (
-  <div className="flex justify-center py-4">
-    <AppLoader height="h-1" spinnerHight='h-2' spinnerWidth='w-1' text=''/>
+  <div className="flex justify-center py-4 ">
+    <AppLoader height="h-2" spinnerHight='h-2' spinnerWidth='w-1' text=''/>
   </div>
-)}
+)}</div>
  <motion.div variants={container} initial="hidden" animate="show" className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 px-4 '>
      
   {!data && [...Array(10)].map((_,index) => (

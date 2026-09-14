@@ -3,47 +3,29 @@ import { FaLock, FaEnvelope, FaSpinner } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
-import AuthContext from "../Context/AuthContext";
-import { useLoginMutation } from "../Mutations/userMutations";
+import { validateLogin } from "../schemas/login.schema";
+import { useLogin } from "../hooks/useLogin";
 
-export default function Login() {
+export default function LoginForm() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
-  const { handleError ,setIsAuthenticated} = useContext(AuthContext);
-  const loginMutation = useLoginMutation(handleError,setIsAuthenticated);
-
+  
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const emailRegex = /^\S+@\S+\.\S+$/;
-
-  const validate = () => {
-    if (!formData.email.trim()) {
-      return "Email Cannot be Empty";
-    }
-    if (!emailRegex.test(formData.email.trim())) {
-      return "Enter a valid Email";
-    }
-    if (!formData.password) {
-      return "Password Cannot be empty";
-    }
-    if (formData.password.length < 8) {
-      return "Password length cannot be less than 8";
-    }
-
-    return null;
-  };
-
   const isFormValid = formData.email.trim() && formData.password;
+
+
+
+  const loginMutation = useLogin();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const error = validate();
+    const error = validateLogin(formData);
 
     if (error) {
       toast.error(error);
@@ -57,18 +39,7 @@ export default function Login() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-6">
-      
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920"
-          className="object-cover w-full h-full"
-          loading="lazy"
-          alt="food bg"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-      </div>
+  <>
 
       {/* Login Card */}
       <motion.div
@@ -178,6 +149,6 @@ export default function Login() {
           </Link>
         </p>
       </motion.div>
-    </section>
+  </>
   );
 }

@@ -1,40 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { changePasswordApi, forgetPasswordApi, loginApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
-export const useLoginMutation=(handleError,setIsAuthenticated)=>{
-    
-    const navigate=useNavigate()
-    return useMutation({
-        mutationFn:async (data)=>{
-           const response=await loginApi(data);
-           return response.data
-        },
-        retry:false,
-        onError:(error)=>handleError(error),
-        onSuccess:async (data)=>{
-        localStorage.setItem("accessToken",data.accessToken)
-        setIsAuthenticated(true)
-     toast.success("You Logged in Successlly ")
-     navigate('/home')
-        }
-    })
-}
+import { changePasswordApi, forgetPasswordApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
 
-export const useSignUpMutation=(handleError)=>{
-    const navigate=useNavigate()
-    return useMutation({
-        mutationFn:async(data)=>{
-         return await signUpApi(data)
-        },
-         retry:false,
-        onError:(error)=>handleError(error),
-         onSuccess:()=>{
-     toast.success("Your Account created successfully ")
-     navigate('/login')
-        }
-    })
-}
+
+
 export const useLogoutMutation=(handleError,setIsAuthenticated)=>{
     const queryClient=useQueryClient()
     const navigate=useNavigate()

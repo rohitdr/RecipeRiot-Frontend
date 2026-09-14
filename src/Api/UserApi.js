@@ -2,15 +2,10 @@
 import axios from "axios"
 import api from "./ApiInstances"
 
-export  function loginApi(data){
-    return api.post('/auth/login',data)
-}
 export  function getLoggedUserApi(){
     return api.get('/user/getUser')
 }
-export  function signUpApi(data){
-    return api.post('/auth/createUser',data)
-}
+
 export  function forgetPasswordApi(data){
     return api.patch('/auth/forgetPassword',data)
 }

@@ -1,7 +1,5 @@
 
-import React from 'react'
 import { motion } from 'framer-motion'
-import RecipeItem from '../Components/RecipeItem'
 import { useNavigate } from 'react-router-dom'
 export default function Hero() {
 const navigate=useNavigate()

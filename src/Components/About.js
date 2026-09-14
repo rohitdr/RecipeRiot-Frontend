@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import { FaUtensils, FaHeart, FaUsers, FaLeaf } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";

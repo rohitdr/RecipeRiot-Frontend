@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
-import { useMutation } from "@tanstack/react-query";
 import { useLikeMutation } from "../Mutations/userMutations";
 import DeleteRecipeDialog from "./DailogBoxes/DangerDailogBox";
 import { useRecipeDeleteMutation } from "../Mutations/RecipeMutation";
@@ -13,7 +12,7 @@ import useIsMobile from "../Utility/useIsMobile";
 
 export default function RecipeItem({recipe,size="normal",edit=null, mode}) {
 const navigate=useNavigate()
-const {Me,likeRecipe,handleError}=useContext(AuthContext)
+const {Me,handleError}=useContext(AuthContext)
 const recipeDeleteMutation=useRecipeDeleteMutation(handleError)
 const likeRecipeMutation=useLikeMutation(handleError)
 const [openDailogBox,setOpenDailogBox]=useState(false)
@@ -76,13 +75,13 @@ const handleViewClick=()=>{
   }
  navigate(`/recipepage/${recipe._id}`)
 }
-const handleOpen = () => {
-  setIsOpen(true);
-};
+// const handleOpen = () => {
+//   setIsOpen(true);
+// };
 
-const handleClose = () => {
-  setIsOpen(false);
-};
+// const handleClose = () => {
+//   setIsOpen(false);
+// };
   return (
     <motion.div
 initial="rest" whileHover="hover"  animate="rest"

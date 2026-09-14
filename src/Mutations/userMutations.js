@@ -1,9 +1,9 @@
-import { useMutation, useQueryClient, useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { changePasswordApi, forgetPasswordApi, loginApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
 export const useLoginMutation=(handleError,setIsAuthenticated)=>{
-    const queryClient=useQueryClient()
+    
     const navigate=useNavigate()
     return useMutation({
         mutationFn:async (data)=>{

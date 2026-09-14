@@ -1,10 +1,9 @@
-import React, { lazy, Suspense, useContext, useEffect, useState } from 'react'
+import  { lazy, Suspense, useContext, useState } from 'react'
 import ProfileInfo from './ProfileInfo'
 import ProfileCard from './ProfileCard'
 
 import AuthContext from '../Context/AuthContext'
 import useHoverPrefetch from '../Hooks/PrefetchHooks/useHoverPrefetch'
-import usePrefetch from '../Hooks/PrefetchHooks/usePrefetch'
 import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import useIsMobile from '../Utility/useIsMobile'
 import usePrefetchLikedRecipe from '../Hooks/PrefetchHooks/usePrefetchLikedRecipes'

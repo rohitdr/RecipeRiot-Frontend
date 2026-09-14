@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { FaTrash,FaPlus } from 'react-icons/fa'
 export default function Labels({formData,setFormData}) {
        const handleClickRemoveDietLabel=(index)=>{

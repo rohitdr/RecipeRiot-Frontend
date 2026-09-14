@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { FaStar,FaSpinner } from 'react-icons/fa'
 import { usePostCommnetMutation } from '../Mutations/RecipeMutation'
 import AuthContext from '../Context/AuthContext'

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useContext, useEffect, useState } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 
  import { FaCamera,FaSpinner,FaUpload } from "react-icons/fa";
 import { toast } from 'sonner';

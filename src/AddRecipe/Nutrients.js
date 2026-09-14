@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaTrash,FaPlus } from 'react-icons/fa'
-import Select from "react-select";
+
 import SelectOption from './SelectOption';
 import Labels from './Labels';
 export default function Nutrients({formData,setFormData}) {

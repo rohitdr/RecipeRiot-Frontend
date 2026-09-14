@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { motion } from 'framer-motion'
 import {FaShareAlt} from 'react-icons/fa'
 import { toast } from 'sonner'

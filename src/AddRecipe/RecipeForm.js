@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useState } from 'react'
 import { FaImage, FaSpinner } from 'react-icons/fa'
 import { toast } from 'sonner'
 export default function RecipeForm({formData,setFormData,image,setImage,autoImageMutation}) {

@@ -1,12 +1,12 @@
 
- import React, { useContext, useState } from "react";
+ import  { useContext, useState } from "react";
  import { motion } from "framer-motion";
- import {  FaSave,FaSpinner } from "react-icons/fa";
+ import {  FaSpinner } from "react-icons/fa";
 import { toast } from "sonner";
 import AuthContext from "../Context/AuthContext";
-import { useProfileUpdateMutation, useUserMutation } from "../Mutations/userMutations";
+import { useProfileUpdateMutation } from "../Mutations/userMutations";
 export default function ProfileInfo({user}) {
-  const {handleError,updateUserInformtion}=useContext(AuthContext)
+  const {handleError}=useContext(AuthContext)
   const userUpdateMutaion=useProfileUpdateMutation(handleError)
   const [formData,setformData]=useState({name:user?.name || "",email:user?.email || "",username:user?.username || "",phoneNumber:user?.phoneNumber || "",bio:user?.bio || ""})
   const handleChange=({target:{name,value}})=>{

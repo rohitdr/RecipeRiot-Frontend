@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import AuthContext from './AuthContext'
-import {getLoggedUserApi, loginApi, signUpApi, uploadCloudinaryApi, userLikeRecipeApi, userUpdateApi,} from '../Api/UserApi'
-import { useNavigate } from 'react-router-dom'
+import {getLoggedUserApi, uploadCloudinaryApi, userUpdateApi,} from '../Api/UserApi'
+
 import { toast } from 'sonner'
 import useMe from '../Hooks/useMe'
-import { useQueryClient } from '@tanstack/react-query'
-import { loginMutation } from '../Mutations/userMutations'
 export default function AuthState({children}) {
-  const queryClient=useQueryClient()
+
   const [isServerDown,setIsServerDown]=useState(false)
 const [isAuthenticated, setIsAuthenticated] = useState(
   !!localStorage.getItem("accessToken")

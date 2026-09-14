@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react'
+import  { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useSearchRecipe from '../Hooks/useSearchRecipe'
 import RecipeContext from '../Context/RecipeContext'
@@ -12,7 +12,7 @@ export default function SearchResult() {
   const {searchRecipe}=useContext(RecipeContext)
   const {query}=useParams()
   const [page,setPage]=useState(1)
-    const {data,isLoading}=useSearchRecipe(query,page,searchRecipe)
+    const {data}=useSearchRecipe(query,page,searchRecipe)
 
   return (
     <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>

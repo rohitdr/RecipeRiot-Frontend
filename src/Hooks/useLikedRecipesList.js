@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { userLikedRecipesApi, userLikeRecipeApi } from "../Api/UserApi"
+import { userLikedRecipesApi } from "../Api/UserApi"
 
 export  const useLikedRecipesList=(page,Me)=>{
     return useQuery({

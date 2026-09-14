@@ -7,36 +7,30 @@ import {
   FaMugSaucer,
   FaBowlFood,
   FaBreadSlice,
-  FaSeedling,
+
   FaIceCream,
   FaGlassWater,
   FaLeaf,
   FaBurger,
-  FaCakeCandles,
-  FaFish,
+
   FaBacon,
   FaScaleBalanced,
   FaDumbbell,
   FaWeightScale,
   FaHeartPulse,
-  FaDroplet,
-  FaBan,
-  FaFire,
-  FaCandyCane,
+
   FaCarrot,
   FaEarthAsia,
   FaFlag,
   FaPepperHot,
-  FaWineGlass,
-  FaCross,
+
 } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useState, useEffect, useRef, useContext } from "react";
+import  { useState, useEffect,  useContext } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
 import AuthContext from "../Context/AuthContext";
 import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
 import usePrefetch from "../Hooks/PrefetchHooks/usePrefetch";

@@ -1,7 +1,6 @@
 
-import { FaStar } from "react-icons/fa";
-import { motion } from "framer-motion";
-import React, { useContext, useEffect, useState } from 'react'
+
+import  { useContext } from 'react'
 import Hero from "../RecipeDetail/Hero";
 import Ingridients from "../RecipeDetail/Ingridients";
 import Nutrients from "../RecipeDetail/Nutrients";
@@ -12,7 +11,6 @@ import { useParams } from "react-router-dom";
 import useRecipe from "../Hooks/useRecipe";
 import RecipeContext from "../Context/RecipeContext";
 import DietLabel from "../RecipeDetail/DietLabel";
-import useCommnets from "../Hooks/useComments";
 
 export default function RecipeDetails() {
   const {getRecipeById}=useContext(RecipeContext)

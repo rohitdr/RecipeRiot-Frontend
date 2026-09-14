@@ -1,5 +1,5 @@
-import { keepPreviousData, usePrefetchQuery, useQueries, useQueryClient } from '@tanstack/react-query'
-import React from 'react'
+import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
+
 
 export default function usePrefetch() {
     const queryClient=useQueryClient()

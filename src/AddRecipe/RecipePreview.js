@@ -1,4 +1,4 @@
-import React from 'react'
+
 import RecipeItem from '../Components/RecipeItem'
 
 export default function RecipePreview({recipe}) {

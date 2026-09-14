@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 export default function HealthLabel({healthLabels}) {
   const [label,setLabels]=useState(10)

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import { FaLock, FaEnvelope, FaSpinner } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { MdAlternateEmail } from "react-icons/md";

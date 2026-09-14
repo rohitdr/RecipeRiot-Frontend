@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import useCommnets from '../Hooks/useComments'
 import { useParams } from 'react-router-dom'

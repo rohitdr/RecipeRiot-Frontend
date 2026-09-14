@@ -1,17 +1,17 @@
 
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { motion, useScroll } from 'framer-motion'
+import  { useContext, useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import RecipeItem from './RecipeItem'
 import { useParams } from 'react-router-dom'
 import useRecipes from '../Hooks/useRecipes'
 import RecipeContext from '../Context/RecipeContext'
 import RecipeSkeleton from './Skeletons/RecipeSkeleton'
-import { toast } from 'sonner'
+
 import Pagination from './Pagination'
 import NoRecipesFound from './NoResult'
 import { toCamelCase } from '../Utility/Utility'
 import usePrefetch from '../Hooks/PrefetchHooks/usePrefetch'
-import Loader from './Loader'
+
 import AppLoader from './AppLoader'
 
 export default function CategoryRecipe() {
@@ -26,7 +26,7 @@ setPage(1)
 setSort("Newest")
  },[categoryName,categoryType])
 
-  const {data,isLoading,isFetching}=useRecipes(categoryName.toLocaleLowerCase(),toCamelCase(categoryType),getRecipeByCategory,page,toCamelCase(sort))
+  const {data,isFetching}=useRecipes(categoryName.toLocaleLowerCase(),toCamelCase(categoryType),getRecipeByCategory,page,toCamelCase(sort))
  useEffect(()=>{
   if(page<data?.totalPages){
     

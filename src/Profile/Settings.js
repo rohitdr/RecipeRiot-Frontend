@@ -1,20 +1,18 @@
-import { useQueryClient } from '@tanstack/react-query'
+
 import { motion } from 'framer-motion'
-import React, { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import  { useContext, useState } from 'react'
 import { toast } from 'sonner'
  import {FaSpinner } from "react-icons/fa";
 import AuthContext from '../Context/AuthContext'
 import { useChangePasswordMutation, useLogoutMutation } from '../Mutations/userMutations'
 import LogoutConfirmDialog from '../Components/DailogBoxes/simpleDailogBox'
-import DeleteRecipeDialog from '../Components/DailogBoxes/DangerDailogBox'
 
 
 
 export default function Settings() {
-  const navigate=useNavigate()
+
   const {handleError,setIsAuthenticated}=useContext(AuthContext)
-  const queryClient=useQueryClient()
+
   const changePasswordMutation=useChangePasswordMutation(handleError)
   const [formData,setFormData]=useState({oldPassword:"",newPassword:"",confirmPassword:""})
     const [open, setOpen] = useState(false);

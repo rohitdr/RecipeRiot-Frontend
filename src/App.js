@@ -1,24 +1,11 @@
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { lazy, Suspense, useContext } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import {  Suspense, useContext } from "react";
 import "./App.css";
-import Login from "./Components/Login";
-import LoadingBar from "react-top-loading-bar";
-
-import Home from "./Components/Home";
-
-
-
-
-
-
-import SignUp from "./Components/SignUp";
 
 
 
 import Navbar from "./Components/Navbar.js";
 import { Toaster } from "sonner";
-import PublicRoute from "./Components/PublicRoute.js";
-import ProtectedRoute from "./Components/ProtectedRoute.js";
 
 
 import AuthContext from "./Context/AuthContext.js";

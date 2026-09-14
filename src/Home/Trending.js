@@ -1,9 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import  { useContext } from "react";
+import { motion } from "framer-motion";
 import RecipeItem from "../Components/RecipeItem";
 import useTrendingRecipe from "../Hooks/useTrendingRecipes";
 import RecipeContext from "../Context/RecipeContext";
-import { useNavigate } from "react-router-dom";
 import RecipeSkeleton from "../Components/Skeletons/RecipeSkeleton";
 export default function Trending() {
   const {getTrendingRecipe}=useContext(RecipeContext)

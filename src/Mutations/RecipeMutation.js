@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { addRecipeApi, deleteRecipeApi, editRecipeApi, getImageApi, postCommentApi } from "../Api/RecipeApi"
+import {  deleteRecipeApi, getImageApi, postCommentApi } from "../Api/RecipeApi"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+
 export const usePostCommnetMutation=(recipeId,handleError)=>{
     const queryClient=useQueryClient()
  return useMutation({

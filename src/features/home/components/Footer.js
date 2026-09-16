@@ -1,9 +1,9 @@
 
 
-import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
-  const navigate=useNavigate()
+
  const exploreList=[
   {name:"Home",link:"/home"},
   {name:"Profile",link:"/profile"},
@@ -39,18 +39,27 @@ export default function Footer() {
              <h3 className="font-semibold mb-3">Explore</h3>
              <ul className="space-y-2 text-white/60 text-sm">
              {exploreList.map(({name,link},index)=>{
-  return <li className="hover:text-white cursor-pointer" key={index} onClick={()=>{navigate(link)}}>{name}</li>
+  return <Link className="hover:text-white cursor-pointer block" key={index} to={link}>{name}</Link>
              })}
            
              </ul>
            </div>
                    <div>
              <h3 className="font-semibold mb-3">Rohit Kumar</h3>
-             <ul className="space-y-2 text-white/60 text-sm">
-                {profileList.map(({name,link},index)=>{
-  return <li className="hover:text-white cursor-pointer" key={index} onClick={()=>{window.open(link,"_blank")}}>{name}</li>
-             })}
-              </ul>
+          <ul className="space-y-2 text-white/60 text-sm">
+  {profileList.map(({ name, link }) => (
+    <li key={name}>
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-white transition-colors"
+      >
+        {name}
+      </a>
+    </li>
+  ))}
+</ul>
           </div>
       
        <div>
@@ -59,15 +68,13 @@ export default function Footer() {
                Share your recipes & connect with food lovers 🍽️
              </p>
 
-             <motion.button
-               whileHover={{ scale: 1.05 }}
-               whileTap={{ scale: 0.95 }}
-               onClick={()=>navigate(`/addRecipe`)}
+             <Link
+               to={`/addRecipe`}
                className="px-5 py-2 rounded-lg text-sm font-semibold
-               bg-gradient-to-r from-orange-500 to-pink-500"
+               bg-gradient-to-r from-orange-500 to-pink-500 hover:scale-105 active:scale-95 transition inline-block"
              >
                Post a Recipe
-                            </motion.button>
+                            </Link>
            </div>
          </div>
         <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-white/50">

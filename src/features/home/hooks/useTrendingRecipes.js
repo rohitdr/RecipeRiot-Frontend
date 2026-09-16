@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query"
+import { getTrendingRecipes } from "../services/api"
 
-const useTrendingRecipe=(fn)=>{
+const useTrendingRecipe=()=>{
 return useQuery({
     
     queryKey:["trending"],
-    queryFn:()=>fn(),
+    queryFn:getTrendingRecipes,
     staleTime:5000
 })
 }

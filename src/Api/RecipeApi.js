@@ -9,12 +9,7 @@ return api.get(`/recipe/recipebyid/${id}`)
 export const searchRecipeApi =(query,page,limit)=>{
 return api.get(`/recipe/search/${query}?page=${page}&limit=${limit}`)
 }
-export const getTrendingRecipeApi =()=>{
-return api.get(`/recipe/trending`)
-}
-export const getFeaturedRecipeApi =()=>{
-return api.get(`/recipe/featured`)
-}
+
 export const addRecipeApi =(data)=>{
 return api.post(`/recipe/addRecipe`,data)
 }

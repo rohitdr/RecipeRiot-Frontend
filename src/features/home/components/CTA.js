@@ -1,9 +1,9 @@
 
 
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 export default function CTA() {
-  const navigate=useNavigate()
+
   return (
    <section className=' relative py-10 md:py-20 overflow-hidden px-6 text-white text-center'>
      <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-orange-500/20 blur-[150px] rounded-full"></div>
@@ -22,27 +22,24 @@ export default function CTA() {
           Discover, cook, and share your favorite recipes with the community
      </p>
     <div className="mt-8 flex flex-col w-full sm:flex-row justify-center gap-4 z-10">
-           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={()=>navigate(`/addrecipe`)}
+           <Link
+           to="/addRecipe"
             className="px-6 py-3 rounded-xl font-semibold 
             bg-gradient-to-r from-orange-500 to-pink-500 
-            shadow-lg shadow-orange-500/20"
+            shadow-lg shadow-orange-500/20 hover:scale-105 active:scale-95 transition"
           >
             Start Cooking Now 🍳
-          </motion.button>
+          </Link>
 
 
-           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-             onClick={()=>navigate(`/category/health/vegan`)}
+           <Link
+           to={`/category/health/vegan`}
+
             className="px-6 py-3 rounded-xl font-semibold 
-            border border-white/20 hover:bg-white/10 transition"
+            border border-white/20 hover:bg-white/10 hover:scale-105 active:scale-95 transition"
           >
             Browse Recipes
-           </motion.button>
+           </Link>
 
         </div>
 </div>

@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query"
+import { getFeaturedRecipes } from "../services/api"
 
-const useFeaturedRecipe=(fn)=>{
+const useFeaturedRecipe=()=>{
 return useQuery({
     
     queryKey:["featured"],
-    queryFn:()=>fn(),
+    queryFn:getFeaturedRecipes,
     staleTime:5000
 })
 }

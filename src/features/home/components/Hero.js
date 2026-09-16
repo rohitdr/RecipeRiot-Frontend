@@ -1,8 +1,9 @@
 
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 export default function Hero() {
-const navigate=useNavigate()
+
   return (
   <section>
     <div className=' relative min-h-screen flex justify-center items-center overflow-hidden'>
@@ -28,10 +29,10 @@ const navigate=useNavigate()
          <p className='text-center text-white/60'>   Discover, create, and share crazy delicious recipes with the world.</p>
            <div className='flex justify-center gap-4 my-6'>
       <div className=''>
-        <button type="button" className='text-white  bg-gradient-to-r from-orange-500 to-pink-500 px-4 py-2  rounded-lg shadow-xl hover:scale-105 transition' onClick={()=>navigate(`/category/health/vegan`)}>Explore Recipe</button>
+        <Link  className='text-white  bg-gradient-to-r from-orange-500 to-pink-500 px-4 py-2  rounded-lg shadow-xl hover:scale-105 active:scale-95 inline-block transition' to={`/category/health/vegan`}>Explore Recipe</Link>
       </div>
       <div className=''>
-        <button type="button" className='text-white bg-white/10 px-4 py-2 hover:scale-105  rounded-lg shadow-xl border border-white/40 transition' onClick={()=>navigate(`/addrecipe`)}>Add Recipe</button>
+        <Link  className='text-white bg-white/10 px-4 py-2   rounded-lg shadow-xl border border-white/40 hover:scale-105 active:scale-95 inline-block transition' to={`/addrecipe`}>Add Recipe</Link>
       </div>
       </div>
       <div>

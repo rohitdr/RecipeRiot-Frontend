@@ -1,12 +1,12 @@
-import  { useContext } from "react";
+
 import { motion } from "framer-motion";
-import RecipeItem from "../Components/RecipeItem";
-import useFeaturedRecipe from "../Hooks/useFeaturedRecipe";
-import RecipeContext from "../Context/RecipeContext";
-import RecipeSkeleton from "../Components/Skeletons/RecipeSkeleton";
+import RecipeItem from './../../../Components/RecipeItem';
+import RecipeSkeleton from './../../../Components/Skeletons/RecipeSkeleton';
+import useFeaturedRecipe from "../hooks/useFeaturedRecipe";
+
 export default function Featured() {
-  const {getFeaturedRecipe}=useContext(RecipeContext) 
-    const {data,isLoading}=useFeaturedRecipe(getFeaturedRecipe) 
+
+    const {data,isLoading}=useFeaturedRecipe() 
  
   return (
 <section className="relative px-4 py-2 lg:py-24 text-white overflow-hidden ">

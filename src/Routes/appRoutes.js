@@ -1,18 +1,19 @@
 import { Navigate } from "react-router-dom"
-import Home from "../Components/Home"
 import PublicRoute from "../Components/PublicRoute"
-
 import ProtectedRoute from "../Components/ProtectedRoute"
 import { lazy } from "react"
 import ErrorPage from "../Components/ErrorPage.js"
-import Login from "../features/auth/pages/Login.js"
-import SignUp from "../features/auth/pages/Signup.js"
+
+import Home from "../pages/Home.js"
+import Login from "../pages/Login.js"
+import SignUp from "../pages/Signup.js"
+
 const CategoryRecipe = lazy(()=>import("../Components/CategoryRecipe.js"))
 const RecipeDetails=lazy(()=>import("../Components/RecipeDetails.js"))
 const AddRecipe =lazy(()=>import("../AddRecipe.js"))
 const Profile=lazy(()=>import("../Profile/Profile.js"))
 const ForgetPassword=lazy(()=>import("../Components/ForgetPassword.js"))
-const About=lazy(()=>import("../Components/About.js"))
+const About=lazy(()=>import("../pages/About.js"))
 const SearchResult=lazy(()=>import("../Components/SearchResult.js"))
 
 export const appRoutes = [

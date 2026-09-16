@@ -1,7 +1,7 @@
 
 import RecipeContext from "./RecipeContext";
 
-import { addRecipeApi, editRecipeApi, getFeaturedRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, getTrendingRecipeApi, searchRecipeApi } from "../Api/RecipeApi";
+import { addRecipeApi, editRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, searchRecipeApi } from "../Api/RecipeApi";
 import  { uploadCloudinaryApi } from "../Api/UserApi";
 export default function RecipeState(props) {
 
@@ -18,14 +18,7 @@ export default function RecipeState(props) {
      const response = await searchRecipeApi(query,page,15);
      return response.data
   }
-  const getTrendingRecipe= async ()=>{
-     const response = await getTrendingRecipeApi();
-     return response.data
-  }
-  const getFeaturedRecipe= async ()=>{
-     const response = await getFeaturedRecipeApi();
-     return response.data
-  }
+
   const addRecipe=async(data,file)=>{
  try{
   if(file){
@@ -84,8 +77,7 @@ export default function RecipeState(props) {
       value={{    getRecipeByCategory,
         getRecipeById,
         searchRecipe,
-        getTrendingRecipe,
-        getFeaturedRecipe,
+    
         addRecipe,
         editRecipe}}
     >

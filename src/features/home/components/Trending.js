@@ -1,12 +1,12 @@
-import  { useContext } from "react";
+
 import { motion } from "framer-motion";
-import RecipeItem from "../Components/RecipeItem";
-import useTrendingRecipe from "../Hooks/useTrendingRecipes";
-import RecipeContext from "../Context/RecipeContext";
-import RecipeSkeleton from "../Components/Skeletons/RecipeSkeleton";
+import RecipeItem from "../../../Components/RecipeItem";
+import useTrendingRecipe from '../hooks/useTrendingRecipes';
+import RecipeSkeleton from "../../../Components/Skeletons/RecipeSkeleton";
+
+
 export default function Trending() {
-  const {getTrendingRecipe}=useContext(RecipeContext)
-    const {data,isLoading}=useTrendingRecipe(getTrendingRecipe)
+    const {data,isLoading}=useTrendingRecipe()
   return (
     <section className="px-6 py-10 sm:py-20 text-white ">
 

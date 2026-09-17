@@ -1,12 +1,14 @@
 import  { useContext, useEffect, useState } from 'react'
 import RecipeItem from '../Components/RecipeItem'
 import AuthContext from '../Context/AuthContext'
-import Pagination from '../Components/Pagination'
+
 import { useUserRecipes } from '../Hooks/useUserRecipes'
 import { useNavigate } from 'react-router-dom'
 import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
-import NoRecipesFound from '../Components/NoResult'
+
 import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
+import NoRecipesFound from '../Components/feedback/NoResult'
+import Pagination from '../Components/navigation/Pagination'
 
 export default function Recipe() {
 const {Me}=useContext(AuthContext)

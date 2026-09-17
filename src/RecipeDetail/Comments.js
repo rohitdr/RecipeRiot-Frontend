@@ -3,8 +3,9 @@ import  { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 import useCommnets from '../Hooks/useComments'
 import { useParams } from 'react-router-dom'
-import Pagination from '../Components/Pagination'
+
 import { captalizeFirstLetter } from '../Utility/Utility'
+import Pagination from './../Components/navigation/Pagination';
 
 export default function Comments() {
   const [page,setPage]=useState(1)

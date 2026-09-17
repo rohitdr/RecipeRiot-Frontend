@@ -7,10 +7,12 @@ import useHoverPrefetch from '../Hooks/PrefetchHooks/useHoverPrefetch'
 import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import useIsMobile from '../Utility/useIsMobile'
 import usePrefetchLikedRecipe from '../Hooks/PrefetchHooks/usePrefetchLikedRecipes'
-import AppLoader from '../Components/AppLoader'
+import AppLoader from '../Components/loaders/AppLoader'
+
 const Settings=lazy(()=>import('./Settings'))
 const Recipe=lazy(()=>import('./Recipe'))
 const Liked=lazy(()=>import('./Liked'))
+
 
 export default function Profile() {
     const [activeTab,setActiveTab]=useState("profile")

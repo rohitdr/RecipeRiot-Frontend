@@ -6,3 +6,6 @@ export  function loginApi(data){
 export  function signUpApi(data){
     return api.post('/auth/createUser',data)
 }
+export  function forgetPasswordApi(data){
+    return api.patch('/auth/forgetPassword',data)
+}

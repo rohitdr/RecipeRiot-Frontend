@@ -7,12 +7,15 @@ import useRecipes from '../Hooks/useRecipes'
 import RecipeContext from '../Context/RecipeContext'
 import RecipeSkeleton from './Skeletons/RecipeSkeleton'
 
-import Pagination from './Pagination'
-import NoRecipesFound from './NoResult'
+
+
 import { toCamelCase } from '../Utility/Utility'
 import usePrefetch from '../Hooks/PrefetchHooks/usePrefetch'
 
-import AppLoader from './AppLoader'
+
+import Pagination from './navigation/Pagination';
+import AppLoader from './loaders/AppLoader'
+import NoRecipesFound from './feedback/NoResult'
 
 export default function CategoryRecipe() {
   const {categoryName,categoryType}=useParams()

@@ -6,9 +6,7 @@ export  function getLoggedUserApi(){
     return api.get('/user/getUser')
 }
 
-export  function forgetPasswordApi(data){
-    return api.patch('/auth/forgetPassword',data)
-}
+
 export  function changePasswordApi(data){
     return api.patch('/auth/changePassword',data)
 }

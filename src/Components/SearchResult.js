@@ -6,8 +6,9 @@ import RecipeContext from '../Context/RecipeContext'
 import { motion } from 'framer-motion'
 import RecipeSkeleton from './Skeletons/RecipeSkeleton'
 import RecipeItem from './RecipeItem'
-import Pagination from './Pagination'
-import NoRecipesFound from './NoResult'
+import Pagination from './navigation/Pagination'
+import NoRecipesFound from './feedback/NoResult'
+
 export default function SearchResult() {
   const {searchRecipe}=useContext(RecipeContext)
   const {query}=useParams()

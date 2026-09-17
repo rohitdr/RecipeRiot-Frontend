@@ -33,20 +33,7 @@ queryClient.removeQueries({
         }
     })
 }
-export const useForgetPasswordMutation=(handleError)=>{
-    const navigate=useNavigate()
-    return useMutation({
-        mutationFn:async(data)=>{
-         return await forgetPasswordApi(data)
-        },
-         retry:false,
-        onError:(error)=>handleError(error),
-         onSuccess:()=>{
-     toast.success("Your Password Changed successfully ")
-     navigate('/login')
-        }
-    })
-}
+
 export const useChangePasswordMutation=(handleError)=>{
     return useMutation({
         mutationFn:async(data)=>{

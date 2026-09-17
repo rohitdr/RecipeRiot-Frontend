@@ -2,9 +2,11 @@ import  { useContext, useState } from 'react'
 import RecipeItem from '../Components/RecipeItem'
 import AuthContext from '../Context/AuthContext'
 import { useLikedRecipesList } from '../Hooks/useLikedRecipesList'
-import Pagination from '../Components/Pagination'
+
 import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
-import NoRecipesFound from '../Components/NoResult'
+import NoRecipesFound from '../Components/feedback/NoResult'
+import Pagination from '../Components/navigation/Pagination'
+
 export default function Liked() {
   const [page,setPage]=useState(1)
 const {Me}=useContext(AuthContext)

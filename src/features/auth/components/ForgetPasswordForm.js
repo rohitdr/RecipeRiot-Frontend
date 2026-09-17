@@ -1,14 +1,12 @@
-import  { useContext, useState } from "react";
+import  {  useState } from "react";
 import { FaLock, FaEnvelope, FaSpinner } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { MdAlternateEmail } from "react-icons/md";
 import { toast } from "sonner";
-import AuthContext from "../Context/AuthContext";
-import { useForgetPasswordMutation } from "../Mutations/userMutations";
+import { validateForgetPassword } from "../schemas/forget.schema";
+import { useForgetPasswordMutation } from "../hooks/useForgetPassword";
 
-export default function ForgetPassword() {
-  const { handleError } = useContext(AuthContext);
-
+export default function ForgetPasswordForm() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -16,33 +14,13 @@ export default function ForgetPassword() {
     confirmPassword: "",
   });
 
-  const forgetPasswordMutation = useForgetPasswordMutation(handleError);
+  const forgetPasswordMutation = useForgetPasswordMutation();
 
   const handleChange = ({ target: { name, value } }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const emailRegex = /^\S+@\S+\.\S+$/;
 
-  const validate = () => {
-    if (!emailRegex.test(formData.email.trim())) {
-      return "Enter a valid Email";
-    }
-    if (formData.username.trim().length < 8) {
-      return "Username Cannot be less than 8 Characters";
-    }
-    if (formData.password.length < 8) {
-      return "Password Length must be more than 8";
-    }
-    if (formData.confirmPassword.length < 8) {
-      return "Confirm Password Length must be more than 8";
-    }
-    if (formData.password !== formData.confirmPassword) {
-      return "Password and Confirm Password must be same";
-    }
-
-    return null;
-  };
 
   const isFormValid =
     formData.email.trim() &&
@@ -53,7 +31,7 @@ export default function ForgetPassword() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const error = validate();
+    const error = validateForgetPassword(formData);
 
     if (error) {
       toast.error(error);
@@ -70,20 +48,7 @@ export default function ForgetPassword() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden px-4 py-6">
-      
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1920"
-          className="object-cover w-full h-full"
-          loading="lazy"
-          alt="food bg"
-        />
-        <div className="absolute inset-0 bg-black/60"></div>
-      </div>
 
-      {/* Card */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -199,6 +164,6 @@ export default function ForgetPassword() {
           </button>
         </form>
       </motion.div>
-    </section>
+
   );
 }

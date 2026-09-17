@@ -9,10 +9,12 @@ import { Toaster } from "sonner";
 
 
 import AuthContext from "./Context/AuthContext.js";
-import AppLoader from "./Components/AppLoader.js";
+
 
 import { appRoutes } from "./Routes/appRoutes.js";
-import ErrorPage from "./Components/ErrorPage.js";
+import AppLoader from './Components/loaders/AppLoader';
+import ErrorPage from './Components/feedback/ErrorPage';
+
 
 
 

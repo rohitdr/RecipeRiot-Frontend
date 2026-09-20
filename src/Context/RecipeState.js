@@ -2,7 +2,8 @@
 import RecipeContext from "./RecipeContext";
 
 import { addRecipeApi, editRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, searchRecipeApi } from "../Api/RecipeApi";
-import  { uploadCloudinaryApi } from "../Api/UserApi";
+import { uploadCloudinaryApi } from "../features/profile/services/api";
+
 export default function RecipeState(props) {
 
  

@@ -76,7 +76,7 @@ export const appRoutes = [
     )
   },
   {
-    path: "/profile",
+    path: "/profi74le",
     element: (
       <ProtectedRoute>
         <Profile />

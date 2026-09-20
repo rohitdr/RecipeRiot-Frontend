@@ -1,7 +1,10 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { userLikedRecipesApi } from "../Api/UserApi"
+import { useContext } from "react"
+import AuthContext from "../../../Context/AuthContext"
+import { userLikedRecipesApi } from "../../../Api/UserApi"
 
-export  const useLikedRecipesList=(page,Me)=>{
+export  const useLikedRecipesList=(page)=>{
+    const {Me}=useContext(AuthContext)
     return useQuery({
         queryKey:["user-likedRecipes",page],
         queryFn:async()=>{

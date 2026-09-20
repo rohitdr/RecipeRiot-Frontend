@@ -14,6 +14,14 @@ import AuthContext from "./Context/AuthContext.js";
 import { appRoutes } from "./Routes/appRoutes.js";
 import AppLoader from './Components/loaders/AppLoader';
 import ErrorPage from './Components/feedback/ErrorPage';
+import ProtectedRoute from "./Components/routes/ProtectedRoute.js";
+import Profile from "./Profile/Profile.js";
+import ProfileCard from './features/profile/components/ProfileCard';
+import ProfileInfo from './features/profile/components/ProfileInfo';
+import Settings from './features/profile/components/Settings';
+import Liked from './features/recipes/components/Liked';
+import Recipe from './features/recipes/components/Recipe';
+
 
 
 
@@ -45,6 +53,20 @@ if(isServerDown) return <ErrorPage code={500} message="Internal Server Error" de
           {appRoutes.map((route)=>{
             return   <Route key={route.path}  path={route.path} element={route.element} />
           })}
+         <Route path="/profile" element={<ProtectedRoute />}>
+  <Route element={<Profile />}>
+    <Route index element={
+      <div className="grid max-w-7xl lg:grid-cols-[300px_1fr] mx-auto gap-6 px-4">
+        <ProfileCard />
+        <ProfileInfo />
+      </div>
+    } />
+
+    <Route path="recipes" element={<Recipe />} />
+    <Route path="liked-recipes" element={<Liked />} />
+    <Route path="settings" element={<Settings />} />
+  </Route>
+</Route>
         
     
 

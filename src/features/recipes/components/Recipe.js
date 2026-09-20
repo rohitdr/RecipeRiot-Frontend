@@ -1,21 +1,20 @@
-import  { useContext, useEffect, useState } from 'react'
-import RecipeItem from '../Components/RecipeItem'
-import AuthContext from '../Context/AuthContext'
+import  {  useEffect, useState } from 'react'
 
-import { useUserRecipes } from '../Hooks/useUserRecipes'
-import { useNavigate } from 'react-router-dom'
-import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
+import { Link } from 'react-router-dom'
 
-import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
-import NoRecipesFound from '../Components/feedback/NoResult'
-import Pagination from '../Components/navigation/Pagination'
+
+import Pagination from '../../../Components/navigation/Pagination'
+import NoRecipesFound from '../../../Components/feedback/NoResult'
+import usePrefetchUserRecipe from '../../../Hooks/PrefetchHooks/usePrefetchUserRecipe'
+import RecipeSkeleton from '../../../Components/Skeletons/RecipeSkeleton'
+import { useUserRecipes } from './../hooks/useUserRecipes';
+import RecipeItem from '../../../Components/RecipeItem'
+
 
 export default function Recipe() {
-const {Me}=useContext(AuthContext)
 const [page,setPage]=useState(1)
-const navigate=useNavigate()
 const{prefetchUserRecipe}=usePrefetchUserRecipe()
-const {data,isLoading}=useUserRecipes(page,Me)
+const {data,isLoading}=useUserRecipes(page)
 useEffect(()=>{
   if(page<data?.totalPages){
     prefetchUserRecipe(page+1)
@@ -35,7 +34,7 @@ useEffect(()=>{
   {!isLoading && data?.recipe?.length === 0 && (
   <NoRecipesFound />
 )}
- {data?.recipes?.length>0 &&<button
+ {data?.recipes?.length>0 &&<Link
     className="
       h-full min-h-[320px]
       flex flex-col items-center justify-center
@@ -47,7 +46,7 @@ useEffect(()=>{
       transition
       cursor-pointer
     "
-    onClick={()=>{navigate('/addrecipe')}}
+   to={'/addrecipe'}
   >
     
     <div className="text-6xl text-orange-400 mb-4">
@@ -61,7 +60,7 @@ useEffect(()=>{
     <p className="text-white/50 mt-2 text-center px-6">
       Share your next delicious creation with RecipeRiot.
     </p>
-  </button>}
+  </Link>}
 
 </div>
 {!isLoading && data?.recipe?.length !== 0 && 

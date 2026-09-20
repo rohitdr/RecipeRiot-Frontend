@@ -1,71 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { changePasswordApi, forgetPasswordApi, logoutApi, signUpApi, userLikeRecipeApi, userUpdateApi } from '../Api/UserApi';
+import { userLikeRecipeApi } from './../features/profile/services/api';
 
 
 
-export const useLogoutMutation=(handleError,setIsAuthenticated)=>{
-    const queryClient=useQueryClient()
-    const navigate=useNavigate()
-    return useMutation({
-        mutationFn:async (data)=>{
-           const response=await logoutApi();
-           return response.data
-        },
-        retry:false,
-        onError:(error)=>handleError(error),
-        onSuccess:(data)=>{
-            localStorage.removeItem("accessToken")
-            setIsAuthenticated(false)
-  queryClient.removeQueries({
-  queryKey: ["Me"]
-})
 
-queryClient.removeQueries({
-  queryKey: ["user-likedRecipes"]
-})
-queryClient.removeQueries({
-  queryKey: ["user-recipes"]
-})
-  toast.info("You have been loggout out successfully")
-            navigate('/home')
-        }
-    })
-}
 
-export const useChangePasswordMutation=(handleError)=>{
-    return useMutation({
-        mutationFn:async(data)=>{
-         return await changePasswordApi(data)
-        },
-         retry:false,
-        onError:(error)=>handleError(error),
-         onSuccess:()=>{
-     toast.success("Your Password Changed successfully ")
-        }
-    })
-}
-export const useProfileUpdateMutation=(handleError)=>{
-    const queryClient = useQueryClient()
-    return useMutation({
-        mutationFn:async(data)=>{
-            const response= await userUpdateApi(data)
-    return response.data
-},
-         retry:false,
-         onSuccess:(data)=>{
-     toast.success(data.message)
-        },
-        onSettled:()=>{
-queryClient.invalidateQueries({
-   queryKey:["Me"]
-   })
-        },
-     onError:(error)=>handleError(error)
 
-    })
-}
+
+
 export const useLikeMutation=(handleError)=>{
     const queryClient = useQueryClient()
     return useMutation({
@@ -117,24 +60,6 @@ queryClient.invalidateQueries({
     context.previousUser
   )
     }
-
-    })
-}
-export const useProfileImageMutation=(userupdate,handleError)=>{
-    const queryClient = useQueryClient()
-    return useMutation({
-        mutationFn:(data)=>userupdate(data),
-         retry:false,
-         onSuccess:(data)=>{
-     toast.success(data.message)
-        },
-        onSettled:()=>{
-queryClient.invalidateQueries({
-   queryKey:["Me"]
-   })
-        },
-     onError:(error,)=> handleError(error)
-    
 
     })
 }

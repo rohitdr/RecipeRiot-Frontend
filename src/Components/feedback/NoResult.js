@@ -1,10 +1,10 @@
 
 import { motion } from "framer-motion";
 import { FaSearch, FaUtensils } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function NoRecipesFound() {
-  const navigate = useNavigate();
+
 
   return (
     <section className="min-h-screen bg-[#06070d] text-white flex items-center justify-center px-6">
@@ -40,19 +40,19 @@ export default function NoRecipesFound() {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-          <button
-            onClick={() => navigate("/")}
+          <Link
+            to={"/"}
             className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 transition font-semibold"
           >
             Explore Recipes
-          </button>
+          </Link>
 
-          <button
-            onClick={() => navigate("/addrecipe")}
+          <Link
+            to={"/addrecipe"}
             className="px-6 py-3 rounded-xl border border-white/20 hover:border-orange-400 transition"
           >
             Add Your Recipe
-          </button>
+          </Link>
         </div>
 
         {/* Small Search Tip */}

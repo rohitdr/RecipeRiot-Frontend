@@ -3,38 +3,19 @@
  import { motion } from "framer-motion";
  import {  FaSpinner } from "react-icons/fa";
 import { toast } from "sonner";
-import AuthContext from "../Context/AuthContext";
-import { useProfileUpdateMutation } from "../Mutations/userMutations";
-export default function ProfileInfo({user}) {
-  const {handleError}=useContext(AuthContext)
-  const userUpdateMutaion=useProfileUpdateMutation(handleError)
+
+import { validateUserForm } from "../schemas/userSchema";
+import { useProfileUpdateMutation } from './../hooks/useProfileUpdate';
+import AuthContext from "../../../Context/AuthContext";
+export default function ProfileInfo() {
+  const {Me:user}=useContext(AuthContext)
+
+  const userUpdateMutaion=useProfileUpdateMutation()
   const [formData,setformData]=useState({name:user?.name || "",email:user?.email || "",username:user?.username || "",phoneNumber:user?.phoneNumber || "",bio:user?.bio || ""})
   const handleChange=({target:{name,value}})=>{
     setformData(prev=>({...prev,[name]:value}))
   }
-  const emailRegex = /^\S+@\S+\.\S+$/;
-  const phoneRegex=/^[6-9]\d{9}$/;
-  const nameRegex=/^[A-Za-z\s'-]{2,50}$/;
-  const validate=()=>{
-    if(!nameRegex.test(formData.name.trim())){
-      return "Enter a valid Name"
-    }
-    if(!emailRegex.test(formData.email.trim())){
-      return "Enter a valid Email"
-    }
-    if(formData.username.trim().length<8){
-      return "Username Cannot be less than 8 Characters"
-    }
-    if(!phoneRegex.test(String(formData.phoneNumber).trim())){
-      return "Enter a valid Phone Number"
-    }
-     if(!formData.bio.trim()){
-      return "Bio Cannot be empty"
-    }
-   
-   
- return null;
-  }
+
 const isFormValid =
   formData.name?.trim() &&
   formData.email?.trim() &&
@@ -45,7 +26,7 @@ const isFormValid =
 
   const handleSubmit=(e)=>{
   e.preventDefault()
-  const error = validate()
+  const error = validateUserForm(formData)
   if(error){
 toast.warning(error)
     return

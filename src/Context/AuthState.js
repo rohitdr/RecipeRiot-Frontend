@@ -1,6 +1,6 @@
 import {  useState } from 'react'
 import AuthContext from './AuthContext'
-import {getLoggedUserApi, uploadCloudinaryApi, userUpdateApi,} from '../Api/UserApi'
+import {getLoggedUserApi} from '../Api/UserApi'
 
 import { toast } from 'sonner'
 import useMe from '../Hooks/useMe'
@@ -46,29 +46,13 @@ const getLoggedUser=async()=>{
 
 const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser,isAuthenticated)
  
-  const updateProfileImage=async(file)=>{
-    try{
-         const formData=new FormData()
-         formData.append("file",file)
-       formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
-        const res = await uploadCloudinaryApi(formData);
-       let image = {
-        publicId: res.data.public_id,
-        url: res.data.secure_url,
-      };
-      const data = { image }
-     const response= await userUpdateApi(data)
-      return response.data
-    }catch (error){
-      throw error
-    }
-  }
+ 
 
 
 
   return (
 
- <AuthContext.Provider value={{Me,isMeLoading,handleError,updateProfileImage,isServerDown,isAuthenticated,setIsAuthenticated}}>
+ <AuthContext.Provider value={{Me,isMeLoading,handleError,isServerDown,isAuthenticated,setIsAuthenticated}}>
     {children}
  </AuthContext.Provider>
       

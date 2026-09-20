@@ -1,6 +1,9 @@
 import axios from "axios";
 import { queryClient } from "./queryClient";
 
+export const cloudinaryApi=axios.create({
+  baseURL:`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_DATABASE_NAME}/auto/upload`
+})
 const api = axios.create({
   baseURL: process.env.REACT_APP_API,
   withCredentials: true,

@@ -1,16 +1,13 @@
-import  { useContext, useState } from 'react'
-import RecipeItem from '../Components/RecipeItem'
-import AuthContext from '../Context/AuthContext'
-import { useLikedRecipesList } from '../Hooks/useLikedRecipesList'
-
-import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
-import NoRecipesFound from '../Components/feedback/NoResult'
-import Pagination from '../Components/navigation/Pagination'
+import  { useState } from 'react'
+import RecipeItem from '../../../Components/RecipeItem'
+import RecipeSkeleton from '../../../Components/Skeletons/RecipeSkeleton'
+import NoRecipesFound from '../../../Components/feedback/NoResult'
+import Pagination from '../../../Components/navigation/Pagination'
+import { useLikedRecipesList } from '../hooks/useLikedRecipesList'
 
 export default function Liked() {
   const [page,setPage]=useState(1)
-const {Me}=useContext(AuthContext)
-const {data:likedRecipes,isLoading}=useLikedRecipesList(page,Me)
+const {data:likedRecipes,isLoading}=useLikedRecipesList(page)
   return (
   <section className='max-w-7xl mx-auto'>
   <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-8 px-4">

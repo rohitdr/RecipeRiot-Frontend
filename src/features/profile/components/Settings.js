@@ -1,41 +1,30 @@
 
 import { motion } from 'framer-motion'
-import  { useContext, useState } from 'react'
+import  { useState } from 'react'
 import { toast } from 'sonner'
  import {FaSpinner } from "react-icons/fa";
-import AuthContext from '../Context/AuthContext'
-import { useChangePasswordMutation, useLogoutMutation } from '../Mutations/userMutations'
-import LogoutConfirmDialog from '../Components/DailogBoxes/simpleDailogBox'
-
-
+ 
+import { useLogoutMutation } from '../hooks/useLogout';
+import { validatePassword } from '../schemas/userSchema';
+import LogoutConfirmDialog from './../../../Components/DailogBoxes/simpleDailogBox';
+import { useChangePasswordMutation } from './../hooks/useChangePassword';
 
 export default function Settings() {
 
-  const {handleError,setIsAuthenticated}=useContext(AuthContext)
 
-  const changePasswordMutation=useChangePasswordMutation(handleError)
+
+  const changePasswordMutation=useChangePasswordMutation()
   const [formData,setFormData]=useState({oldPassword:"",newPassword:"",confirmPassword:""})
     const [open, setOpen] = useState(false);
-    const logoutmutation=useLogoutMutation(handleError,setIsAuthenticated)
+    const logoutmutation=useLogoutMutation()
   const handleChange=({target:{name,value}})=>{
    setFormData(prev=>({...prev,[name]:value}))
   }
 
-  const validate=()=>{
-    if(formData.oldPassword.length<8 || formData.newPassword.length<8 || formData.confirmPassword.length <8){
-return "Password Length Cannot be less than 8"
-    }
-    if(formData.oldPassword === formData.newPassword){
-      return "Old password and New password cannot be same"
-    }
-    if(formData.newPassword !== formData.confirmPassword){
-        return "Confirm password and New password must be same"
-    }
-    return null
-  }
+
   const isFormValid=formData.oldPassword.length>=8 && formData.newPassword.length>=8 && formData.confirmPassword.length>=8
     const handleSubmit=()=>{
-     const error=validate()
+     const error=validatePassword(formData)
      if(error){
       toast.error(error)
      }

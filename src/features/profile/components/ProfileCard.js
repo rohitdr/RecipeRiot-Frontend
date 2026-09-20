@@ -3,11 +3,12 @@ import  { useContext, useEffect, useState } from 'react'
 
  import { FaCamera,FaSpinner,FaUpload } from "react-icons/fa";
 import { toast } from 'sonner';
-import AuthContext from '../Context/AuthContext';
-import { useProfileImageMutation } from '../Mutations/userMutations';
-export default function ProfileCard({user}) {
-  const {updateProfileImage,handleError}=useContext(AuthContext)
-  const userImageMutation=useProfileImageMutation(updateProfileImage,handleError)
+import { useProfileImageMutation } from './../hooks/useProfileImageUpdate';
+import AuthContext from '../../../Context/AuthContext';
+
+export default function ProfileCard() {
+  const {Me:user}=useContext(AuthContext)
+  const userImageMutation=useProfileImageMutation()
   const [preview,setPreview]=useState(null)
   const [image,setImage]=useState(null)
   const handleChange=(e)=>{

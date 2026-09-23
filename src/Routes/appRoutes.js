@@ -10,13 +10,15 @@ import PublicRoute from "../Components/routes/PublicRoute.js"
 import ErrorPage from './../Components/feedback/ErrorPage';
 
 const CategoryRecipe = lazy(()=>import("../Components/CategoryRecipe.js"))
-const RecipeDetails=lazy(()=>import("../Components/RecipeDetails.js"))
+const RecipeDetails=lazy(()=>import('./../pages/RecipeDetails'))
+
 const AddRecipe =lazy(()=>import("../AddRecipe.js"))
 const Profile=lazy(()=>import("../Profile/Profile.js"))
 
 const ForgetPassword=lazy(()=>import('./../pages/ForgetPassword'))
 const About=lazy(()=>import("../pages/About.js"))
 const SearchResult=lazy(()=>import("../Components/SearchResult.js"))
+
 
 
 export const appRoutes = [

@@ -3,19 +3,7 @@ import {  deleteRecipeApi, getImageApi, postCommentApi } from "../Api/RecipeApi"
 import { toast } from "sonner"
 import { useNavigate } from "react-router-dom"
 
-export const usePostCommnetMutation=(recipeId,handleError)=>{
-    const queryClient=useQueryClient()
- return useMutation({
-    mutationFn:(data)=>postCommentApi(data),
-    onError:(error)=>handleError(error),
-    onSuccess:()=>{
-        queryClient.invalidateQueries({
-            queryKey:["comments",recipeId]
-        })
-        toast.success("Comment has been posted ")
-    }
- })
-}
+
 export const useAddRecipeMutation=(addRecipefn,handleError)=>{
     const queryClient=useQueryClient()
     return useMutation({

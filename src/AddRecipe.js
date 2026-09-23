@@ -13,18 +13,19 @@ import { toast } from "sonner";
 import RecipeContext from "./Context/RecipeContext";
 import { useAddRecipeMutation, useAutoGenerateImage, useEditRecipeMutation } from "./Mutations/RecipeMutation";
 import { useParams } from "react-router-dom";
-import useRecipe from "./Hooks/useRecipe";
+import useRecipe from "./features/recipes/hooks/useRecipe";
+
 
 export default function AddRecipe() {
   const {Me,handleError}=useContext(AuthContext)
   const [image,setImage]=useState(null)
-  const {addRecipe,getRecipeById,editRecipe}=useContext(RecipeContext)
+  const {addRecipe,editRecipe}=useContext(RecipeContext)
   const addRecipeMutation=useAddRecipeMutation(addRecipe,handleError)
   const editRecipeMutation=useEditRecipeMutation(editRecipe,handleError)
 
   const {id}=useParams();
   const isEditMode=!!id
-      const {data}=useRecipe(id,getRecipeById)
+      const {data}=useRecipe(id)
   const [formData,setFormData]=useState({label:"",totalTime:"",source:"",calories:"",totalWeight:"",image: {
             url: "https://res.cloudinary.com/do2twyxai/image/upload/v1771996404/recipes/pakdre8w9g3z99rj9uue.jpg",
           },ingredientLines:[""],dietLabels:[""],healthLabels:[""],totalNutrients: {

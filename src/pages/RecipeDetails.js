@@ -1,24 +1,22 @@
 
 
-import  { useContext } from 'react'
-import Hero from "../RecipeDetail/Hero";
-import Ingridients from "../RecipeDetail/Ingridients";
-import Nutrients from "../RecipeDetail/Nutrients";
-import HealthLabel from "../RecipeDetail/HealthLabel";
-import Comments from "../RecipeDetail/Comments";
-import ReviewForm from "../RecipeDetail/ReviewForm";
+
 import { useParams } from "react-router-dom";
-import useRecipe from "../Hooks/useRecipe";
-import RecipeContext from "../Context/RecipeContext";
-import DietLabel from "../RecipeDetail/DietLabel";
+import useRecipe from '../features/recipes/hooks/useRecipe';
+import Hero from './../features/recipes/components/recipeDetails/Hero';
+import Ingridients from './../features/recipes/components/recipeDetails/Ingridients';
+import Nutrients from './../features/recipes/components/recipeDetails/Nutrients';
+import HealthLabel from './../features/recipes/components/recipeDetails/HealthLabel';
+import Comments from './../features/recipes/components/recipeDetails/Comments';
+import ReviewForm from './../features/recipes/components/recipeDetails/ReviewForm';
+import DietLabel from './../features/recipes/components/recipeDetails/DietLabel';
+import AppLoader from './../Components/loaders/AppLoader';
 
 export default function RecipeDetails() {
-  const {getRecipeById}=useContext(RecipeContext)
       const {recipeId}=useParams()
-      const {data,isLoading}=useRecipe(recipeId,getRecipeById)
-    
+      const {data,isLoading}=useRecipe(recipeId)
    
- if(isLoading) return "hood"
+ if(isLoading) return <AppLoader></AppLoader>
   return (
     <div className='relative min-h-screen overflow-hidden bg-[#06070d] text-white'>
        <Hero recipe={data?.recipe}></Hero>

@@ -1,5 +1,6 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query"
-import { getCommentsApi } from "../Api/RecipeApi"
+
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { getCommentsApi } from '../../services/recipeDetails.api';
 
 const useCommnets=(recipeId,page)=>{
 return useQuery({

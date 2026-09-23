@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion'
 import  { useContext, useState } from 'react'
 import { FaStar,FaSpinner } from 'react-icons/fa'
-import { usePostCommnetMutation } from '../Mutations/RecipeMutation'
-import AuthContext from '../Context/AuthContext'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useAddComment } from '../../hooks/recipeDetails/useAddComments'
+import AuthContext from '../../../../Context/AuthContext'
 export default function ReviewForm() {
   const navigate=useNavigate()
-  const {handleError,Me}=useContext(AuthContext)
+  const {Me}=useContext(AuthContext)
   const [rating,setRating]=useState(0)
   const [hoverStar,setHoverStar]=useState(0)
   const {recipeId}=useParams() 
    const [comment,setComment]=useState("")
-   const commentMutation=usePostCommnetMutation(recipeId,handleError)
+   const commentMutation=useAddComment(recipeId)
    const handleChange=({target:{value}})=>{
 setComment(value)
    }

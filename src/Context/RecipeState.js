@@ -11,10 +11,7 @@ export default function RecipeState(props) {
      const response = await getRecipeByCategoryApi(categoryName,categoryType,pageParam,15,sort);
      return response.data
   }
-  const getRecipeById= async (id)=>{
-     const response = await getRecipeByIdApi(id);
-     return response.data
-  }
+ 
   const searchRecipe= async (query,page)=>{
      const response = await searchRecipeApi(query,page,15);
      return response.data
@@ -76,7 +73,7 @@ export default function RecipeState(props) {
 
     <RecipeContext.Provider
       value={{    getRecipeByCategory,
-        getRecipeById,
+   
         searchRecipe,
     
         addRecipe,

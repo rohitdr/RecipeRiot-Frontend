@@ -18,3 +18,6 @@ return pexelApi.get(`/search?query=${query}&per_page=1`,
     }
   )
 }
+export const searchRecipeApi =(query,page,limit)=>{
+return api.get(`/recipe/search/${query}?page=${page}&limit=${limit}`)
+}

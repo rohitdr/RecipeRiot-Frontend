@@ -18,7 +18,7 @@ const Profile=lazy(()=>import("../Profile/Profile.js"))
 
 const ForgetPassword=lazy(()=>import('./../pages/ForgetPassword'))
 const About=lazy(()=>import("../pages/About.js"))
-const SearchResult=lazy(()=>import("../Components/SearchResult.js"))
+const SearchResult=lazy(()=>import("../pages/SearchResult.js"))
 
 
 

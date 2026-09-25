@@ -1,19 +1,19 @@
 
-import  { useContext, useState } from 'react'
+import  {  useState } from 'react'
 import { useParams } from 'react-router-dom'
-import useSearchRecipe from '../Hooks/useSearchRecipe'
-import RecipeContext from '../Context/RecipeContext'
+import useSearchRecipe from '../features/recipes/hooks/useSearchRecipe'
+
 import { motion } from 'framer-motion'
-import RecipeSkeleton from './Skeletons/RecipeSkeleton'
-import RecipeItem from './RecipeItem'
-import Pagination from './navigation/Pagination'
-import NoRecipesFound from './feedback/NoResult'
+import RecipeSkeleton from '../Components/Skeletons/RecipeSkeleton'
+import RecipeItem from '../Components/RecipeItem'
+import Pagination from '../Components/navigation/Pagination'
+import NoRecipesFound from '../Components/feedback/NoResult'
+
 
 export default function SearchResult() {
-  const {searchRecipe}=useContext(RecipeContext)
   const {query}=useParams()
   const [page,setPage]=useState(1)
-    const {data}=useSearchRecipe(query,page,searchRecipe)
+    const {data}=useSearchRecipe(query,page)
 
   return (
     <section className='min-h-screen bg-[#0b0f19] text-white py-24 px-3'>
@@ -44,7 +44,7 @@ export default function SearchResult() {
               </div>
             ))}
         
-   { data && data.recipe.map((recipe,index) => (
+   { data && data.recipe.map((recipe) => (
               <motion.div
               initial={{opacity:0}}
               animate={{opacity:1}}

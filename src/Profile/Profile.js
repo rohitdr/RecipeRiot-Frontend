@@ -1,18 +1,14 @@
 import  {  useContext } from 'react'
-// import ProfileInfo from './ProfileInfo'
-// import ProfileCard from './ProfileCard'
 
 import AuthContext from '../Context/AuthContext'
 import useHoverPrefetch from '../Hooks/PrefetchHooks/useHoverPrefetch'
 import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import useIsMobile from '../Utility/useIsMobile'
 import usePrefetchLikedRecipe from '../Hooks/PrefetchHooks/usePrefetchLikedRecipes'
-// import AppLoader from '../Components/loaders/AppLoader'
+
 import { Outlet, useSearchParams } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-// const Settings=lazy(()=>import('./Settings'))
-// const Recipe=lazy(()=>import('./Recipe'))
-// const Liked=lazy(()=>import('./Liked'))
+
 const tabs=[
 {tab:"profile",path:''},
  {tab:"recipes",path:'recipes'},
@@ -75,15 +71,7 @@ export default function Profile() {
   </div>
     </div>
 <Outlet></Outlet>
-  {/* {activeTab==="profile" &&  <div className='grid max-w-7xl lg:grid-cols-[300px_1fr] mx-auto gap-6 px-4 '>
-  <ProfileCard user={Me}></ProfileCard>  
-   <ProfileInfo user={Me}></ProfileInfo>
-  </div>}
-  <Suspense fallback={<AppLoader></AppLoader>}>
-{activeTab==="settings" &&   <Settings user={Me}></Settings>}
-{activeTab==="recipes" &&  <Recipe user={Me}></Recipe>}
-{activeTab==="Liked" &&  <Liked user={Me}/>}
-     </Suspense> */}
+
   </section>
   )
 }

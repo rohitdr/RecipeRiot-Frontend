@@ -1,7 +1,7 @@
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
 import  { useContext } from 'react'
-import { userLikedRecipesApi } from '../../Api/UserApi';
 import AuthContext from '../../Context/AuthContext';
+import { userLikedRecipesApi } from './../../features/recipes/services/recipe.api';
 
 export default function usePrefetchLikedRecipe() {
   const {Me}=useContext(AuthContext)

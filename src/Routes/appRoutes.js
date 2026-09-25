@@ -12,7 +12,8 @@ import ErrorPage from './../Components/feedback/ErrorPage';
 const CategoryRecipe = lazy(()=>import("../Components/CategoryRecipe.js"))
 const RecipeDetails=lazy(()=>import('./../pages/RecipeDetails'))
 
-const AddRecipe =lazy(()=>import("../AddRecipe.js"))
+const AddRecipe =lazy(()=>import("../pages/AddRecipe.js"))
+
 const Profile=lazy(()=>import("../Profile/Profile.js"))
 
 const ForgetPassword=lazy(()=>import('./../pages/ForgetPassword'))
@@ -61,14 +62,7 @@ export const appRoutes = [
     element: <RecipeDetails />
   },
 
-  {
-    path: "/addrecipe",
-    element: (
-      <ProtectedRoute>
-        <AddRecipe />
-      </ProtectedRoute>
-    )
-  },
+
   {
     path: "/editrecipe/:id",
     element: (

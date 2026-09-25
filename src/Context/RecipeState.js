@@ -1,8 +1,8 @@
 
 import RecipeContext from "./RecipeContext";
 
-import { addRecipeApi, editRecipeApi, getRecipeByCategoryApi, getRecipeByIdApi, searchRecipeApi } from "../Api/RecipeApi";
-import { uploadCloudinaryApi } from "../features/profile/services/api";
+import {  getRecipeByCategoryApi, searchRecipeApi } from "../Api/RecipeApi";
+
 
 export default function RecipeState(props) {
 
@@ -17,55 +17,8 @@ export default function RecipeState(props) {
      return response.data
   }
 
-  const addRecipe=async(data,file)=>{
- try{
-  if(file){
-   const formData=new FormData() 
-         formData.append("file",file)
-       formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
-        const res = await uploadCloudinaryApi(formData);
-       let image = {
-        publicId: res.data.public_id,
-        url: res.data.secure_url,
-      };
-      const recipe = { ...data,image }
-    
-     const response= await addRecipeApi({...recipe,link:false})
-      return response.data
-  }
-  else{
-      
-     const response= await addRecipeApi({...data,link:true})
-      return response.data
-  }
-      
-    }catch (error){
-      console.log(error)
-      throw error
-    }
-  }
-  const editRecipe=async(id,data,file)=>{
- try{
-      if(file){
-  const formData=new FormData() 
-         formData.append("file",file) 
-       formData.append("upload_preset",process.env.REACT_APP_UPLOAD_PRESET);
-        const res = await uploadCloudinaryApi(formData);
-       let image = {
-        publicId: res.data.public_id,
-        url: res.data.secure_url,
-      };
-      const recipe = { ...data,image }
-      const response= await editRecipeApi(id,{...recipe,link:false})
-       return response.data
-      }
-       const response= await editRecipeApi(id,{...data,link:true})
-       return response.data
-    }catch (error){
-      console.log(error)
-      throw error
-    }
-  }
+ 
+
 
 
 
@@ -74,10 +27,7 @@ export default function RecipeState(props) {
     <RecipeContext.Provider
       value={{    getRecipeByCategory,
    
-        searchRecipe,
-    
-        addRecipe,
-        editRecipe}}
+        searchRecipe}}
     >
       {props.children}
     </RecipeContext.Provider>

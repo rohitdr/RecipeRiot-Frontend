@@ -6,9 +6,6 @@ const  useMe=(fn,isAuthenticated)=>{
     queryFn:()=>fn(),
     enabled:isAuthenticated,
     retry:false
-    })
-    
-    
-    
+    }) 
 }
 export default useMe;

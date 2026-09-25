@@ -1,10 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import {  deleteRecipeApi, getImageApi, postCommentApi } from "../Api/RecipeApi"
+import {  deleteRecipeApi } from "../Api/RecipeApi"
 import { toast } from "sonner"
-import { useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import AuthContext from "../Context/AuthContext"
 
 
-export const useAddRecipeMutation=(addRecipefn,handleError)=>{
+export const useAddRecipeMutation=(addRecipefn)=>{
+    const {handleError}=useContext(AuthContext)
     const queryClient=useQueryClient()
     return useMutation({
         mutationFn:async({data,image})=>addRecipefn(data,image),
@@ -33,37 +35,5 @@ export const useRecipeDeleteMutation=(handleError)=>{
         onError:(error)=>handleError(error)
     })
 }
-export const useEditRecipeMutation=(editRecipe,handleError)=>{
-    const navigate=useNavigate()
-      const queryClient=useQueryClient()
-    return useMutation({
-        mutationFn:async({id,data,image})=>editRecipe(id,data,image),
-        onSuccess:(data,variables)=>{
-             queryClient.invalidateQueries({
-    queryKey: ["recipe", variables.id]
-  })
 
-  queryClient.invalidateQueries({
-    queryKey: ["user-recipes"]
-  })
-  toast.success(data.message)
-  navigate('/profile')
-        },
-        onError:(error)=>handleError(error)
-    })
-}
-export const useAutoGenerateImage=(setFormData,setImage)=>{
-    return useMutation({
-        mutationFn:async(query)=>{
-             const res = await getImageApi(query)
-   return res.data.photos[0].src.large;
-        },
-        onError:()=>{
-            toast.error("failed to generate image")
-        },
-        onSuccess:(data)=>{
-            setFormData(prev=>({...prev,image:{url:data}}))
-            setImage(null)
-        }
-    })
-}
+

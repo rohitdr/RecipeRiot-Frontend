@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import {  Suspense, useContext } from "react";
+import {  lazy, Suspense, useContext } from "react";
 import "./App.css";
 
 
@@ -21,6 +21,8 @@ import ProfileInfo from './features/profile/components/ProfileInfo';
 import Settings from './features/profile/components/Settings';
 import Liked from './features/recipes/components/Liked';
 import Recipe from './features/recipes/components/Recipe';
+const AddRecipe=lazy(()=>import("./pages/AddRecipe.js"))
+
 
 
 
@@ -66,6 +68,9 @@ if(isServerDown) return <ErrorPage code={500} message="Internal Server Error" de
     <Route path="liked-recipes" element={<Liked />} />
     <Route path="settings" element={<Settings />} />
   </Route>
+</Route>
+<Route path="/addRecipe" element={<ProtectedRoute/>}>
+<Route index element={<AddRecipe></AddRecipe>}/>
 </Route>
         
     

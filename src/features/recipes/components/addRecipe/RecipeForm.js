@@ -1,7 +1,7 @@
 import  { useState } from 'react'
 import { FaImage, FaSpinner } from 'react-icons/fa'
 import { toast } from 'sonner'
-export default function RecipeForm({formData,setFormData,image,setImage,autoImageMutation}) {
+export default function RecipeForm({formData,setFormData,setImage,autoImageMutation}) {
   const [generationCount,setgenerationCount]=useState(0)
     const handleChange=({target:{name,value}})=>{
         setFormData(prev=>({...prev,[name]:value}))
@@ -18,13 +18,13 @@ const handleImageChange=(e)=>{
 }
 const handleImageGenerateClick=()=>{
   if(!formData.label || formData.label.length<2){
-    toast.error("give a valid label ")
+    toast.error("give a valid title ")
     return
   }
-  // if(generationCount>=2){
-  //   toast.error("You can generate only two images daily")
-  //   return
-  // }
+  if(generationCount>=2){
+    toast.error("You can generate only two images daily")
+    return
+  }
   autoImageMutation.mutate(formData.label)
   setgenerationCount(prev=>prev+1)
 }

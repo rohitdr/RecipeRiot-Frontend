@@ -3,12 +3,6 @@ import { toast } from 'sonner';
 import { userLikeRecipeApi } from './../features/profile/services/api';
 
 
-
-
-
-
-
-
 export const useLikeMutation=(handleError)=>{
     const queryClient = useQueryClient()
     return useMutation({

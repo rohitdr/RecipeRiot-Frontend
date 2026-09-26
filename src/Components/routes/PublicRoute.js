@@ -1,13 +1,12 @@
-import  {  useContext } from 'react'
 
-import AuthContext from '../../Context/AuthContext'
 import { Navigate } from 'react-router-dom'
+import useMe from '../../features/profile/hooks/useMe'
 
 export default function PublicRoute({children}) {
    
-    const {Me}=useContext(AuthContext)
+    const {data}=useMe()
 
-if(Me)
+if(data)
     { 
 return <Navigate to="/" replace/>
     } 

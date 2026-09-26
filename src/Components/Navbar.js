@@ -28,17 +28,15 @@ import {
 import { IoMdClose } from "react-icons/io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AnimatePresence, motion } from "framer-motion";
-import  { useState, useEffect,  useContext } from "react";
+import  { useState, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import AuthContext from "../Context/AuthContext";
 import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
 import usePrefetch from "../Hooks/PrefetchHooks/usePrefetch";
 import { toCamelCase } from "../Utility/Utility";
-import RecipeContext from "../Context/RecipeContext";
+import useMe from "../features/profile/hooks/useMe";
 export default function Navbar() {
-  const {Me}=useContext(AuthContext)
-  const {getRecipeByCategory}=useContext(RecipeContext)
+ const {data:Me}=useMe()
   const {prefetchRecipe}=usePrefetch()
   const {handleHover}=useHoverPrefetch(prefetchRecipe)
   const [openCategory, setOpenCategory] = useState(false);
@@ -140,7 +138,7 @@ useEffect(() => {
 }, []);
 const handleItemsClick=(title,type)=>{
   setOpenMenu(false)
-  prefetchRecipe({categoryName:title.toLocaleLowerCase(),categoryType:toCamelCase(type),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})
+  prefetchRecipe({categoryName:title.toLocaleLowerCase(),categoryType:toCamelCase(type),page:1,sort:toCamelCase("Newest")})
 
 }
   return (
@@ -207,7 +205,7 @@ const handleItemsClick=(title,type)=>{
                               {category.items.map((sub, j) => (
                                 <NavLink
                                   key={j}
-                                  onMouseEnter={()=>{handleHover({categoryName:category.title.toLocaleLowerCase(),categoryType:toCamelCase(sub.name),getRecipes:getRecipeByCategory,page:1,sort:toCamelCase("Newest")})}}
+                                  onMouseEnter={()=>{handleHover({categoryName:category.title.toLocaleLowerCase(),categoryType:toCamelCase(sub.name),page:1,sort:toCamelCase("Newest")})}}
                                   to={`/category/${category.title}/${sub.name}`}
                                   className={`flex items-center gap-2 text-sm text-white/70 hover:text-orange-400 cursor-pointer transition `}
                                 >

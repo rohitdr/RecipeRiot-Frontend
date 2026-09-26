@@ -1,12 +1,12 @@
-import  {  useContext } from 'react'
+
 import { Navigate, Outlet } from 'react-router-dom'
-import AuthContext from '../../Context/AuthContext'
+import useMe from '../../features/profile/hooks/useMe'
 
 export default function ProtectedRoute() {
 
-    const {Me,isMeLoading}=useContext(AuthContext)
-    if (isMeLoading) return "heelo"
-if(!Me) 
+    const {data,isLoading}=useMe()
+    if (isLoading) return "heelo"
+if(!data) 
     {
         return <Navigate to="/login" replace/>
     }

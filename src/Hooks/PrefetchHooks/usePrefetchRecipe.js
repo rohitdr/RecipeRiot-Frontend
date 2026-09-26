@@ -1,10 +1,10 @@
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
-import { useContext } from 'react'
-import RecipeContext from '../../Context/RecipeContext';
+
+import { getRecipeByIdApi } from './../../features/recipes/services/recipeDetails.api';
 
 export default function usePrefetchRecipe() {
 
-  const {getrecipeByid}=useContext(RecipeContext)
+
     const queryClient=useQueryClient()
   const prefetchRecipe = (id) => {
     const cached = queryClient.getQueryData(["recipe",id]);
@@ -13,8 +13,9 @@ export default function usePrefetchRecipe() {
 
     queryClient.prefetchQuery({
       queryKey:["recipe",id],
-    queryFn:()=>{
-       return getrecipeByid(id)
+    queryFn:async () => {
+      const response = await getRecipeByIdApi(id);
+      return response.data;
     },
     enabled:!!id,
              keepPreviousData:true,

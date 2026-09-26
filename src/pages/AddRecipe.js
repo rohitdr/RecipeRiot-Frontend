@@ -1,5 +1,5 @@
 
- import  { useContext } from "react";
+
  import { motion } from "framer-motion";
  import {  FaSpinner } from "react-icons/fa";
 
@@ -7,12 +7,13 @@ import RecipePreview from './../features/recipes/components/addRecipe/RecipePrev
 import Ingredients from './../features/recipes/components/addRecipe/Ingredients';
 import RecipeForm from './../features/recipes/components/addRecipe/RecipeForm';
 import Nutrients from './../features/recipes/components/addRecipe/Nutrients';
-import AuthContext from './../Context/AuthContext';
+
 import useRecipeForm from './../features/recipes/hooks/useRecipeForm';
+import useMe from "../features/profile/hooks/useMe";
 
 
 export default function AddRecipe() {
-  const {Me}=useContext(AuthContext)
+const {data:Me}=useMe()
  const  {
     formData,
     setFormData,

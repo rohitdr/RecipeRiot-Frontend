@@ -1,8 +1,8 @@
 
 import { motion } from "framer-motion";
 import RecipeItem from './../../../Components/RecipeItem';
-import RecipeSkeleton from './../../../Components/Skeletons/RecipeSkeleton';
 import useFeaturedRecipe from "../hooks/useFeaturedRecipe";
+import RecipeSkeleton from "../../recipes/components/RecipeSkeleton";
 
 export default function Featured() {
 

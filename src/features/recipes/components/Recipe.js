@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 import Pagination from '../../../Components/navigation/Pagination'
 import NoRecipesFound from '../../../Components/feedback/NoResult'
 import usePrefetchUserRecipe from '../../../Hooks/PrefetchHooks/usePrefetchUserRecipe'
-import RecipeSkeleton from '../../../Components/Skeletons/RecipeSkeleton'
 import { useUserRecipes } from './../hooks/useUserRecipes';
 import RecipeItem from '../../../Components/RecipeItem'
+import RecipeSkeleton from './RecipeSkeleton'
 
 
 export default function Recipe() {

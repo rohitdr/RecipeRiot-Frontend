@@ -1,12 +1,10 @@
-import  {  useContext } from 'react'
 
-import AuthContext from '../Context/AuthContext'
 import useHoverPrefetch from '../Hooks/PrefetchHooks/useHoverPrefetch'
 import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import useIsMobile from '../Utility/useIsMobile'
 import usePrefetchLikedRecipe from '../Hooks/PrefetchHooks/usePrefetchLikedRecipes'
 
-import { Outlet, useSearchParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 const tabs=[
@@ -17,9 +15,7 @@ const tabs=[
   
 ]
 export default function Profile() {
-  const seachParams=useSearchParams()
- 
-    const {Me}=useContext(AuthContext)
+
     const{prefetchUserRecipe}=usePrefetchUserRecipe()
     const {prefetchLikedRecipe}=usePrefetchLikedRecipe()
     const {handleHover}=useHoverPrefetch(prefetchUserRecipe)

@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion'
-import  { useContext, useEffect, useState } from 'react'
+import  {  useEffect, useState } from 'react'
 
  import { FaCamera,FaSpinner,FaUpload } from "react-icons/fa";
 import { toast } from 'sonner';
 import { useProfileImageMutation } from './../hooks/useProfileImageUpdate';
-import AuthContext from '../../../Context/AuthContext';
+
+import useMe from './../hooks/useMe';
 
 export default function ProfileCard() {
-  const {Me:user}=useContext(AuthContext)
+ 
+  const {data:user}=useMe()
   const userImageMutation=useProfileImageMutation()
   const [preview,setPreview]=useState(null)
   const [image,setImage]=useState(null)

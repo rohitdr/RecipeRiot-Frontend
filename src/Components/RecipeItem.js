@@ -9,10 +9,12 @@ import { useRecipeDeleteMutation } from "../Mutations/RecipeMutation";
 import usePrefetchRecipe from "../Hooks/PrefetchHooks/usePrefetchRecipe";
 import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
 import useIsMobile from "../Utility/useIsMobile";
+import useMe from "../features/profile/hooks/useMe";
 
 export default function RecipeItem({recipe,size="normal",edit=null, mode}) {
 const navigate=useNavigate()
-const {Me,handleError}=useContext(AuthContext)
+const {data:Me}=useMe()
+const {handleError}=useContext(AuthContext)
 const recipeDeleteMutation=useRecipeDeleteMutation(handleError)
 const likeRecipeMutation=useLikeMutation(handleError)
 const [openDailogBox,setOpenDailogBox]=useState(false)

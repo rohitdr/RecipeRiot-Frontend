@@ -2,7 +2,8 @@
 import { motion } from "framer-motion";
 import RecipeItem from "../../../Components/RecipeItem";
 import useTrendingRecipe from '../hooks/useTrendingRecipes';
-import RecipeSkeleton from "../../../Components/Skeletons/RecipeSkeleton";
+import RecipeSkeleton from "../../recipes/components/RecipeSkeleton";
+
 
 
 export default function Trending() {

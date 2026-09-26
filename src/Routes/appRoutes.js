@@ -9,7 +9,7 @@ import ProtectedRoute from "../Components/routes/ProtectedRoute.js"
 import PublicRoute from "../Components/routes/PublicRoute.js"
 import ErrorPage from './../Components/feedback/ErrorPage';
 
-const CategoryRecipe = lazy(()=>import("../Components/CategoryRecipe.js"))
+const CategoryRecipe = lazy(()=>import("../pages/CategoryRecipe.js"))
 const RecipeDetails=lazy(()=>import('./../pages/RecipeDetails'))
 
 const AddRecipe =lazy(()=>import("../pages/AddRecipe.js"))

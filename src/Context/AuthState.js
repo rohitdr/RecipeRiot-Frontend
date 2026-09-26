@@ -1,9 +1,6 @@
 import {  useState } from 'react'
 import AuthContext from './AuthContext'
-import {getLoggedUserApi} from '../Api/UserApi'
-
 import { toast } from 'sonner'
-import useMe from '../Hooks/useMe'
 export default function AuthState({children}) {
 
   const [isServerDown,setIsServerDown]=useState(false)
@@ -33,18 +30,9 @@ const [isAuthenticated, setIsAuthenticated] = useState(
 
    }
 }
-const getLoggedUser=async()=>{
-   try{
-            const response= await getLoggedUserApi()
-         
-          return response.data.user 
-        }
-        catch(error){
-          throw error
-        }
-}
 
-const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser,isAuthenticated)
+
+
  
  
 
@@ -52,7 +40,7 @@ const {data:Me,isLoading:isMeLoading}=useMe(getLoggedUser,isAuthenticated)
 
   return (
 
- <AuthContext.Provider value={{Me,isMeLoading,handleError,isServerDown,isAuthenticated,setIsAuthenticated}}>
+ <AuthContext.Provider value={{handleError,isServerDown,isAuthenticated,setIsAuthenticated}}>
     {children}
  </AuthContext.Provider>
       

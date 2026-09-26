@@ -1,14 +1,14 @@
 
- import  { useContext, useState } from "react";
+ import { useState } from "react";
  import { motion } from "framer-motion";
  import {  FaSpinner } from "react-icons/fa";
 import { toast } from "sonner";
 
 import { validateUserForm } from "../schemas/userSchema";
 import { useProfileUpdateMutation } from './../hooks/useProfileUpdate';
-import AuthContext from "../../../Context/AuthContext";
+import useMe from "../hooks/useMe";
 export default function ProfileInfo() {
-  const {Me:user}=useContext(AuthContext)
+ const {data:user}=useMe()
 
   const userUpdateMutaion=useProfileUpdateMutation()
   const [formData,setformData]=useState({name:user?.name || "",email:user?.email || "",username:user?.username || "",phoneNumber:user?.phoneNumber || "",bio:user?.bio || ""})

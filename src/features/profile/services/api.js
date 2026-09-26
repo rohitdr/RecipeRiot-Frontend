@@ -33,4 +33,6 @@ export  function logoutApi(){
       throw error
     }
   }
- 
+ export  function getLoggedUserApi(){
+    return api.get('/user/getUser')
+}

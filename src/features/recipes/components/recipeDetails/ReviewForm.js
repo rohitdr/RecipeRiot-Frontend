@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
-import  { useContext, useState } from 'react'
+import  { useState } from 'react'
 import { FaStar,FaSpinner } from 'react-icons/fa'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAddComment } from '../../hooks/recipeDetails/useAddComments'
-import AuthContext from '../../../../Context/AuthContext'
+import useMe from './../../../profile/hooks/useMe';
 export default function ReviewForm() {
   const navigate=useNavigate()
-  const {Me}=useContext(AuthContext)
+  const {data:Me}=useMe()
   const [rating,setRating]=useState(0)
   const [hoverStar,setHoverStar]=useState(0)
   const {recipeId}=useParams() 

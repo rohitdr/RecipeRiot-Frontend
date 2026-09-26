@@ -12,7 +12,7 @@ export default function usePrefetch() {
     queryClient.prefetchQuery({
        queryKey:["recipes",categoryName,categoryType,page,sort],
     queryFn: async ()=>{
-         const response = await getRecipeByCategoryApi(categoryName,categoryType,page,sort);
+         const response = await getRecipeByCategoryApi(categoryName,categoryType,page,15,sort);
          return response.data
       },
       keepPreviousData: true,

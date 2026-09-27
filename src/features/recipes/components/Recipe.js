@@ -7,8 +7,8 @@ import Pagination from '../../../Components/navigation/Pagination'
 import NoRecipesFound from '../../../Components/feedback/NoResult'
 import usePrefetchUserRecipe from '../../../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import { useUserRecipes } from './../hooks/useUserRecipes';
-import RecipeItem from '../../../Components/RecipeItem'
 import RecipeSkeleton from './RecipeSkeleton'
+import RecipeItem from './RecipeItem';
 
 
 export default function Recipe() {
@@ -28,7 +28,7 @@ useEffect(()=>{
     </div>)}
   {!isLoading && data?.recipes?.length>0 &&data?.recipes?.map((recipe) => (
     <div key={recipe._id} className='w-full sm:max-w-[280px] mx-auto'>
-        <RecipeItem  recipe={recipe} edit="true"/>
+        <RecipeItem  recipe={recipe} editable="true"/>
         </div>
   ))}
   {!isLoading && data?.recipe?.length === 0 && (

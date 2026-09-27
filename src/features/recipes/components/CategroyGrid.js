@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import NoRecipesFound from "../../../Components/feedback/NoResult";
 
-import RecipeItem from "../../../Components/RecipeItem";
+
 import RecipeSkeleton from "./RecipeSkeleton";
+import RecipeItem from './RecipeItem';
 
 
 export default function CategoryGrid({ data }) {

@@ -1,5 +1,6 @@
+import RecipeItem from "../RecipeItem"
 
-import RecipeItem from './../../../../Components/RecipeItem';
+
 
 export default function RecipePreview({recipe}) {
   return (

@@ -1,9 +1,9 @@
 import  { useState } from 'react'
-import RecipeItem from '../../../Components/RecipeItem'
 import NoRecipesFound from '../../../Components/feedback/NoResult'
 import Pagination from '../../../Components/navigation/Pagination'
 import { useLikedRecipesList } from '../hooks/useLikedRecipesList'
 import RecipeSkeleton from './RecipeSkeleton'
+import RecipeItem from './RecipeItem';
 
 export default function Liked() {
   const [page,setPage]=useState(1)

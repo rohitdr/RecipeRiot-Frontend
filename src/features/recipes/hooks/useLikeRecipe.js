@@ -1,9 +1,11 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'sonner';
-import { userLikeRecipeApi } from './../features/profile/services/api';
+import { useContext } from "react"
+import AuthContext from "../../../Context/AuthContext"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { userLikeRecipeApi } from "../services/recipe.api"
+import { toast } from "sonner"
 
-
-export const useLikeMutation=(handleError)=>{
+export const useLikeRecipe=()=>{
+  const {handleError}=useContext(AuthContext)
     const queryClient = useQueryClient()
     return useMutation({
         onMutate:async(recipe)=>{

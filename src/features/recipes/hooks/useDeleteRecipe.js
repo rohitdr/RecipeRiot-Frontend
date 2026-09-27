@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import {  deleteRecipeApi } from "../Api/RecipeApi"
+import { useContext } from "react"
+import AuthContext from "../../../Context/AuthContext"
 import { toast } from "sonner"
+import { deleteRecipeApi } from "../services/recipe.api"
 
-
-
-export const useRecipeDeleteMutation=(handleError)=>{
+export const useDeleteRecipe=()=>{
+    const {handleError}=useContext(AuthContext)
     const queryClient=useQueryClient()
     return useMutation({
         mutationFn:async(id)=>{
@@ -20,5 +21,3 @@ export const useRecipeDeleteMutation=(handleError)=>{
         onError:(error)=>handleError(error)
     })
 }
-
-

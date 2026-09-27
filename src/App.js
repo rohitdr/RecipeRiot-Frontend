@@ -9,8 +9,6 @@ import { Toaster } from "sonner";
 
 
 import AuthContext from "./Context/AuthContext.js";
-
-
 import { appRoutes } from "./Routes/appRoutes.js";
 import AppLoader from './Components/loaders/AppLoader';
 import ErrorPage from './Components/feedback/ErrorPage';
@@ -22,10 +20,6 @@ import Settings from './features/profile/components/Settings';
 import Liked from './features/recipes/components/Liked';
 import Recipe from './features/recipes/components/Recipe';
 const AddRecipe=lazy(()=>import("./pages/AddRecipe.js"))
-
-
-
-
 
 
 

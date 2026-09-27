@@ -1,8 +1,9 @@
 
 import { motion } from "framer-motion";
-import RecipeItem from './../../../Components/RecipeItem';
+
 import useFeaturedRecipe from "../hooks/useFeaturedRecipe";
 import RecipeSkeleton from "../../recipes/components/RecipeSkeleton";
+import RecipeItem from "../../recipes/components/RecipeItem";
 
 export default function Featured() {
 
@@ -36,7 +37,7 @@ export default function Featured() {
   {/* BIG CARD */}
  <div className="col-span-2 row-span-2">
    {isLoading &&  <RecipeSkeleton /> }
-    {!isLoading && data && <RecipeItem  size="feautedLarge" recipe={data?.recipes[0]} />}
+    {!isLoading && data && <RecipeItem  variant="feautedLarge" recipe={data?.recipes[0]} />}
   </div>
 
   {/* SMALL CARDS */}
@@ -44,7 +45,7 @@ export default function Featured() {
   {!isLoading && data && data?.recipes.slice(1).map((recipe) => (
     <div className="" key={recipe._id}>
         
-        <RecipeItem size="feautedNormal"  recipe={recipe} />
+        <RecipeItem variant="feautedNormal"  recipe={recipe} />
 
     </div>
   ))}

@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom'
 import useSearchRecipe from '../features/recipes/hooks/useSearchRecipe'
 
 import { motion } from 'framer-motion'
-import RecipeItem from '../Components/RecipeItem'
+
 import Pagination from '../Components/navigation/Pagination'
 import NoRecipesFound from '../Components/feedback/NoResult'
 import RecipeSkeleton from '../features/recipes/components/RecipeSkeleton'
+import RecipeItem from './../features/recipes/components/RecipeItem';
 
 
 export default function SearchResult() {

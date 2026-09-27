@@ -1,8 +1,9 @@
 
 import { motion } from "framer-motion";
-import RecipeItem from "../../../Components/RecipeItem";
+
 import useTrendingRecipe from '../hooks/useTrendingRecipes';
 import RecipeSkeleton from "../../recipes/components/RecipeSkeleton";
+import RecipeItem from "../../recipes/components/RecipeItem";
 
 
 

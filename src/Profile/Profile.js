@@ -40,7 +40,6 @@ export default function Profile() {
       
   }
   return (
-    
   <section className='min-h-screen  py-24 bg-[#06070d] text-white'>
     <div className='max-w-7xl mx-auto'>
           <div className="flex overflow-x-auto gap-3 mb-8 px-4 border-b border-white/10 pb-6">
@@ -63,7 +62,6 @@ export default function Profile() {
     {tab.charAt(0).toUpperCase() + tab.slice(1)}
   </NavLink>
 ))}
-  
   </div>
     </div>
 <Outlet></Outlet>

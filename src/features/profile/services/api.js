@@ -7,9 +7,7 @@ export  function userUpdateApi(data){
 export const uploadCloudinaryApi =(data)=>{
     return cloudinaryApi.post('',data);
 }
-export  function userLikeRecipeApi(data){
-    return api.patch('/user/likeRecipe',data)
-}
+
  export  function changePasswordApi(data){
     return api.patch('/auth/changePassword',data)
 }

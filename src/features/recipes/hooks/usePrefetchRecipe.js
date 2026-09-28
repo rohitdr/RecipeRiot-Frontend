@@ -1,6 +1,7 @@
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
+import { getRecipeByIdApi } from './../services/recipeDetails.api';
 
-import { getRecipeByIdApi } from './../../features/recipes/services/recipeDetails.api';
+
 
 export default function usePrefetchRecipe() {
 

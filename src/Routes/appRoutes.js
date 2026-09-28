@@ -14,8 +14,6 @@ const RecipeDetails=lazy(()=>import('./../pages/RecipeDetails'))
 
 const AddRecipe =lazy(()=>import("../pages/AddRecipe.js"))
 
-const Profile=lazy(()=>import("../Profile/Profile.js"))
-
 const ForgetPassword=lazy(()=>import('./../pages/ForgetPassword'))
 const About=lazy(()=>import("../pages/About.js"))
 const SearchResult=lazy(()=>import("../pages/SearchResult.js"))
@@ -71,12 +69,5 @@ export const appRoutes = [
       </ProtectedRoute>
     )
   },
-  {
-    path: "/profi74le",
-    element: (
-      <ProtectedRoute>
-        <Profile />
-      </ProtectedRoute>
-    )
-  }
+
 ];

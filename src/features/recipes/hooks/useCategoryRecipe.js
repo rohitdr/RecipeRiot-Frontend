@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import usePrefetch from "../../../Hooks/PrefetchHooks/usePrefetch"
-import useRecipes from "../../../Hooks/useRecipes"
 import { toCamelCase } from "../../../Utility/Utility"
+import useRecipes from './useRecipes';
+import usePrefetch from './usePrefetch';
 
 export const useCategoryRecipe=()=>{
 

@@ -31,10 +31,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import  { useState, useEffect } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import useHoverPrefetch from "../Hooks/PrefetchHooks/useHoverPrefetch";
-import usePrefetch from "../Hooks/PrefetchHooks/usePrefetch";
+
 import { toCamelCase } from "../Utility/Utility";
 import useMe from "../features/profile/hooks/useMe";
+import usePrefetch from "../features/recipes/hooks/usePrefetch";
+import useHoverPrefetch from './../Hooks/useHoverPrefetch';
 export default function Navbar() {
  const {data:Me}=useMe()
   const {prefetchRecipe}=usePrefetch()

@@ -1,11 +1,12 @@
 
-import useHoverPrefetch from '../Hooks/PrefetchHooks/useHoverPrefetch'
-import usePrefetchUserRecipe from '../Hooks/PrefetchHooks/usePrefetchUserRecipe'
+
 import useIsMobile from '../Utility/useIsMobile'
-import usePrefetchLikedRecipe from '../Hooks/PrefetchHooks/usePrefetchLikedRecipes'
 
 import { Outlet } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import usePrefetchUserRecipe from '../features/recipes/hooks/usePrefetchUserRecipe'
+import usePrefetchLikedRecipe from '../features/recipes/hooks/usePrefetchLikedRecipes'
+import useHoverPrefetch from '../Hooks/useHoverPrefetch'
 
 const tabs=[
 {tab:"profile",path:''},

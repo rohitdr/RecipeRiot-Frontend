@@ -2,21 +2,17 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import {  lazy, Suspense, useContext } from "react";
 import "./App.css";
 
-
-
 import Navbar from "./Components/Navbar.js";
 import { Toaster } from "sonner";
-
-
 import AuthContext from "./Context/AuthContext.js";
 import { appRoutes } from "./Routes/appRoutes.js";
 import AppLoader from './Components/loaders/AppLoader';
 import ErrorPage from './Components/feedback/ErrorPage';
 import ProtectedRoute from "./Components/routes/ProtectedRoute.js";
-import Profile from "./Profile/Profile.js";
 import ProfileCard from './features/profile/components/ProfileCard';
 import ProfileInfo from './features/profile/components/ProfileInfo';
 import Settings from './features/profile/components/Settings';
+import Profile from './pages/Profile';
 import Liked from './features/recipes/components/Liked';
 import Recipe from './features/recipes/components/Recipe';
 const AddRecipe=lazy(()=>import("./pages/AddRecipe.js"))

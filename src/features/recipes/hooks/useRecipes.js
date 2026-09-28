@@ -1,5 +1,5 @@
 import {  useQuery,keepPreviousData } from "@tanstack/react-query";
-import { getRecipeByCategoryApi } from "../features/recipes/services/recipe.api";
+import { getRecipeByCategoryApi } from "../services/recipe.api";
 const useRecipes=(categoryName,categoryType,page,sort)=>{
 return useQuery({
     queryKey:["recipes",categoryName,categoryType,page,sort],

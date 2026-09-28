@@ -1,21 +1,20 @@
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
 
+import { userLikedRecipesApi } from '../services/recipe.api';
+import useMe from '../../profile/hooks/useMe';
 
-import useMe from '../../features/profile/hooks/useMe';
-import { userRecipesApi } from '../../features/recipes/services/recipe.api';
-
-export default function usePrefetchUserRecipe() {
+export default function usePrefetchLikedRecipe() {
   const {data:Me}=useMe()
     const queryClient=useQueryClient()
-  const prefetchUserRecipe = (page) => {
-    const cached = queryClient.getQueryData(["user-recipes",page]);
+  const prefetchLikedRecipe = (page) => {
+    const cached = queryClient.getQueryData(["user-likedRecipes",page]);
 
     if (cached) return; 
 
     queryClient.prefetchQuery({
-      queryKey:["user-recipes",page],
+      queryKey:["user-likedRecipes",page],
              queryFn:async()=>{
-                 const response = await userRecipesApi(page)
+                 const response = await userLikedRecipesApi(page)
                  return response.data
              },
              keepPreviousData:true,
@@ -25,6 +24,6 @@ export default function usePrefetchUserRecipe() {
   gcTime: 1000 * 60 * 10,
     });
   };
-  return { prefetchUserRecipe };
+  return { prefetchLikedRecipe };
 
 }

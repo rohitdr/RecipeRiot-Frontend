@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 
 import Pagination from '../../../Components/navigation/Pagination'
 import NoRecipesFound from '../../../Components/feedback/NoResult'
-import usePrefetchUserRecipe from '../../../Hooks/PrefetchHooks/usePrefetchUserRecipe'
 import { useUserRecipes } from './../hooks/useUserRecipes';
 import RecipeSkeleton from './RecipeSkeleton'
 import RecipeItem from './RecipeItem';
+import usePrefetchUserRecipe from './../hooks/usePrefetchUserRecipe';
 
 
 export default function Recipe() {

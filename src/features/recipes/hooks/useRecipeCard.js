@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import useMe from '../../profile/hooks/useMe'
 import { useDeleteRecipe } from './useDeleteRecipe'
 import { useLikeRecipe } from './useLikeRecipe'
-import usePrefetchRecipe from '../../../Hooks/PrefetchHooks/usePrefetchRecipe'
-import useHoverPrefetch from '../../../Hooks/PrefetchHooks/useHoverPrefetch'
 import useIsMobile from '../../../Utility/useIsMobile'
+import usePrefetchRecipe from './usePrefetchRecipe';
+import useHoverPrefetch from '../../../Hooks/useHoverPrefetch'
 
 export const useRecipeCard=(recipe)=> {
  const navigate=useNavigate()

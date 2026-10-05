@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useContext } from "react"
 import { toast } from "sonner"
-import AuthContext from "../../../Context/AuthContext"
 import { updateProfileImage } from "../services/api"
+import AuthContext from "../../../app/Context/AuthContext"
 
 
 export const useProfileImageMutation=()=>{

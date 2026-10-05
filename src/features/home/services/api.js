@@ -1,4 +1,4 @@
-import api from "../../../Api/ApiInstances";
+import api from "../../../app/api/ApiInstances";
 
   export const getTrendingRecipes= async ()=>{
      const response = await api.get(`/recipe/trending`);

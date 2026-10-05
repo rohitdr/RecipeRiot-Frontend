@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { signUpApi } from "../services/auth.api"
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
+import AuthContext from "../../../app/Context/AuthContext"
 
 export const useSignUp=()=>{
       const { handleError } = useContext(AuthContext);

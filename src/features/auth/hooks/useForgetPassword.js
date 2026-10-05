@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
 import { forgetPasswordApi } from "../services/auth.api"
+import AuthContext from "../../../app/Context/AuthContext"
 
 export const useForgetPasswordMutation=()=>{
        const { handleError } = useContext(AuthContext);

@@ -1,9 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useContext } from "react";
-import AuthContext from "../../../Context/AuthContext";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { logoutApi } from "../services/api";
+import AuthContext from "../../../app/Context/AuthContext";
 
 export const useLogoutMutation=()=>{
     const {handleError,setIsAuthenticated}=useContext(AuthContext)

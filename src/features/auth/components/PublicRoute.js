@@ -1,6 +1,6 @@
 
 import { Navigate } from 'react-router-dom'
-import useMe from '../../features/profile/hooks/useMe'
+import useMe from '../../profile/hooks/useMe'
 
 export default function PublicRoute({children}) {
    

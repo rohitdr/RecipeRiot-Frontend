@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { createRecipe } from './../services/addRecipe.service';
+import AuthContext from "../../../app/Context/AuthContext";
 
 export const useAddRecipe=()=>{
     const {handleError}=useContext(AuthContext)

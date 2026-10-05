@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { toast } from "sonner"
 import { updateRecipe } from "../services/editRecipe.service"
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
+import AuthContext from "../../../app/Context/AuthContext"
 
 export const useEditRecipe=()=>{
     const {handleError}=useContext(AuthContext)

@@ -1,4 +1,5 @@
-import api, { pexelApi } from "../../../Api/ApiInstances";
+import api, { pexelApi } from "../../../app/api/ApiInstances"
+
 
 export  function userLikedRecipesApi(page){
     return api.get(`/user/likedRecipes?page=${page}&limit=${15}`)

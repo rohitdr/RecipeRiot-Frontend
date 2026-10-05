@@ -1,4 +1,5 @@
-import api from "../../../Api/ApiInstances"
+import api from "../../../app/api/ApiInstances"
+
 
 export const getCommentsApi =(id,page)=>{
 return api.get(`/comment/comments/${id}?page=${page}&limit=${5}`)

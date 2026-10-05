@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
 import { userUpdateApi } from './../services/api';
+import AuthContext from "../../../app/Context/AuthContext";
 
 export const useProfileUpdateMutation=()=>{
     const {handleError}=useContext(AuthContext)

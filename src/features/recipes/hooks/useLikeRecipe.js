@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { userLikeRecipeApi } from "../services/recipe.api"
 import { toast } from "sonner"
+import AuthContext from "../../../app/Context/AuthContext"
 
 export const useLikeRecipe=()=>{
   const {handleError}=useContext(AuthContext)

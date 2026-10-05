@@ -1,4 +1,5 @@
-import api from "../../../Api/ApiInstances";
+import api from "../../../app/api/ApiInstances"
+
 
 export  function loginApi(data){
     return api.post('/auth/login',data)

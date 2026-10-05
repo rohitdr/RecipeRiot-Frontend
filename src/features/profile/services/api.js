@@ -1,5 +1,5 @@
+import api, { cloudinaryApi } from "../../../app/api/ApiInstances";
 
-import api, { cloudinaryApi } from "../../../Api/ApiInstances";
 
 export  function userUpdateApi(data){
     return api.patch('/user/updateUser',data)

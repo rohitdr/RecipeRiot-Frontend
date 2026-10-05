@@ -1,8 +1,8 @@
 import { useMutation } from "@tanstack/react-query"
 import { useContext } from "react"
-import AuthContext from "../../../Context/AuthContext"
 import { toast } from "sonner"
 import { changePasswordApi } from "../services/api"
+import AuthContext from "../../../app/Context/AuthContext"
 
 export const useChangePasswordMutation=()=>{
     const {handleError}=useContext(AuthContext)

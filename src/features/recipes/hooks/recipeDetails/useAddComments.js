@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { postCommentApi } from "../../services/recipeDetails.api"
 import { useContext } from "react"
-import AuthContext from './../../../../Context/AuthContext';
+import AuthContext from "../../../../app/Context/AuthContext"
 
 export const useAddComment=(recipeId,)=>{
     const {handleError}=useContext(AuthContext)

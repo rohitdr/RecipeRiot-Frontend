@@ -5,9 +5,9 @@ import { lazy } from "react"
 import Home from "../pages/Home.js"
 import Login from "../pages/Login.js"
 import SignUp from "../pages/Signup.js"
-import ProtectedRoute from "../Components/routes/ProtectedRoute.js"
-import PublicRoute from "../Components/routes/PublicRoute.js"
 import ErrorPage from './../Components/feedback/ErrorPage';
+import ProtectedRoute from "../features/auth/components/ProtectedRoute.js"
+import PublicRoute from "../features/auth/components/PublicRoute.js"
 
 const CategoryRecipe = lazy(()=>import("../pages/CategoryRecipe.js"))
 const RecipeDetails=lazy(()=>import('./../pages/RecipeDetails'))

@@ -1,7 +1,8 @@
 import { keepPreviousData, useQueryClient } from '@tanstack/react-query'
 
 import { userLikedRecipesApi } from '../services/recipe.api';
-import useMe from '../../profile/hooks/useMe';
+import useMe from '../../auth/hooks/useMe';
+
 
 export default function usePrefetchLikedRecipe() {
   const {data:Me}=useMe()

@@ -4,7 +4,8 @@ import { FaStar,FaSpinner } from 'react-icons/fa'
 import { toast } from 'sonner'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAddComment } from '../../hooks/recipeDetails/useAddComments'
-import useMe from './../../../profile/hooks/useMe';
+import useMe from './../../../auth/hooks/useMe';
+
 export default function ReviewForm() {
   const navigate=useNavigate()
   const {data:Me}=useMe()

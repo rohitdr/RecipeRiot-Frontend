@@ -1,8 +1,8 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query"
 
 
-import useMe from "../../profile/hooks/useMe"
 import { userRecipesApi } from "../services/recipe.api"
+import useMe from "../../auth/hooks/useMe"
 
 export  const useUserRecipes=(page)=>{
     const {data:Me}=useMe()

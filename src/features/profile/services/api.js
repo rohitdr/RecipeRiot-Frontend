@@ -8,12 +8,7 @@ export const uploadCloudinaryApi =(data)=>{
     return cloudinaryApi.post('',data);
 }
 
- export  function changePasswordApi(data){
-    return api.patch('/auth/changePassword',data)
-}
-export  function logoutApi(){
-    return api.post('/auth/logout')
-}
+
  export const updateProfileImage=async(file)=>{
     try{
          const formData=new FormData()
@@ -31,6 +26,4 @@ export  function logoutApi(){
       throw error
     }
   }
- export  function getLoggedUserApi(){
-    return api.get('/user/getUser')
-}
+

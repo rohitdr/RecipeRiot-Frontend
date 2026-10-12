@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { logoutApi } from "../services/api";
+import { logoutApi } from "../services/auth.api";
 import AuthContext from "../../../app/Context/AuthContext";
 
 export const useLogoutMutation=()=>{

@@ -1,6 +1,7 @@
 
 import { Navigate, Outlet } from 'react-router-dom'
-import useMe from '../../profile/hooks/useMe'
+import useMe from '../hooks/useMe'
+
 
 
 export default function ProtectedRoute() {

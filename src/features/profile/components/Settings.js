@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import  { useState } from 'react'
 import { toast } from 'sonner'
  import {FaSpinner } from "react-icons/fa";
- 
-import { useLogoutMutation } from '../hooks/useLogout';
+
 import { validatePassword } from '../schemas/userSchema';
 import LogoutConfirmDialog from './../../../Components/DailogBoxes/simpleDailogBox';
-import { useChangePasswordMutation } from './../hooks/useChangePassword';
+import { useLogoutMutation } from './../../auth/hooks/useLogout';
+import { useChangePasswordMutation } from './../../auth/hooks/useChangePassword';
 
 export default function Settings() {
 

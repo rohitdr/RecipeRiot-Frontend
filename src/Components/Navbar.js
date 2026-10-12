@@ -33,9 +33,9 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import { toCamelCase } from "../Utility/Utility";
-import useMe from "../features/profile/hooks/useMe";
 import usePrefetch from "../features/recipes/hooks/usePrefetch";
 import useHoverPrefetch from './../Hooks/useHoverPrefetch';
+import useMe from "../features/auth/hooks/useMe";
 export default function Navbar() {
  const {data:Me}=useMe()
   const {prefetchRecipe}=usePrefetch()

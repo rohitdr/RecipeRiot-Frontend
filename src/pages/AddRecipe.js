@@ -9,7 +9,7 @@ import RecipeForm from './../features/recipes/components/addRecipe/RecipeForm';
 import Nutrients from './../features/recipes/components/addRecipe/Nutrients';
 
 import useRecipeForm from './../features/recipes/hooks/useRecipeForm';
-import useMe from "../features/profile/hooks/useMe";
+import useMe from "../features/auth/hooks/useMe";
 
 
 export default function AddRecipe() {

@@ -6,7 +6,8 @@ import { toast } from "sonner";
 
 import { validateUserForm } from "../schemas/userSchema";
 import { useProfileUpdateMutation } from './../hooks/useProfileUpdate';
-import useMe from "../hooks/useMe";
+import useMe from "../../auth/hooks/useMe";
+
 export default function ProfileInfo() {
  const {data:user}=useMe()
 

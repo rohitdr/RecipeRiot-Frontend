@@ -4,7 +4,7 @@ import { postCommentApi } from "../../services/recipeDetails.api"
 import { useContext } from "react"
 import AuthContext from "../../../../app/Context/AuthContext"
 
-export const useAddComment=(recipeId,)=>{
+export const useAddComment=(recipeId)=>{
     const {handleError}=useContext(AuthContext)
     const queryClient=useQueryClient()
  return useMutation({
